@@ -8,9 +8,6 @@ import datetime
 app = Flask(__name__)
 DB = db.textfaceDB()
 
-DIR = "/home/defaultname/webapps/textfaces/htdocs"
-sys.path.append(DIR)
-
 from datetime import timedelta
 from flask import make_response, request, current_app
 from functools import update_wrapper
