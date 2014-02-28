@@ -1,0 +1,48 @@
+@import url('http://fonts.googleapis.com/css?family=Droid+Sans:200');
+body
+{
+    background-image: url('../img/background.png');
+    background-repeat: repeat;
+}
+div.ads
+{
+    text-align: center;
+}
+p.text-bigger
+{
+    font-size: 16pt;
+
+}
+a.awesome-face
+{
+    padding-right: 13px;
+    padding-top: 4px;
+}
+td.facedata
+{
+    text-align : center;
+}
+table{
+    margin:auto;
+}
+button.facebtn
+{
+    text-align: center;
+    border: 0px;
+    font-size: 30pt;
+    line-height: 75px;
+    color: #333333;
+}
+div.footer 
+{
+    padding-top:100px;
+}
+.bg-img
+{
+    background-image: url('../img/background.png');
+}
+button.face-big 
+{
+    font-size: 100pt;
+    line-height: 300px;
+}

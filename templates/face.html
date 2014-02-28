@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% block head %}
+<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="../static/css/main.css">
+{% endblock %}
+{% block container %}
+
+<!-- [le] text ads. Ads = I can has severs? ¯\_(ツ)_/¯ -->
+<div class="ads">
+<script type="text/javascript"><!--
+    google_ad_client = "ca-pub-3510139642126584";
+    /* horizontal */
+    google_ad_slot = "3812213755";
+    google_ad_width = 468;
+    google_ad_height = 60;
+    //-->
+</script>
+<script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+<script type="text/javascript"><!--
+    google_ad_client = "ca-pub-3510139642126584";
+    /* horizontal 2 */
+    google_ad_slot = "8242413350";
+    google_ad_width = 468;
+    google_ad_height = 60;
+    //-->
+</script>
+<script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+<script type="text/javascript"><!--
+    if(document.getElementsByTagName("iframe").item(0) == null)
+    {
+        //js stolen completely and utterly from StackOverflow
+        //>developing
+        document.write("<div style='text-align:center; font-family:century gothic, arial, helvetica, sans serif;padding-left:5px;padding-right:5px;'><span class='muted' style='font-size:10px'>Looks like you're blocking ads. ¯\\_(ツ)_/¯</span></div>");
+    }
+
+--></script>
+</div>
+<h1>textfac.es</h1>
+<small class="muted"> All the faces, but not <em>in</em> your face. Y'know?</small>
+<small class="muted"> Click to copy to clipboard. </small>
+<small class="muted"> Paste anywhere. Achieve glory. </small>
+<small class="muted pull-right"> <a href="/about">Help, I don't know what this is!</a></small>
+
+<h2 class="text-center">{{desc}}</h2>
+<table class="faces table table-bordered pull-left">
+
+<tr class="facerow">
+    <td class="facedata"> 
+        <button class="facebtn face-big bg-img" data-clipboard-text="{{face}}" ><span class="face">{{face}}</span> </button>
+    </td>
+</tr>
+
+</table>
+{% endblock %}
+
+{% block footer %}
+
+<div class="footer text-center">
+    <p class="muted"> textfac.es is a <a href="/about">Good Idea</a> </p>
+
+    <div class="text-center container">
+    <p class="muted">
+    Specifically, textfac.es (or textfaces or text faces) lets you finally write those damn unicode faces. The intended way to use it is as a bookmarked page in your bookmarks bar. When you need a textface, just hit the bookmark, click the face, and paste it where you want it to go.
+    </p>
+    <p class="muted">
+    The click-to-copy works through <a class="muted" href="http://jonrohan.github.com/ZeroClipboard/">ZeroClipboard</a>, which uses Flash (ew). If you've got Flash disabled, or it isn't installed, you'll have to highlight the faces, like a caveman. 
+    </p>
+
+    <p class="muted">
+    If the faces look weird, or you see rectangles all over the place, you might not have the right fonts installed. Or the face might actually be weird.
+    </p>
+
+</div>
+    <br>
+    <br>
+    <br>
+    <p class="muted">
+    ¯\_(ツ)_/¯
+    </p>
+</div>
+{% endblock %}
+{% block includejs %}
+<script src="../static/js/zeroclipboard/ZeroClipboard.js"> </script>
+<script src="../static/js/main.js"> </script>
+{% endblock %}
