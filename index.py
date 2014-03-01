@@ -1,3 +1,3 @@
 import sys
-sys.path.append('/home/defaultname/webapps/textfaces/htdocs')
+sys.path.append('/var/sites/textfac.es')
 from textface import app as application
