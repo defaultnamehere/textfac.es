@@ -4,7 +4,7 @@ DIR = "/home/defaultname/webapps/textfaces/htdocs/"
 
 HOST = 'localhost'
 PORT=3306
-USER='alex'
+USER='root'
 PASSWORD= 'eipi+1=0' #STRONG SECURITY
 DATABASE='textfacedb'
 class textfaceDB():
