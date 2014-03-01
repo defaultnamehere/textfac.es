@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import sys
 from urlparse import urlparse, urlunparse
 from flask import *
 import db
