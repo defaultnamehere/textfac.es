@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from urlparse import urlparse, urlunparse
 from flask import *
 import db
 import datetime
@@ -54,15 +53,6 @@ def crossdomain(origin=None, methods=None, headers=None,
     return decorator
 
 
-@app.before_request
-def redirect_nonwww():
-    """Redirect non-www requests to www."""
-    urlparts = urlparse(request.url)
-    if urlparts.netloc == 'www.textfac.es':
-        urlparts_list = list(urlparts)
-        urlparts_list[1] = 'textfac.es'
-        return redirect(urlunparse(urlparts_list), code=301)
-
 @app.route('/face/<face_name>')
 def show_face(face_name):
 
@@ -78,25 +68,26 @@ def show_face(face_name):
 
 @app.route('/')
 def faces():
-    #If I were a good programmer, I'd have the DB sort the data
-    #results = sorted(DB.get_all_face_data(), key=lambda x: x[2], reverse=True)
     results = DB.get_all_face_data()
-    #whether the page has been seen
+
+    # Whether the page has been seen.
     viewed = request.cookies.get('bookmarked')
-    bookmarked = viewed != None #true if the page has been seen before
+    # True if the page has been seen before.
+    bookmarked = viewed != None 
     render_popup = not bookmarked
-    #actually render the page,
+
     template = render_template("main.html", faceids=results, bookmarked=render_popup)
     if render_popup:
         resp = make_response(template)
         now = datetime.datetime.now()
-        expiry_time = now + datetime.timedelta(days=3650) #yeah okay. Thanks datetime!
-        #black magic to set the cookie
+        # SEE YOU IN 10 YEARS
+        expiry_time = now + datetime.timedelta(days=3650) 
+        # Black magic to set the cookie.
         resp.set_cookie('bookmarked', 'hopefully', expires=expiry_time)
         return resp
     return template
 
-@app.route("/increment", methods=['POST', 'GET'])
+@app.route("/increment", methods=['POST'])
 def increment():
     faceid = request.args.get('id')
     DB.write_increment(faceid)
