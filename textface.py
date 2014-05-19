@@ -64,9 +64,11 @@ def show_face(face_name):
     else:
         return render_template('page_not_found.html'), 404
 
+def dump_to_file():
+    with open("textfaces.html", 'w') as f:
+        f.write(faces())
 
 
-@app.route('/')
 def faces():
     results = DB.get_all_face_data()
 
