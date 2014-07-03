@@ -88,7 +88,7 @@ def faces():
 @app.route("/increment", methods=['POST'])
 def increment():
     faceid = request.args.get('id')
-    DB.write_increment(faceid)
+    DB.increment(faceid)
     return redirect('/') 
 
 @app.route("/about")

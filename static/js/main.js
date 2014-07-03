@@ -12,7 +12,9 @@ clip.glue(faces);
 clip.on("mousedown", function(client, args) {
     $(this).popover('toggle');
     var id = $(this).attr("face-id")
-    $.ajax("/increment?id=" + id);
+    $.ajax("/increment?id=" + id, {
+        type: "POST"
+        });
 });
 
 clip.on("mouseout", function(client, args) {
