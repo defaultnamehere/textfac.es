@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
-
 from flask import *
-import db
+import redisdb as db
 import datetime
 app = Flask(__name__)
 DB = db.textfaceDB()
@@ -64,8 +63,6 @@ def show_face(face_name):
     else:
         return render_template('page_not_found.html'), 404
 
-
-
 @app.route('/')
 def faces():
     results = DB.get_all_face_data()
@@ -85,6 +82,7 @@ def faces():
         # Black magic to set the cookie.
         resp.set_cookie('bookmarked', 'hopefully', expires=expiry_time)
         return resp
+
     return template
 
 @app.route("/increment", methods=['POST'])

@@ -1,37 +1,40 @@
 @import url('http://fonts.googleapis.com/css?family=Droid+Sans:200');
-body
-{
+body {
     background-image: url('../img/background.png');
     background-repeat: repeat;
 }
-div.ads
-{
+div.ads {
     text-align: center;
 }
-p.text-bigger
-{
+p.text-bigger {
     font-size: 16pt;
-
 }
-a.awesome-face
-{
+a.awesome-face {
     padding-right: 13px;
     padding-top: 4px;
 }
-td.facedata
-{
+td.facedata {
     text-align : center;
 }
-table{
+table {
     margin:auto;
 }
-button.facebtn
-{
+button.facebtn {
     text-align: center;
     border: 0px;
     font-size: 30pt;
     line-height: 75px;
     color: #333333;
+}
+.not-highlighted {
+    background-color : '';
+    color : #FFFFFF;
+    background-image: url('../img/background.png');
+}
+
+.highlighted {
+    background-color :#408FFF;
+    color : #FFFFFF;
 }
 div.footer 
 {
