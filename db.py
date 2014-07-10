@@ -3,7 +3,7 @@ import MySQLdb as sqldb
 HOST = 'localhost'
 PORT=3306
 USER='root'
-PASSWORD= 'eipi+1=0' #STRONG SECURITY
+PASSWORD= '649e357be237dc007b20772f6610ba07c3378c9014876df4d2c5777d7d1f18c3' #STRONG SECURITY
 DATABASE='textfacedb'
 class textfaceDB():
 
