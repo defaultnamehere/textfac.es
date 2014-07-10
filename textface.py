@@ -67,13 +67,17 @@ def show_face(face_name):
 def faces():
     results = DB.get_all_face_data()
 
+    pairs = []
+    for i in xrange(1, len(results), 2):
+        pairs.append((results[i - 1], results[i]))
+
     # Whether the page has been seen.
     viewed = request.cookies.get('bookmarked')
     # True if the page has been seen before.
     bookmarked = viewed != None 
     render_popup = not bookmarked
 
-    template = render_template("main.html", faceids=results, bookmarked=render_popup)
+    template = render_template("main.html", facepairs=pairs, bookmarked=render_popup)
     if render_popup:
         resp = make_response(template)
         now = datetime.datetime.now()

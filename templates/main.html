@@ -50,14 +50,15 @@
 <small class="muted pull-right"> <a href="/about">Help, I don't know what this is!</a></small>
 
 <table class="faces table table-bordered pull-left">
-{% for id,face,uses in faceids %}
+{% for pair in facepairs %}
+    <tr class="facerow">
+    {% for id,face,uses in pair%}
 
-<tr class="facerow">
-    <td class="facedata"> 
-        <button class="facebtn bg-img" face-id="{{id}}" data-clipboard-text="{{face}}" ><span class="face">{{face}}</span> </button>
-    </td>
-</tr>
-
+        <td class="facedata"> 
+            <button class="facebtn bg-img" face-id="{{id}}" data-clipboard-text="{{face}}" ><span class="face">{{face}}</span> </button>
+        </td>
+    {% endfor %}
+    </tr>
 {% endfor %}
 </table>
 {% endblock %}

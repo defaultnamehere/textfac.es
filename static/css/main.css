@@ -15,6 +15,7 @@ a.awesome-face {
 }
 td.facedata {
     text-align : center;
+    width: 50%;
 }
 table {
     margin:auto;
