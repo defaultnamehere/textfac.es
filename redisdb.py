@@ -20,6 +20,7 @@ class textfaceDB():
         self.server.hincrby(faceid, "uses", 1)
 
     def get_all_face_data(self):
+
         if self.max_face_id is None:
             self.max_face_id = len(open("faces.txt").readlines())
         results = []
