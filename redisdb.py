@@ -3,7 +3,7 @@ import redis
 class textfaceDB():
 
     def __init__(self):
-        redis_password = open("redis_password.txt").read().strip()
+        redis_password = "de23ce07d0e1b640837f78e3e0a7ab93afdbc0e6"
         self.server = redis.Redis('localhost', password=redis_password)
         self.max_face_id = None
 
