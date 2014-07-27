@@ -28,6 +28,6 @@ class textfaceDB():
             uses, face = self.server.hvals(i)
             results.append((i, face.decode('utf-8'), uses))
 
-        return list(sorted(results, key=lambda t: t[-1], reverse=True))
+        return list(sorted(results, key=lambda t: int(t[-1]), reverse=True))
 
 
