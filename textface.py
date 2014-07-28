@@ -2,17 +2,16 @@
 from flask import *
 import datetime
 import sys
-import os
 import redisdb as db
-
-app = Flask(__name__)
-DB = db.textfaceDB()
 
 from datetime import timedelta
 from flask import make_response, request, current_app
 from functools import update_wrapper
 
-sys.path.append(os.getcwd())
+app = Flask(__name__)
+DB = db.textfaceDB()
+
+sys.path.append("/var/sites/textfac.es")
 
 def crossdomain(origin=None, methods=None, headers=None,
                 max_age=21600, attach_to_all=True,
