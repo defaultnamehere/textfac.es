@@ -30,5 +30,16 @@ clip.on("mouseover", function(client, args) {
     $(this).css('color', '#FFFFFF');
 });
 
+
 // Deal with bookmark cookie.
 
+if (!$.cookie("bookmarked")) {
+    //Set the cookie.
+    $.cookie("bookmarked", "yep", {
+        // In the distant future, textfac.es falls into complete chaos when everyone's cookies expire. Only one man has the courage to face the chaos. Coming this summer: Cookie Monster.
+        "expires" : 10 * 365 
+    });
+
+    //Show the banner.
+    $('.bookmark-banner').show();
+}

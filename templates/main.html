@@ -5,7 +5,14 @@
 {% endblock %}
 {% block container %}
 
-<!-- [le] text ads. Ads = I can has severs? ¯\_(ツ)_/¯ -->
+<div class="bookmark-banner alert" style="display: none;">
+    <div class="pull-left">
+        <a href="http://textfac.es" class="awesome-face"  ><img src="../static/ico/favicon.png" alt="textfac.es"></a> 
+    </div>
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>Bookmark me maybe?</strong> <br>You'll probably want to get to this site quickly later. Just drag this icon up to your bookmarks bar. Did you do it? Good. That was fun. You won't see this message again.
+  </div>
+
 <div class="ads">
 <script type="text/javascript"><!--
     google_ad_client = "ca-pub-3510139642126584";
@@ -34,15 +41,13 @@
 <script type="text/javascript"><!--
     if(document.getElementsByTagName("iframe").item(0) == null)
     {
-	//js stolen highly from StackOverflow
+        //js stolen from StackOverflow
         document.write("<div style='text-align:center; font-family:century gothic, arial, helvetica, sans serif;padding-left:5px;padding-right:5px;'><span class='muted' style='font-size:10px'>Looks like you're blocking ads. ¯\\_(ツ)_/¯</span></div>");
     }
 
 --></script>
 </div>
-{% if bookmarked %}
-{% include "bookmark_alert.html" %}
-{% endif %}
+
 <h1>textfac.es</h1>
 <small class="muted"> All the faces, but not <em>in</em> your face. Y'know?</small>
 <small class="muted"> Click to copy to clipboard. </small>
@@ -70,10 +75,10 @@
 
     <div class="text-center container">
     <p class="muted">
-    Specifically, textfac.es (or textfaces or text faces) lets you finally write those damn unicode faces. The intended way to use it is as a bookmarked page in your bookmarks bar. When you need a textface, just hit the bookmark, click the face, and paste it where you want it to go.
+    Specifically, textfac.es (or textfaces or text faces, I'm not really sure either) lets you finally write those damn unicode faces. You should probably bookmark it so you don't lose it. When you need a textface, just hit the bookmark, click the face, and paste it where you want it to go.
     </p>
     <p class="muted">
-    The click-to-copy works through <a class="muted" href="http://jonrohan.github.com/ZeroClipboard/">ZeroClipboard</a>, which uses Flash (ew). If you've got Flash disabled, or it isn't installed, you'll have to highlight the faces, like a caveman. 
+    The click-to-copy works through <a class="muted" href="http://jonrohan.github.com/ZeroClipboard/">ZeroClipboard</a>, which uses Flash (ew). If you've got Flash disabled, or it isn't installed, you'll have to highlight the faces, like a caveman.
     </p>
 
     <p class="muted">
@@ -91,5 +96,6 @@
 {% endblock %}
 {% block includejs %}
 <script src="../static/js/zeroclipboard/ZeroClipboard.js"> </script>
+<script src="../static/js/jquery.cookie.js"> </script>
 <script src="../static/js/main.js"> </script>
 {% endblock %}

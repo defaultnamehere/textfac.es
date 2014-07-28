@@ -78,23 +78,7 @@ def faces():
     for i in xrange(1, len(results), 2):
         pairs.append((results[i - 1], results[i]))
 
-    # Whether the page has been seen.
-    viewed = request.cookies.get('bookmarked')
-    # True if the page has been seen before.
-    bookmarked = viewed != None 
-    render_popup = not bookmarked
-
-    template = render_template("main.html", facepairs=pairs, bookmarked=render_popup)
-    if render_popup:
-        resp = make_response(template)
-        now = datetime.datetime.now()
-        # SEE YOU IN 10 YEARS
-        expiry_time = now + datetime.timedelta(days=3650) 
-        # Black magic to set the cookie.
-        resp.set_cookie('bookmarked', 'hopefully', expires=expiry_time)
-        return resp
-
-    return template
+    return render_template("main.html", facepairs=pairs)
 
 @app.route("/increment", methods=['POST'])
 def increment():
