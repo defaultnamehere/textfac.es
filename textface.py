@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from flask import *
-import datetime
 import sys
 import redisdb as db
 
