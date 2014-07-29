@@ -1,6 +1,5 @@
 import redis
-import sys
-sys.path.append("/var/sites/textfac.es")
+BASE_PATH = "/var/sites/textfac.es/"
 
 class textfaceDB():
 
@@ -24,7 +23,7 @@ class textfaceDB():
     def get_all_face_data(self):
 
         if self.max_face_id is None:
-            self.max_face_id = len(open("faces.txt").readlines())
+            self.max_face_id = len(open(BASE_PATH + "faces.txt").readlines())
         results = []
         for i in xrange(self.max_face_id):
             uses, face = self.server.hvals(i)
