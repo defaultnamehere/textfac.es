@@ -10,7 +10,7 @@
         <a href="http://textfac.es" class="awesome-face"  ><img src="../static/ico/favicon.png" alt="textfac.es"></a> 
     </div>
       <button type="button" class="close" data-dismiss="alert">&times;</button>
-      <strong>Bookmark me maybe?</strong> <br>You'll probably want to get to this site quickly later. Just drag this icon up to your bookmarks bar. Did you do it? Good. That was fun. You won't see this message again.
+      <strong>Bookmark me maybe?</strong> <br>You'll probably want to get to this site quickly later. Just drag icon up to your bookmarks bar. Did you do it? Good. That was fun. You won't see this message again.
   </div>
 
 <div class="ads">
@@ -54,20 +54,49 @@
 <small class="muted"> Paste anywhere. Achieve glory. </small>
 <small class="muted pull-right"> <a href="/about">Help, I don't know what this is!</a></small>
 
-<table class="faces table table-bordered pull-left">
-{% for pair in facepairs %}
-    <tr class="facerow">
-    {% for id,face,uses in pair%}
+<div class="tabbable">
+    <ul class="nav nav-tabs">
+        <li class="active">
+        <a href="#tab1" data-toggle="tab">Faces</a>
+        </li>
+        <li>
+        <a href="#tab2" data-toggle="tab">Symbols</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane-active" id="tab1">
+            <table class="faces table table-bordered pull-left">
+            {% for pair in facepairs %}
+                <tr class="facerow">
+                {% for id,face,uses in pair%}
 
-        <td class="facedata"> 
-            <button class="facebtn bg-img" face-id="{{id}}" data-clipboard-text="{{face}}" ><span class="face">{{face}}</span> </button>
-        </td>
-    {% endfor %}
-    </tr>
-{% endfor %}
-</table>
+                    <td class="facedata"> 
+                        <button class="facebtn bg-img" face-id="{{id}}" data-clipboard-text="{{face}}" ><span class="face">{{face}}</span> </button>
+                    </td>
+                {% endfor %}
+                </tr>
+            {% endfor %}
+            </table>
+        </div>
+        <div class="tab-pane" id="tab2">
+            <table class="faces table table-bordered pull-left">
+            {% for pair in symbolpairs%}
+                <tr class="facerow">
+                {% for id,uses,symbol in pair%}
+
+                    <td class="facedata"> 
+                        <button class="facebtn bg-img" face-id="{{id}}" data-clipboard-text="{{symbol}}" ><span class="face">{{symbol}}</span> </button>
+                    </td>
+                {% endfor %}
+                </tr>
+            {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+
+
 {% endblock %}
-
 {% block footer %}
 
 <div class="footer text-center">
