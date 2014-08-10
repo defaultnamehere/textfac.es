@@ -69,15 +69,16 @@ def dump_to_file():
     with open("textfaces.html", 'w') as f:
         f.write(faces())
 
+def pairify(iterable):
+    for i in xrange(1, len(iterable), 2):
+        yield (iterable[i - 1], iterable[i])
+
 @app.route('/')
 def faces():
-    results = DB.get_all_face_data()
+    pairs = pairify(DB.get_all_face_data())
+    symbols = pairify(DB.get_all_symbol_data())
 
-    pairs = []
-    for i in xrange(1, len(results), 2):
-        pairs.append((results[i - 1], results[i]))
-
-    return render_template("main.html", facepairs=pairs)
+    return render_template("main.html", facepairs=pairs, symbolpairs=symbols)
 
 @app.route("/increment", methods=['POST'])
 def increment():
