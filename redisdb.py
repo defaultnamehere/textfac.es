@@ -48,7 +48,8 @@ class textfaceDB():
         results = []
         for i in xrange(self.max_symbol_id):
             uses, symbol = self.server.hvals("u%s" % i)
-            results.append((i, symbol.decode('utf-8'), uses))
+            results.append((i, symbol, uses))
+        print self.max_symbol_id
 
         # Sort by uses, don't forget to convert to int since redis stores everything as strings to be more web scale.
         # "Yeah, you just turn on redis and it scales right up!"

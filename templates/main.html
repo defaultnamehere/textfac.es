@@ -64,7 +64,7 @@
         </li>
     </ul>
     <div class="tab-content">
-        <div class="tab-pane-active" id="tab1">
+        <div class="tab-pane active" id="tab1">
             <table class="faces table table-bordered pull-left">
             {% for pair in facepairs %}
                 <tr class="facerow">
@@ -85,7 +85,7 @@
                 {% for id,uses,symbol in pair%}
 
                     <td class="facedata"> 
-                        <button class="facebtn bg-img" face-id="{{id}}" data-clipboard-text="{{symbol}}" ><span class="face">{{symbol}}</span> </button>
+                        <button class="facebtn bg-img" face-id="{{id}}" data-clipboard-text="{{symbol.decode('utf8')}}" ><span class="face">{{symbol.decode('utf8')}}</span> </button>
                     </td>
                 {% endfor %}
                 </tr>
