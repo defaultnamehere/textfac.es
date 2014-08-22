@@ -75,4 +75,27 @@ class textfaceDB():
         # "Yeah, you just turn on redis and it scales right up!"
         return list(sorted(results, key=lambda t: int(t[-1]), reverse=True))
 
+    def add_new_faces(self, filename):
+        """Update the database with new faces from a file. These should probably be merged into faces.txt for persistence. 
+        >text file 
+        >persistence
+        >20k hits/day"""
+
+        all_faces = set(map(lambda x: x[1], self.get_all_face_data()))
+        with open(filename, 'rU') as f:
+            for i, line in enumerate(f):
+                face = line.strip()
+                # Don't double-add faces.
+                if face in all_faces:
+                    continue
+                # Make a new id for this new face, and keep track of the max.
+                self.max_face_id += 1
+                self.server.hmset(self.max_face_id, {
+                    "uses": 0,
+                    "face" :face
+                })
+
+
+
+
 
