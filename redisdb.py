@@ -1,6 +1,6 @@
 import redis
 import os
-if  "alex" in os.getenv("HOME"):
+if  os.getenv("HOME") is not None and "alex" in os.getenv("HOME"):
     BASE_PATH = "/home/alex/dev/textfac.es/repo/"
 else:
     BASE_PATH = "/var/sites/textfac.es/"
