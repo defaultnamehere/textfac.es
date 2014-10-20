@@ -1,10 +1,25 @@
 @import url('http://fonts.googleapis.com/css?family=Droid+Sans:200');
 body {
+    /*
     background-image: url('../img/background.png');
     background-repeat: repeat;
+    */
+    background-color: #FFFFFF;
 }
 div.ads {
     text-align: center;
+}
+small.slogan-gag {
+    display: inline;
+}
+h1.title {
+    display: inline
+}
+.background-bluegrey {
+    background: #607d8b;
+}
+a.bluegrey {
+    color: #b0bec5;
 }
 p.text-bigger {
     font-size: 16pt;
@@ -26,11 +41,12 @@ button.facebtn {
     font-size: 30pt;
     line-height: 75px;
     color: #333333;
+    background-color: white;
 }
 .not-highlighted {
-    background-color : '';
+    background-color : #FFFFFF;
     color : #FFFFFF;
-    background-image: url('../img/background.png');
+    /*background-image: url('../img/background.png');*/
 }
 
 .highlighted {
@@ -43,7 +59,7 @@ div.footer
 }
 .bg-img
 {
-    background-image: url('../img/background.png');
+    /*background-image: url('../img/background.png');*/
 }
 button.face-big 
 {

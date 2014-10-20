@@ -2,6 +2,7 @@
 {% block head %}
 <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="../static/css/main.css">
+
 {% endblock %}
 {% block container %}
 
@@ -48,20 +49,24 @@
 --></script>
 </div>
 
-<h1>textfac.es</h1>
-<small class="muted"> All the faces, but not <em>in</em> your face. Y'know?</small>
-<small class="muted"> Click to copy to clipboard. </small>
-<small class="muted"> Paste anywhere. Achieve glory. </small>
-<small class="muted pull-right"> <a href="/about">Help, I don't know what this is!</a></small>
+<h1 class="title">textfac.es</h1> <small class="muted slogan-gag"> </small>
+<p class=""> <small>Click to copy to clipboard. Paste anywhere. Achieve glory. </small></p>
 
+<!--
+<iframe class="pull-right" src="Some Facebook URL" scrolling="no" frameborder="0" allowTransparency="true" style="border:none; overflow:hidden; width:450px; height:px">
+    -->
 <div class="tabbable">
-    <ul class="nav nav-tabs">
+    <ul class="nav nav-tabs background-bluegrey">
         <li class="active">
         <a href="#tab1" data-toggle="tab">Faces</a>
         </li>
         <li>
-        <a href="#tab2" data-toggle="tab">Symbols <span class="label label-danger">New!</span></a>
+        <a href="#tab2" data-toggle="tab">Symbols</a>
         </li>
+        <li class="pull-right">
+         <i class="icon icon-material-help"></i>
+        </li>
+
     </ul>
     <div class="tab-content">
         <div class="tab-pane active" id="tab1">
@@ -99,10 +104,10 @@
 {% endblock %}
 {% block footer %}
 
-<div class="footer text-center">
-    <p class="muted"> textfac.es is a <a href="/about">Good Idea</a> </p>
+<div class="footer ">
+    <p class="muted text-center"> textfac.es is a <a href="/about">Good Idea</a> </p>
 
-    <div class="text-center container">
+    <div class="container">
     <p class="muted">
     Specifically, textfac.es (or textfaces or text faces, I'm not really sure either) lets you finally write those damn unicode faces. You should probably bookmark it so you don't lose it. When you need a textface, just hit the bookmark, click the face, and paste it where you want it to go.
     </p>
@@ -118,7 +123,7 @@
     <br>
     <br>
     <br>
-    <p class="muted">
+    <p class="muted text-center">
     ¯\_(ツ)_/¯
     </p>
 </div>

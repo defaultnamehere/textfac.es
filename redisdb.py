@@ -99,3 +99,8 @@ class textfaceDB():
                     "face" :face
                 })
 
+if __name__ == '__main__':
+    db = textfaceDB()
+    db.load_faces_from_file("faces.txt")
+    db.load_symbols_from_file("symbols.txt")
+
