@@ -9,8 +9,11 @@ body {
 div.ads {
     text-align: center;
 }
-small.slogan-gag {
+.slogan-gag {
     display: inline;
+    /* mfw this css */
+    cursor: pointer;
+    cursor: hand;
 }
 h1.title {
     display: inline
@@ -65,4 +68,27 @@ button.face-big
 {
     font-size: 100pt;
     line-height: 300px;
+}
+
+p.outro {
+    padding-left: 20%;
+    padding-right: 20%;
+}
+
+td {
+    padding:0 !important;
+    border:0 none;
+    outline: none;
+}
+tr {
+    border-top: none;
+}
+table {
+    border-collapse: collapse !important;
+    border: none;
+}
+div.social {
+    float: right;
+    padding-top: 7px;
+    padding-right: 7px;
 }

@@ -13,6 +13,7 @@ GAG_SLOGANS = [
     'See also <a href="http://gabegaming.com">gabegaming.com</a>',
     '5 million hits woo!',
     'For best results apply directly to Twitch chat.',
+    'Dank memes.',
     '( ͡° ͜ʖ ͡°)',
     'The number 1 font coverage tool since 1796.',
     'Your source for empty rectangles.',
@@ -49,6 +50,11 @@ clip.on("mouseout", function(client, args) {
     $(this).css('color', '#333333');
 });
 
+faces.popover().on('hide.bs.popover', function () {
+    faces.css('background-color', '#FFFFFF');
+    faces.css('color', '#333333');
+});
+
 clip.on("mouseover", function(client, args) {
     $(this).css('background-color', '#408FFF');
     $(this).css('color', '#FFFFFF');
@@ -68,7 +74,10 @@ if (!$.cookie("bookmarked")) {
 
 
 // Add the random gag slogan
-
-var slogan = random_choice(GAG_SLOGANS);
-$('small.slogan-gag').html(slogan);
+function switchSlogan() {
+    var slogan = random_choice(GAG_SLOGANS);
+    $('.slogan-gag').html(slogan + ' ↺' );
+}
+$('.slogan-gag').on('click', switchSlogan);
+switchSlogan();
 

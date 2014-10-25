@@ -4,7 +4,7 @@
   <head>
       <meta charset="utf-8">
       <!-- -->
-    <title>Text faces - unicode text face list</title>
+    <title>Text faces - A Unicode text face list</title>
     <meta name="description" content="Textfaces - Click to copy. Paste anywhere. Achieve glory.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="@_notlikethis">
@@ -42,7 +42,14 @@
 </head>
 
 <body>
-
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=672173289535125&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
     {% block navbar %}
     {% endblock %}
 

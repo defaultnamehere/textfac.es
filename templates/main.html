@@ -40,9 +40,8 @@
 </script>
 
 <script type="text/javascript"><!--
-    if(document.getElementsByTagName("iframe").item(0) == null)
-    {
-        //js stolen from StackOverflow
+    if(document.getElementsByTagName("iframe").item(0) == null) {
+        // More like HackOverflow
         document.write("<div style='text-align:center; font-family:century gothic, arial, helvetica, sans serif;padding-left:5px;padding-right:5px;'><span class='muted' style='font-size:10px'>Looks like you're blocking ads. ¯\\_(ツ)_/¯</span></div>");
     }
 
@@ -50,11 +49,18 @@
 </div>
 
 <h1 class="title">textfac.es</h1> <small class="muted slogan-gag"> </small>
-<p class=""> <small>Click to copy to clipboard. Paste anywhere. Achieve glory. </small></p>
+<p class=""> <small>Click to copy to clipboard. Paste anywhere. Achieve glory. </small>
 
-<!--
-<iframe class="pull-right" src="Some Facebook URL" scrolling="no" frameborder="0" allowTransparency="true" style="border:none; overflow:hidden; width:450px; height:px">
-    -->
+</p>
+
+<div class="social">
+    <div class="fb-like pull-right" data-href="http://textfac.es" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://textfac.es" data-text="(☞ﾟヮﾟ)☞ ☜(ﾟヮﾟ☜) Click to copy to clipboard! (~˘▾˘)~ ~(˘▾˘~)">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+</div>
+
+
 <div class="tabbable">
     <ul class="nav nav-tabs background-bluegrey">
         <li class="active">
@@ -63,14 +69,11 @@
         <li>
         <a href="#tab2" data-toggle="tab">Symbols</a>
         </li>
-        <li class="pull-right">
-         <i class="icon icon-material-help"></i>
-        </li>
 
     </ul>
     <div class="tab-content">
         <div class="tab-pane active" id="tab1">
-            <table class="faces table table-bordered pull-left">
+            <table class="faces table " border="">
             {% for pair in facepairs %}
                 <tr class="facerow">
                 {% for id,uses,face in pair%}
@@ -105,27 +108,27 @@
 {% block footer %}
 
 <div class="footer ">
+    <div class="container well">
     <p class="muted text-center"> textfac.es is a <a href="/about">Good Idea</a> </p>
 
-    <div class="container">
-    <p class="muted">
+    <p class="muted outro text-center">
     Specifically, textfac.es (or textfaces or text faces, I'm not really sure either) lets you finally write those damn unicode faces. You should probably bookmark it so you don't lose it. When you need a textface, just hit the bookmark, click the face, and paste it where you want it to go.
     </p>
-    <p class="muted">
+    <p class="muted outro text-center">
     The click-to-copy works through <a class="muted" href="http://jonrohan.github.com/ZeroClipboard/">ZeroClipboard</a>, which uses Flash (ew). If you've got Flash disabled, or it isn't installed, you'll have to highlight the faces, like a caveman.
     </p>
 
-    <p class="muted">
+    <p class="muted outro text-center">
     If the faces look weird, or you see rectangles all over the place, you might not have the right fonts installed. Or the face might actually be weird.
     </p>
 
-</div>
     <br>
     <br>
     <br>
     <p class="muted text-center">
     ¯\_(ツ)_/¯
     </p>
+</div>
 </div>
 {% endblock %}
 {% block includejs %}
