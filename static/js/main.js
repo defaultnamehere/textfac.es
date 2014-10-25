@@ -31,6 +31,8 @@ GAG_SLOGANS = [
     'Nice meme.',
     '┬┴┬┴┤(･_├┬┴┬┴',
     '[̲̅$̲̅(̲̅ ͡° ͜ʖ ͡°̲̅)̲̅$̲̅] Do you have change for a donger bill?',
+    'Putting the ( ͡° ͜ʖ ͡°) in "comedy".',
+
 ];
 
 var faces= $("button.facebtn");
