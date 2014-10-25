@@ -15,13 +15,22 @@ GAG_SLOGANS = [
     'For best results apply directly to Twitch chat.',
     'Dank memes.',
     '( ͡° ͜ʖ ͡°)',
-    'The number 1 font coverage tool since 1796.',
     'Your source for empty rectangles.',
     '<em>Not</em> made in the Bay area.',
-    'Nice meme.',
-    'Changing the way we communicate. (For the better?)',
+    'Changing the way we communicate (for the better?)',
     'Suggestions welcome.',
-    '"omg how did you make that face?"'
+    '"omg how did you make that face?"',
+    'See <a href="http://oneu.se">oneu.se</a> for my other novelty one-use websites.',
+    '2.0!',
+    'Tweet me! <a href="http://twitter.com/_notlikethis/">@_notlikethis</a>',
+    'Because Googling for these things is hard.',
+    'Because you\'re worth it.',
+    'Mo\' faces, mo\' value.',
+    'Unicooooode.',
+    'Your fonts are probably broken.',
+    'Nice meme.',
+    '┬┴┬┴┤(･_├┬┴┬┴',
+    '[̲̅$̲̅(̲̅ ͡° ͜ʖ ͡°̲̅)̲̅$̲̅] Do you have change for a donger bill?',
 ];
 
 var faces= $("button.facebtn");
