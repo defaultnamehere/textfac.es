@@ -92,3 +92,15 @@ div.social {
     padding-top: 7px;
     padding-right: 7px;
 }
+
+div.well-face {
+    width: 5%;
+}
+div.well-silver {
+    width: 20%;
+}
+
+p.home {
+    padding-top: 20px;
+    padding-bottom: 100px;
+}
