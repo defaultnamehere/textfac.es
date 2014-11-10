@@ -1,9 +1,4 @@
 
-// hi every1 my name is katy nd as u can see i am quite random! *holds up spork*
-var random_choice = function(list) {
-    // ... I can't believe I have to implement this.
-    return list[Math.floor(Math.random() * list.length)];
-}
 
 GAG_SLOGANS = [
     'Step right up getcha text faces here!',
@@ -15,7 +10,6 @@ GAG_SLOGANS = [
     'For best results apply directly to Twitch chat.',
     'Dank memes.',
     '( ͡° ͜ʖ ͡°)',
-    'Your source for empty rectangles.',
     '<em>Not</em> made in the Bay area.',
     'Changing the way we communicate (for the better?)',
     'Suggestions welcome.',
@@ -34,6 +28,12 @@ GAG_SLOGANS = [
     'Putting the ( ͡° ͜ʖ ͡°) in "comedy".',
 
 ];
+
+// Step right up getcha gags here freshly baked this morning.
+function switchSlogan() {
+    var slogan = randomChoice(GAG_SLOGANS);
+    $('.slogan-gag').html(slogan + ' ↺' );
+}
 
 var faces= $("button.facebtn");
 
@@ -71,11 +71,10 @@ clip.on("mouseover", function(client, args) {
     $(this).css('color', '#FFFFFF');
 });
 
-
 // Deal with bookmark cookie.
 if (!$.cookie("bookmarked")) {
     $.cookie("bookmarked", "yep", {
-        // In the distant future, textfac.es falls into complete chaos when everyone's cookies expire. Only one man has the courage to face the chaos. Coming this summer: Cookie Monster.
+        // In the distant future, textfac.es falls into complete chaos when everyone's cookies expire. Only one white man has the courage to face the chaos. Coming this summer: Cookie Monster.
         "expires" : 10 * 365 
     });
 
@@ -83,12 +82,10 @@ if (!$.cookie("bookmarked")) {
     $('.bookmark-banner').show();
 }
 
-
-// Add the random gag slogan
-function switchSlogan() {
-    var slogan = random_choice(GAG_SLOGANS);
-    $('.slogan-gag').html(slogan + ' ↺' );
-}
 $('.slogan-gag').on('click', switchSlogan);
 switchSlogan();
+
+var gagTextArea = $('textarea.gag-text');
+// Okay I'm going to need some googling to do this part
+// Catch the keypress, and modify the character before it hits the text box
 

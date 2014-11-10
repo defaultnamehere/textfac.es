@@ -69,6 +69,8 @@
         <li>
         <a href="#tab2" data-toggle="tab">Symbols</a>
         </li>
+        <a href="#tab3" data-toggle="tab">High Quality Text Gags</a>
+        </li>
 
     </ul>
     <div class="tab-content">
@@ -99,6 +101,18 @@
                 </tr>
             {% endfor %}
             </table>
+        </div>
+        <div class="tab-pane" id="tab3">
+            <div class="text-gags">
+                <form>
+                    <textarea rows="3" class="gag-text text-large" placeholder="Type your gags here"> </textarea>
+                    <select>
+                        <option>C̆ͪo̤̩r̰ͦr͔͊u̢ͭp̅̔t͋͠e̸ͭd̤̉ ̜̇t̃͂e̬̯x͆ͮt̹ͭ</option>
+                        <option>S̶t̶r̶i̶k̶e̶t̶h̶r̶o̶u̶g̶h</option>
+                        <option>C A P I T A L B O Y S</option>
+                    </select>
+                </form>
+            </div>
         </div>
     </div>
 </div>
@@ -134,5 +148,6 @@
 {% block includejs %}
 <script src="../static/js/zeroclipboard/ZeroClipboard.js"> </script>
 <script src="../static/js/jquery.cookie.js"> </script>
+<script src="../static/js/textgags.js"> </script>
 <script src="../static/js/main.js"> </script>
 {% endblock %}

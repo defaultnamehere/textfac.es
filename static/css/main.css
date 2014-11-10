@@ -104,3 +104,12 @@ p.home {
     padding-top: 20px;
     padding-bottom: 100px;
 }
+
+div.text-gags {
+    text-align: center;
+    padding-top: 50px;
+}
+textarea.gag-text {
+    width: 500px;
+    margin-right: 100px;
+}
