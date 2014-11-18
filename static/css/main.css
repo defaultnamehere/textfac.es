@@ -44,28 +44,39 @@ button.facebtn {
     font-size: 30pt;
     line-height: 75px;
     color: #333333;
-    background-color: white;
-}
-.not-highlighted {
-    background-color : #FFFFFF;
-    color : #FFFFFF;
-    /*background-image: url('../img/background.png');*/
+
+    /* HACK INCOMING HERE WE GO */
+      position: relative;
+      padding: 8px 30px;
+      border: 0;
+      margin: 10px 1px;
+      cursor: pointer;
+      border-radius: 4px;
+      text-decoration: none;
+      color: rgba(255, 255, 255, 0.84);
+      -webkit-transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+              transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+      outline: none !important;
+
+      background-color: transparent;
 }
 
-.highlighted {
-    background-color :#408FFF;
-    color : #FFFFFF;
+.zeroclipboard-is-hover {
+  color: rgba(255, 255, 255, 0.84);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2), 0 3px 6px rgba(0, 0, 0, 0.28);
 }
-div.footer 
-{
+
+.zeroclipboard-is-active {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+div.footer {
     padding-top:100px;
 }
-.bg-img
-{
+.bg-img {
     /*background-image: url('../img/background.png');*/
 }
-button.face-big 
-{
+button.face-big {
     font-size: 100pt;
     line-height: 300px;
 }
@@ -111,5 +122,12 @@ div.text-gags {
 }
 textarea.gag-text {
     width: 500px;
-    margin-right: 100px;
+    /*margin-right: 100px;*/
+}
+
+.nav-highlight {
+    background-color: #673AB7;
+}
+.nav-tabs > li {
+    margin-bottom: 0px !important;
 }

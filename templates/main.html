@@ -64,53 +64,70 @@
 <div class="tabbable">
     <ul class="nav nav-tabs background-bluegrey">
         <li class="active">
-        <a href="#tab1" data-toggle="tab">Faces</a>
+        <a href="#faces" data-toggle="tab">Faces</a>
         </li>
         <li>
-        <a href="#tab2" data-toggle="tab">Symbols</a>
+        <a href="#symbols" data-toggle="tab">Symbols</a>
         </li>
-        <a href="#tab3" data-toggle="tab">High Quality Text Gags</a>
+        <li class="nav-highlight">
+        <a href="#textgags" data-toggle="tab">High Quality Text Gags</a>
         </li>
 
     </ul>
     <div class="tab-content">
-        <div class="tab-pane active" id="tab1">
+        <div class="tab-pane active" id="faces">
             <table class="faces table " border="">
             {% for pair in facepairs %}
                 <tr class="facerow">
                 {% for id,uses,face in pair%}
-
                     <td class="facedata"> 
-                        <button class="facebtn bg-img" face-id="{{id}}" data-clipboard-text="{{face}}" ><span class="face">{{face}}</span> </button>
+                        <button class="facebtn btn-material btn-material-default " face-id="{{id}}" data-clipboard-text="{{face}}" ><span class="face">{{face}}</span> </button>
                     </td>
                 {% endfor %}
                 </tr>
             {% endfor %}
             </table>
         </div>
-        <div class="tab-pane" id="tab2">
+        <div class="tab-pane" id="symbols">
             <table class="faces table table-bordered pull-left">
             {% for pair in symbolpairs%}
                 <tr class="facerow">
                 {% for id,uses,symbol in pair%}
-
                     <td class="facedata"> 
-                        <button class="facebtn bg-img" face-id="{{id}}" data-clipboard-text="{{symbol.decode('utf8')}}" ><span class="face">{{symbol.decode('utf8')}}</span> </button>
+                        <button class="facebtn img" face-id="{{id}}" data-clipboard-text="{{symbol.decode('utf8')}}" ><span class="face">{{symbol.decode('utf8')}}</span> </button>
                     </td>
                 {% endfor %}
                 </tr>
             {% endfor %}
             </table>
         </div>
-        <div class="tab-pane" id="tab3">
+        <div class="tab-pane" id="textgags">
             <div class="text-gags">
-                <form>
-                    <textarea rows="3" class="gag-text text-large" placeholder="Type your gags here"> </textarea>
-                    <select>
-                        <option>C̆ͪo̤̩r̰ͦr͔͊u̢ͭp̅̔t͋͠e̸ͭd̤̉ ̜̇t̃͂e̬̯x͆ͮt̹ͭ</option>
-                        <option>S̶t̶r̶i̶k̶e̶t̶h̶r̶o̶u̶g̶h</option>
-                        <option>C A P I T A L B O Y S</option>
-                    </select>
+                <form class="" action="#">
+                        <textarea rows="3" class="gag-text text-large" placeholder="Type your gags here"> </textarea>
+                        <select class="gags">
+                            <option value="zalgo">C̆ͪo̤̩r̰ͦr͔͊u̢ͭp̅̔t͋͠e̸ͭd̤̉ ̜̇t̃͂e̬̯x͆ͮt̹ͭ</option>
+                            <option value="strikethrough">S̶t̶r̶i̶k̶e̶t̶h̶r̶o̶u̶g̶h̶</option>
+                            <option value="fullwidth">C A P I T A L B O Y S</option>
+                            <option value="flip">uʍop ǝpısdn</option>
+                            <option value="smallcaps">sᴍᴀʟʟ ᴄᴀᴩs</option>
+                            <option value="normal">Normal text</option>
+
+                        </select>
+
+                        <div id="zalgo-options" class="">
+                            <label class="select">
+                                Corruption level
+                                <select class="zalgo-level">
+                                    <option value="1">M̐i̧l͖d̴</option>
+                                    <option value="3">C͗̑ĺ̋a̸͟ś̗s̞̑i͏̆c̳̑</option>
+                                    <option value="5">Ị̪́͆͂n̶͍̙̂̎s̳ͫͭ̐ͬa̦̬͒͐͏n̵͓̖̚͝i̢̳͏̹̣t̨̲̒ͨ̈y̧͚̯ͫ͞</option>
+                                    <option value="10">"B͍̻̱͛͋ͬ̽̇̅ͯạ̵̡̠̾̍͊ͨ҉͙r̛̹͔̞̙͑̀ͬ͌̚e͉͇ͫ҉̷̞͇̫̉ͦl̘̯͖ͤ͊̀ͩ́͡ͅỷ̓͏̳̠͍̥͖ͯ͠ ̺̲̄̽̈ͥ͆̎͌̚l̦̹̬̜̠̞̀ͯͧ͟e̴̡̝̭̥ͫͬ̐̾͠g̝͓̬̙̥̀̓́͑̍į̗͙̺̲̈̇̾̽͟b̢̟̼͔͚̯̿͢͟͡l̶̨̟̱̎̀̈ͨͭ̃e̦̝͙ͣͩͬ̾̍͗͠"</option>
+                                    <option value="20">H̸̨̡͎̦͓͖͙͖͕̦̼͔͊̂̀̓̂͜͡Ȩ̛̺͇̘̙̻͔̖͊̓ͭͬ͗̊ͪ̏͜͝͡ ̷̧̜̮̱͙̻̝ͫ̒̂̇̔̽͊͐ͪ͜͞ͅC̴̵̯̰͍̠̦͈̫͕̩͎̗ͬ̍́̆̿̃̿Ő̡̟̺̙͕͕̮̝̳͙ͫ̏ͬͭ́̒̂ͬ͟M̘͎̻̳̘̘͗̃͡҉̶͎̥ͧ̊ͬ̔̍̕͝È̴̵̢͚͍͙̺̞̼ͭ̿ͮͣ̌̈́̈́̉ͤ̕S̵̞ͣ̇ͧ̐ͥͬ͂̚҉̨͇̜̫ͬ̋̀́̓</option>
+                                </select>
+                            </label>
+                            <button id="btn-reapply" class="btn-material-default btn-material">Re-apply</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -148,6 +165,7 @@
 {% block includejs %}
 <script src="../static/js/zeroclipboard/ZeroClipboard.js"> </script>
 <script src="../static/js/jquery.cookie.js"> </script>
+<script src="../static/js/maps.js"> </script>
 <script src="../static/js/textgags.js"> </script>
 <script src="../static/js/main.js"> </script>
 {% endblock %}

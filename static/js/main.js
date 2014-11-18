@@ -29,63 +29,123 @@ GAG_SLOGANS = [
 
 ];
 
+var $selected = $("select option:selected");
+var selectedGag = $selected.val();
+var zalgoStrength = 1;
+var charFunctionMap = {
+    "zalgo" : function(s) {
+        return zalgoChar(s, zalgoStrength);
+    },
+    "strikethrough" : strikethroughChar,
+    "gagboys" : gagBoysChar,
+    "flip" : flipChar,
+    "normal" : function(s) { return s; },
+    "smallcaps" :smallCapsChar,
+    "fullwidth" : fullWidthChar
+}
+
 // Step right up getcha gags here freshly baked this morning.
 function switchSlogan() {
     var slogan = randomChoice(GAG_SLOGANS);
     $('.slogan-gag').html(slogan + ' ↺' );
 }
 
-var faces= $("button.facebtn");
-
-faces.popover({
-    content: "Copied to clipboard!",
-    placement: "right"
-});
-
-// Here we go this is how the click to copy works. You got me, it's literally Adobe Flash.
-var clip = new ZeroClipboard(faces, {moviePath : "../static/js/zeroclipboard/ZeroClipboard.swf"});
-clip.glue(faces);
-
-// TODO Why is this a POST with a GET param? Good question.
-clip.on("mousedown", function(client, args) {
-    $(this).popover('toggle');
-    var id = $(this).attr("face-id")
-    $.ajax("/increment?id=" + id, {
-        type: "POST"
-        });
-});
-
-clip.on("mouseout", function(client, args) {
-    $(this).popover('hide');
-    $(this).css('background-color', '#FFFFFF');
-    $(this).css('color', '#333333');
-});
-
-faces.popover().on('hide.bs.popover', function () {
-    faces.css('background-color', '#FFFFFF');
-    faces.css('color', '#333333');
-});
-
-clip.on("mouseover", function(client, args) {
-    $(this).css('background-color', '#408FFF');
-    $(this).css('color', '#FFFFFF');
-});
-
-// Deal with bookmark cookie.
-if (!$.cookie("bookmarked")) {
-    $.cookie("bookmarked", "yep", {
-        // In the distant future, textfac.es falls into complete chaos when everyone's cookies expire. Only one white man has the courage to face the chaos. Coming this summer: Cookie Monster.
-        "expires" : 10 * 365 
-    });
-
-    //Show the banner.
-    $('.bookmark-banner').show();
+function getSelectedGag() {
+    return charFunctionMap[selectedGag];
 }
 
-$('.slogan-gag').on('click', switchSlogan);
-switchSlogan();
+function setup() {
+    var faces = $("button.facebtn");
+    var clip = new ZeroClipboard(faces, {moviePath : "../static/js/zeroclipboard/ZeroClipboard.swf"});
+    var $gagTextArea = $('textarea.gag-text');
 
-var gagTextArea = $('textarea.gag-text');
-// Okay I'm going to need some googling to do this part
-// Catch the keypress, and modify the character before it hits the text box
+    // Initialise those popovers
+    faces.popover({
+        // pop pop
+        content: "Copied to clipboard!",
+        placement: "right"
+    });
 
+    // Here we go this is how the click to copy works. You got me, it's literally Adobe Flash.
+    // Please, if you know a better cross-browser way to do this, let me know @_notlikethis.
+    clip.glue(faces);
+
+    // TODO Why is this a POST with a GET param? Good question.
+    clip.on("mousedown", function(client, args) {
+        $(this).popover('toggle');
+        var id = $(this).attr("face-id")
+        $.ajax("/increment?id=" + id, {
+            type: "POST"
+            });
+    });
+
+    clip.on("mouseout", function() {
+        $(this).popover('hide');
+    });
+
+    // Deal with bookmark cookie.
+    if (!$.cookie("bookmarked")) {
+        $.cookie("bookmarked", "yep", {
+            // In the distant future, textfac.es falls into complete chaos when everyone's cookies expire. Only one white man has the courage to face the chaos. Coming this summer: Cookie Monster.
+            "expires" : 10 * 365 
+        });
+
+        //Show the banner.
+        $('.bookmark-banner').show();
+    }
+
+    $('.slogan-gag').on('click', switchSlogan);
+    $('#btn-reapply').on('click', function() { return false; });
+    switchSlogan();
+    // Oh it turns out js and browers are actually broken and strip carriage returns when you use .val(). So here's a "workaround" (hack) to fix that.
+    $.valHooks.textarea = {
+      get: function( elem ) {
+        return elem.value.replace( /\r?\n/g, "\r\n" );
+      }
+    };
+
+    $("select").change(function() {
+        var $selected = $("select.gags option:selected");
+        selectedGag = $selected.val();
+        if (selectedGag == "zalgo") {
+            $("#zalgo-options").show();
+            zalgoStrength = parseInt($("select.zalgo-level option:selected").val());
+        }
+        else {
+            $("#zalgo-options").hide();
+        }
+    });
+
+    // Catch the keypress, and modify the character before it hits the text box
+    $gagTextArea.bind("keypress", function(event) {
+        if (event.which == 13) {
+            event.preventDefault();
+        }
+
+
+        //TODO Symbols are broken lol
+
+        // Get the gag that's selected
+        var gagify = getSelectedGag();
+        var char = String.fromCharCode(event.which);
+        if (selectedGag === "flip") {
+            $gagTextArea.val(gagify(char) + $gagTextArea.val());
+        }
+        else if (selectedGag === "fullwidth") {
+            $gagTextArea.html($gagTextArea.html() + gagify(char));
+        }
+        else {
+            $gagTextArea.val($gagTextArea.val() + gagify(char));
+        }
+
+       event.stopPropagation();
+       return false;
+
+    });
+    var stringAfterHash = window.location.hash.substr(1);
+    if (["textgags", "faces", "symbols"].indexOf(stringAfterHash) !== -1) {
+        $('a[href="#' + stringAfterHash + '"]').tab('show')
+    }
+
+}
+setup();
