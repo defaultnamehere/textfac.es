@@ -31,7 +31,10 @@ function gagBoysChar(char) {
 }
 
 function smallCapsChar(char) {
-    return smallCapsMap[char];
+    if (char in smallCapsMap) {
+        return smallCapsMap[char];
+    }
+    return char;
 }
 
 function HECOMES(text, zalgosPerChar) {
@@ -40,13 +43,6 @@ function HECOMES(text, zalgosPerChar) {
         corruptedText += zalgoChar(this, zalgosPerChar);
     });
     return corruptedText;
-}
-
-function boldChar(char) {
-    return boldMap[char];
-}
-function italiciseChar(char) {
-    return italicMap[char];
 }
 
 
@@ -76,18 +72,17 @@ function flipChar(char) {
     }
 }
 
+
 function fullWidthChar(char) {
     var fullWidthMap = "!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}";
     var offset = 65281;
 
-    if (char === " ") {
-        return "&#xa0;";
+    var index = fullWidthMap.indexOf(char)
+    if (index !== -1) {
+        // YEP
+       return String.fromCharCode(offset + index);
     }
     else {
-        var index = fullWidthMap.indexOf(char)
-        if (index !== -1) {
-            // YEP
-           return "&#x" + (offset + index).toString(16) + ";"
-        }
+        return char;
     }
 }

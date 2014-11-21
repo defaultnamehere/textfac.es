@@ -81,7 +81,9 @@
                 <tr class="facerow">
                 {% for id,uses,face in pair%}
                     <td class="facedata"> 
-                        <button class="facebtn btn-material btn-material-default " face-id="{{id}}" data-clipboard-text="{{face}}" ><span class="face">{{face}}</span> </button>
+                        <button class="facebtn btn-material btn-material-default " face-id="{{id}}" data-clipboard-text="{{face}}" >
+                            <span class="face">{{face}}</span>
+                        </button>
                     </td>
                 {% endfor %}
                 </tr>
@@ -94,7 +96,9 @@
                 <tr class="facerow">
                 {% for id,uses,symbol in pair%}
                     <td class="facedata"> 
-                        <button class="facebtn img" face-id="{{id}}" data-clipboard-text="{{symbol.decode('utf8')}}" ><span class="face">{{symbol.decode('utf8')}}</span> </button>
+                        <button class="facebtn btn-material btn-material-default " face-id="{{id}}" data-clipboard-text="{{symbol.decode('utf8')}}" >
+                            <span class="face">{{symbol.decode('utf8')}}</span>
+                        </button>
                     </td>
                 {% endfor %}
                 </tr>
@@ -104,16 +108,19 @@
         <div class="tab-pane" id="textgags">
             <div class="text-gags">
                 <form class="" action="#">
-                        <textarea rows="3" class="gag-text text-large" placeholder="Type your gags here"> </textarea>
+                        <textarea rows="3" class="gag-text text-large" placeholder="Type your gags here"></textarea>
                         <select class="gags">
                             <option value="zalgo">C̆ͪo̤̩r̰ͦr͔͊u̢ͭp̅̔t͋͠e̸ͭd̤̉ ̜̇t̃͂e̬̯x͆ͮt̹ͭ</option>
                             <option value="strikethrough">S̶t̶r̶i̶k̶e̶t̶h̶r̶o̶u̶g̶h̶</option>
-                            <option value="fullwidth">C A P I T A L B O Y S</option>
+                            <option value="fullwidth">ＣＡＰＩＴＡＬＢＯＹＳ</option>
                             <option value="flip">uʍop ǝpısdn</option>
                             <option value="smallcaps">sᴍᴀʟʟ ᴄᴀᴩs</option>
+                            <option value="checkbox">☑ Checked Boxes</option>
+                            <option value="uncheckbox">⬜ Unchecked Boxes</option>
                             <option value="normal">Normal text</option>
 
                         </select>
+                        <button id="btn-reapply" class="btn-material-default btn-material btn-material-raised">Re-apply</button>
 
                         <div id="zalgo-options" class="">
                             <label class="select">
@@ -126,7 +133,6 @@
                                     <option value="20">H̸̨̡͎̦͓͖͙͖͕̦̼͔͊̂̀̓̂͜͡Ȩ̛̺͇̘̙̻͔̖͊̓ͭͬ͗̊ͪ̏͜͝͡ ̷̧̜̮̱͙̻̝ͫ̒̂̇̔̽͊͐ͪ͜͞ͅC̴̵̯̰͍̠̦͈̫͕̩͎̗ͬ̍́̆̿̃̿Ő̡̟̺̙͕͕̮̝̳͙ͫ̏ͬͭ́̒̂ͬ͟M̘͎̻̳̘̘͗̃͡҉̶͎̥ͧ̊ͬ̔̍̕͝È̴̵̢͚͍͙̺̞̼ͭ̿ͮͣ̌̈́̈́̉ͤ̕S̵̞ͣ̇ͧ̐ͥͬ͂̚҉̨͇̜̫ͬ̋̀́̓</option>
                                 </select>
                             </label>
-                            <button id="btn-reapply" class="btn-material-default btn-material">Re-apply</button>
                     </div>
                 </form>
             </div>

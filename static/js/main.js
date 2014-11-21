@@ -41,7 +41,10 @@ var charFunctionMap = {
     "flip" : flipChar,
     "normal" : function(s) { return s; },
     "smallcaps" :smallCapsChar,
-    "fullwidth" : fullWidthChar
+    "fullwidth" : fullWidthChar,
+    "checkbox" : function(s) { return s; },
+    "uncheckbox" : function(s) { return s; }
+
 }
 
 // Step right up getcha gags here freshly baked this morning.
@@ -95,7 +98,14 @@ function setup() {
     }
 
     $('.slogan-gag').on('click', switchSlogan);
-    $('#btn-reapply').on('click', function() { return false; });
+    $('#btn-reapply').on('click', function() {
+        var gagify = getSelectedGag();
+        var gagifiedText = $.map($gagTextArea.val().split(''), function(char) {
+            return gagify(char);
+        }).join('');
+        $gagTextArea.val(gagifiedText);
+        return false;
+    });
     switchSlogan();
     // Oh it turns out js and browers are actually broken and strip carriage returns when you use .val(). So here's a "workaround" (hack) to fix that.
     $.valHooks.textarea = {
@@ -107,9 +117,15 @@ function setup() {
     $("select").change(function() {
         var $selected = $("select.gags option:selected");
         selectedGag = $selected.val();
-        if (selectedGag == "zalgo") {
+        if (selectedGag === "zalgo") {
             $("#zalgo-options").show();
             zalgoStrength = parseInt($("select.zalgo-level option:selected").val());
+        }
+        else if (selectedGag === "checkbox") {
+            $gagTextArea.val($gagTextArea.val() + "☑ ");
+        }
+        else if (selectedGag === "uncheckbox") {
+            $gagTextArea.val($gagTextArea.val() + "⬜ ");
         }
         else {
             $("#zalgo-options").hide();
@@ -118,10 +134,21 @@ function setup() {
 
     // Catch the keypress, and modify the character before it hits the text box
     $gagTextArea.bind("keypress", function(event) {
+
         if (event.which == 13) {
             event.preventDefault();
-        }
+            if (selectedGag === "checkbox") {
+                $gagTextArea.val($gagTextArea.val() + "\n☑ ");
+            }
+            else if (selectedGag === "uncheckbox") {
+                $gagTextArea.val($gagTextArea.val() + "\n⬜ ");
+            }
 
+            // If we're doing newline hackery, return false, otherwise let the enter keypress go through
+            if ((selectedGag === "checkbox" || selectedGag === "uncheckbox")) {
+                return false;
+            }
+        }
 
         //TODO Symbols are broken lol
 
@@ -131,14 +158,10 @@ function setup() {
         if (selectedGag === "flip") {
             $gagTextArea.val(gagify(char) + $gagTextArea.val());
         }
-        else if (selectedGag === "fullwidth") {
-            $gagTextArea.html($gagTextArea.html() + gagify(char));
-        }
         else {
             $gagTextArea.val($gagTextArea.val() + gagify(char));
         }
 
-       event.stopPropagation();
        return false;
 
     });
