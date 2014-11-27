@@ -108,32 +108,44 @@
         <div class="tab-pane" id="textgags">
             <div class="text-gags">
                 <form class="" action="#">
+                    <div>
+                        <div class="sample-gag">
+                            <p class="muted sample-gag">
+                                Sample gag here
+                            </p>
+                        </div>
                         <textarea rows="3" class="gag-text text-large" placeholder="Type your gags here"></textarea>
+                    </div>
+                    <div>
                         <select class="gags">
                             <option value="zalgo">C̆ͪo̤̩r̰ͦr͔͊u̢ͭp̅̔t͋͠e̸ͭd̤̉ ̜̇t̃͂e̬̯x͆ͮt̹ͭ</option>
-                            <option value="strikethrough">S̶t̶r̶i̶k̶e̶t̶h̶r̶o̶u̶g̶h̶</option>
+                            <option selected value="strikethrough">S̶t̶r̶i̶k̶e̶t̶h̶r̶o̶u̶g̶h̶</option>
                             <option value="fullwidth">ＣＡＰＩＴＡＬＢＯＹＳ</option>
                             <option value="flip">uʍop ǝpısdn</option>
                             <option value="smallcaps">sᴍᴀʟʟ ᴄᴀᴩs</option>
-                            <option value="checkbox">☑ Checked Boxes</option>
-                            <option value="uncheckbox">⬜ Unchecked Boxes</option>
+                            <option value="checkbox">☑ Checked boxes</option>
+                            <option value="uncheckbox">⬜ Unchecked boxes</option>
                             <option value="normal">Normal text</option>
 
                         </select>
-                        <button id="btn-reapply" class="btn-material-default btn-material btn-material-raised">Re-apply</button>
-
-                        <div id="zalgo-options" class="">
+                    </div>
+                    <div id="zalgo-options" class="">
                             <label class="select">
                                 Corruption level
                                 <select class="zalgo-level">
                                     <option value="1">M̐i̧l͖d̴</option>
-                                    <option value="3">C͗̑ĺ̋a̸͟ś̗s̞̑i͏̆c̳̑</option>
+                                    <option selected value="3">C͗̑ĺ̋a̸͟ś̗s̞̑i͏̆c̳̑</option>
                                     <option value="5">Ị̪́͆͂n̶͍̙̂̎s̳ͫͭ̐ͬa̦̬͒͐͏n̵͓̖̚͝i̢̳͏̹̣t̨̲̒ͨ̈y̧͚̯ͫ͞</option>
                                     <option value="10">"B͍̻̱͛͋ͬ̽̇̅ͯạ̵̡̠̾̍͊ͨ҉͙r̛̹͔̞̙͑̀ͬ͌̚e͉͇ͫ҉̷̞͇̫̉ͦl̘̯͖ͤ͊̀ͩ́͡ͅỷ̓͏̳̠͍̥͖ͯ͠ ̺̲̄̽̈ͥ͆̎͌̚l̦̹̬̜̠̞̀ͯͧ͟e̴̡̝̭̥ͫͬ̐̾͠g̝͓̬̙̥̀̓́͑̍į̗͙̺̲̈̇̾̽͟b̢̟̼͔͚̯̿͢͟͡l̶̨̟̱̎̀̈ͨͭ̃e̦̝͙ͣͩͬ̾̍͗͠"</option>
                                     <option value="20">H̸̨̡͎̦͓͖͙͖͕̦̼͔͊̂̀̓̂͜͡Ȩ̛̺͇̘̙̻͔̖͊̓ͭͬ͗̊ͪ̏͜͝͡ ̷̧̜̮̱͙̻̝ͫ̒̂̇̔̽͊͐ͪ͜͞ͅC̴̵̯̰͍̠̦͈̫͕̩͎̗ͬ̍́̆̿̃̿Ő̡̟̺̙͕͕̮̝̳͙ͫ̏ͬͭ́̒̂ͬ͟M̘͎̻̳̘̘͗̃͡҉̶͎̥ͧ̊ͬ̔̍̕͝È̴̵̢͚͍͙̺̞̼ͭ̿ͮͣ̌̈́̈́̉ͤ̕S̵̞ͣ̇ͧ̐ͥͬ͂̚҉̨͇̜̫ͬ̋̀́̓</option>
                                 </select>
                             </label>
                     </div>
+                    <div>
+                        <button id="btn-copy" class="btn-material-default btn-material btn-material-raised" data-clipboard-text="">Copy to clipboard</button>
+                        <button id="btn-reapply" class="btn-material-default btn-material btn-material-raised">Re-apply</button>
+                    </div>
+
                 </form>
             </div>
         </div>
@@ -152,11 +164,11 @@
     Specifically, textfac.es (or textfaces or text faces, I'm not really sure either) lets you finally write those damn unicode faces. You should probably bookmark it so you don't lose it. When you need a textface, just hit the bookmark, click the face, and paste it where you want it to go.
     </p>
     <p class="muted outro text-center">
-    The click-to-copy works through <a class="muted" href="http://jonrohan.github.com/ZeroClipboard/">ZeroClipboard</a>, which uses Flash (ew). If you've got Flash disabled, or it isn't installed, you'll have to highlight the faces, like a caveman.
+    The click-to-copy works through <a class="muted" href="http://jonrohan.github.com/ZeroClipboard/">ZeroClipboard</a>, which uses Flash (I'm so sorry). If you don't have Flash, you'll have to highlight the faces like a caveman.
     </p>
 
     <p class="muted outro text-center">
-    If the faces look weird, or you see rectangles all over the place, you might not have the right fonts installed. Or the face might actually be weird.
+    If the faces look weird or you see rectangles all over the place, you might not have the right fonts installed. Or the face might actually be weird.
     </p>
 
     <br>

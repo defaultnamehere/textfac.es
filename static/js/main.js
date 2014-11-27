@@ -32,6 +32,7 @@ GAG_SLOGANS = [
 var $selected = $("select option:selected");
 var selectedGag = $selected.val();
 var zalgoStrength = 1;
+
 var charFunctionMap = {
     "zalgo" : function(s) {
         return zalgoChar(s, zalgoStrength);
@@ -44,6 +45,19 @@ var charFunctionMap = {
     "fullwidth" : fullWidthChar,
     "checkbox" : function(s) { return s; },
     "uncheckbox" : function(s) { return s; }
+
+}
+
+var sampleGagMap = {
+    "zalgo" : "TODO",
+    "strikethrough" : "Wow, what a great t̶w̶i̶t̶c̶h̶ ̶c̶h̶a̶t̶ ̶s̶i̶m̶u̶l̶a̶t̶o̶r̶ emoticon website!",
+    "flip": "¿sǝǝɹƃǝp 081 uǝǝɹɔɐ ʎɯ ǝʇɐʇoɹ oʇ ʍoɥ ʍouʞ ǝuoʎuɐ sǝop",
+    "normal" : "It's just normal text. Use it to build other gags!",
+    "fullwidth" : "ＴＥＸＴＧＡＧＢＯＹＳ",
+    "smallcaps" : "ɴɪᴄᴇ ᴍᴇᴍᴇ",
+    "checkbox" : "⬜ Not told\n☑ Told\n☑ Very told\n☑ Knights of the Told Republic",
+    "uncheckbox" : "⬜ Not told\n☑ Told\n☑ Very told\n☑ Knights of the Told Republic"
+
 
 }
 
@@ -60,7 +74,16 @@ function getSelectedGag() {
 function setup() {
     var faces = $("button.facebtn");
     var clip = new ZeroClipboard(faces, {moviePath : "../static/js/zeroclipboard/ZeroClipboard.swf"});
-    var $gagTextArea = $('textarea.gag-text');
+    var $gagTextArea = $("textarea.gag-text");
+    var $copyBtn = $("button#btn-copy");
+    var textGagsClip = new ZeroClipboard($copyBtn, {moviePath : "../static/js/zeroclipboard/ZeroClipboard.swf"});
+    var $sampleGag = $("p.sample-gag");
+    $sampleGag.text(sampleGagMap[selectedGag]);
+
+    // Here we go this is how the click to copy works. You got me, it's literally Adobe Flash.
+    // Please, if you know a better cross-browser way to do this, let me know @_notlikethis.
+    clip.glue(faces);
+    textGagsClip.glue($copyBtn);
 
     // Initialise those popovers
     faces.popover({
@@ -69,9 +92,20 @@ function setup() {
         placement: "right"
     });
 
-    // Here we go this is how the click to copy works. You got me, it's literally Adobe Flash.
-    // Please, if you know a better cross-browser way to do this, let me know @_notlikethis.
-    clip.glue(faces);
+
+    textGagsClip.on('mousedown', function() {
+        $copyBtn.text("Copied!");
+        window.setTimeout(function() {
+            $copyBtn.text("Copy to clipboard");
+        }, 2000);
+        $(this).popover('toggle');
+    });
+
+    function updateDataAttribute() {
+        $copyBtn.attr("data-clipboard-text", $gagTextArea.val());
+    }
+
+
 
     // TODO Why is this a POST with a GET param? Good question.
     clip.on("mousedown", function(client, args) {
@@ -104,6 +138,7 @@ function setup() {
             return gagify(char);
         }).join('');
         $gagTextArea.val(gagifiedText);
+        updateDataAttribute();
         return false;
     });
     switchSlogan();
@@ -114,8 +149,10 @@ function setup() {
       }
     };
 
+
+
     $("select").change(function() {
-        var $selected = $("select.gags option:selected");
+        $selected = $("select.gags option:selected");
         selectedGag = $selected.val();
         if (selectedGag === "zalgo") {
             $("#zalgo-options").show();
@@ -130,6 +167,8 @@ function setup() {
         else {
             $("#zalgo-options").hide();
         }
+
+        $sampleGag.text(sampleGagMap[selectedGag]);
     });
 
     // Catch the keypress, and modify the character before it hits the text box
@@ -146,11 +185,10 @@ function setup() {
 
             // If we're doing newline hackery, return false, otherwise let the enter keypress go through
             if ((selectedGag === "checkbox" || selectedGag === "uncheckbox")) {
+                updateDataAttribute();
                 return false;
             }
         }
-
-        //TODO Symbols are broken lol
 
         // Get the gag that's selected
         var gagify = getSelectedGag();
@@ -161,10 +199,11 @@ function setup() {
         else {
             $gagTextArea.val($gagTextArea.val() + gagify(char));
         }
-
-       return false;
+        updateDataAttribute()
+        return false;
 
     });
+
     var stringAfterHash = window.location.hash.substr(1);
     if (["textgags", "faces", "symbols"].indexOf(stringAfterHash) !== -1) {
         $('a[href="#' + stringAfterHash + '"]').tab('show')

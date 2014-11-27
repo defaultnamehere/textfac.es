@@ -120,9 +120,19 @@ div.text-gags {
     text-align: center;
     padding-top: 50px;
 }
+
+div.sample-gag {
+    display: block;
+    margin-left: 50px;
+}
+
+p.sample-gag {
+    display: block;
+}
 textarea.gag-text {
-    width: 500px;
-    /*margin-right: 100px;*/
+    display: block;
+    margin-left: 25%;
+    width: 50%;
 }
 
 .nav-highlight {
