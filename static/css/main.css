@@ -126,7 +126,7 @@ div.sample-gag {
     margin-left: 50px;
 }
 
-p.sample-gag {
+span.sample-gag {
     display: block;
 }
 textarea.gag-text {

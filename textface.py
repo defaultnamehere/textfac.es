@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 from flask import *
+import json
 import sys
 import redisdb as db
+
 
 from datetime import timedelta
 from flask import make_response, request, current_app
@@ -89,6 +91,28 @@ def increment():
 @app.route("/about")
 def about():
     return render_template("about.html")
+
+@app.route("/json")
+def dump_to_json():
+    # List of tupes of (id, uses, face text)
+    all_faces = DB.get_all_face_data()
+    symbols = DB.get_all_symbol_data()
+    facedata = {
+        'faces' : {},
+        'symbols' : {}
+    }
+    for fid, uses, face in all_faces:
+        facedict = facedata['faces']
+        facedict[fid] = {}
+        facedict[fid]['uses'] = uses
+        facedict[fid]['face'] = face
+
+    for sid, uses, symbol in symbols:
+        symboldict = facedata['symbols']
+        symboldict[sid] = {}
+        symboldict[sid]['uses'] = uses
+        symboldict[sid]['symbol'] = symbol
+    return json.dumps(facedata, indent=4, separators=(',', ': '))
 
 @app.errorhandler(404)
 def page_not_found(error):
