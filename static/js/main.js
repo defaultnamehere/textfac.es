@@ -22,7 +22,7 @@ GAG_SLOGANS = [
     'Mo\' faces, mo\' value.',
     'Unicooooode.',
     'Your fonts are probably broken.',
-    'Nice meme.',
+    '☑Nice meme.',
     '┬┴┬┴┤(･_├┬┴┬┴',
     '[̲̅$̲̅(̲̅ ͡° ͜ʖ ͡°̲̅)̲̅$̲̅] Do you have change for a donger bill?',
     'Putting the ( ͡° ͜ʖ ͡°) in "comedy".',
@@ -31,6 +31,7 @@ GAG_SLOGANS = [
 
 var $selected = $("select option:selected");
 var selectedGag = $selected.val();
+// Max number of zalgo marks to add to each character.
 var zalgoStrength = 1;
 
 var charFunctionMap = {
@@ -55,8 +56,8 @@ var sampleGagMap = {
     "normal" : "It's just normal text. Use it to build other gags!",
     "fullwidth" : "ＴＥＸＴＧＡＧＢＯＹＳ",
     "smallcaps" : "ɴɪᴄᴇ ᴍᴇᴍᴇ",
-    "checkbox" : "⬜ Not told\n☑ Told\n☑ Very told\n☑ Knights of the Told Republic",
-    "uncheckbox" : "⬜ Not told\n☑ Told\n☑ Very told\n☑ Knights of the Told Republic"
+    "checkbox" : "☐ Not told\n☑ Told\n☑ Tolderone \n☑ Knights of the Told Republic",
+    "uncheckbox" : "☐ Not told\n☑ Told\n☑ Tolderone \n☑ Knights of the Told Republic"
 
 
 }
@@ -105,11 +106,10 @@ function setup() {
         $copyBtn.attr("data-clipboard-text", $gagTextArea.val());
     }
 
-    // TODO Why is this a POST with a GET param? Good question.
     clip.on("mousedown", function(client, args) {
         $(this).popover('toggle');
         var id = $(this).attr("face-id")
-        $.ajax("/increment?id=" + id, {
+        $.ajax("/click", {
             type: "POST"
             });
     });
@@ -177,7 +177,7 @@ function setup() {
                 $gagTextArea.val($gagTextArea.val() + "\n☑ ");
             }
             else if (selectedGag === "uncheckbox") {
-                $gagTextArea.val($gagTextArea.val() + "\n⬜ ");
+                $gagTextArea.val($gagTextArea.val() + "\n☐");
             }
 
             // If we're doing newline hackery, return false, otherwise let the enter keypress go through

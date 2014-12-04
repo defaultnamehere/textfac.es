@@ -4,15 +4,18 @@ import json
 import sys
 import redisdb as db
 
-
 from datetime import timedelta
 from flask import make_response, request, current_app
 from functools import update_wrapper
 
 app = Flask(__name__)
-DB = db.textfaceDB()
+DB = db.TextfaceDB()
 
-sys.path.append("/var/sites/textfac.es")
+BASE_PATH = os.environ["TEXTFACES_BASE_PATH"]
+if BASE_PATH is None:
+    raise RuntimeError, "TEXTFACES_BASE_PATH environment variable not set. Did you run setup.py?"
+
+sys.path.append(BASE_PATH)
 
 def crossdomain(origin=None, methods=None, headers=None,
                 max_age=21600, attach_to_all=True,
@@ -56,7 +59,8 @@ def crossdomain(origin=None, methods=None, headers=None,
     return decorator
 
 
-@app.route('/face/<face_name>')
+# @app.route('/face/<face_name>')
+# Currently unused.
 def show_face(face_name):
 
     query_result = DB.get_face_and_desc(face_name)
@@ -72,17 +76,16 @@ def dump_to_file():
         f.write(faces())
 
 def pairify(iterable):
-    for i in xrange(1, len(iterable), 2):
+    for i in range(1, len(iterable), 2):
         yield (iterable[i - 1], iterable[i])
 
 @app.route('/')
 def faces():
     pairs = pairify(DB.get_all_face_data())
     symbols = pairify(DB.get_all_symbol_data())
-
     return render_template("main.html", facepairs=pairs, symbolpairs=symbols)
 
-@app.route("/increment", methods=['POST'])
+@app.route("/click", methods=['POST'])
 def increment():
     faceid = request.args.get('id')
     DB.increment(faceid)
@@ -94,7 +97,7 @@ def about():
 
 @app.route("/json")
 def dump_to_json():
-    # List of tupes of (id, uses, face text)
+    # List of tuples of (id, uses, face text)
     all_faces = DB.get_all_face_data()
     symbols = DB.get_all_symbol_data()
     facedata = {
