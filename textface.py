@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from flask import *
-import json
 import sys
 import redisdb as db
 
@@ -11,11 +10,8 @@ from functools import update_wrapper
 app = Flask(__name__)
 DB = db.TextfaceDB()
 
-BASE_PATH = os.environ["TEXTFACES_BASE_PATH"]
-if BASE_PATH is None:
-    raise RuntimeError, "TEXTFACES_BASE_PATH environment variable not set. Did you run setup.py?"
 
-sys.path.append(BASE_PATH)
+sys.path.append("/var/sites/textfac.es")
 
 def crossdomain(origin=None, methods=None, headers=None,
                 max_age=21600, attach_to_all=True,

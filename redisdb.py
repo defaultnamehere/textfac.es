@@ -1,12 +1,9 @@
 
-import os
+import sys
 
 import redis
 
-BASE_PATH = os.environ["TEXTFACES_BASE_PATH"]
-if BASE_PATH == None:
-    raise RuntimeError, "TEXTFACES_BASE_PATH environment variable not set. Did you run setup.py?"
-
+sys.path.append("/var/sites/textfac.es")
 class TextfaceDB():
 
     def __init__(self):

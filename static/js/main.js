@@ -78,7 +78,7 @@ function setup() {
     var $gagTextArea = $("textarea.gag-text");
     var $copyBtn = $("button#btn-copy");
     var textGagsClip = new ZeroClipboard($copyBtn, {moviePath : "../static/js/zeroclipboard/ZeroClipboard.swf"});
-    var $sampleGag = $("span.sample-gag");
+    var $sampleGag = $("p.sample-gag");
     $sampleGag.text(sampleGagMap[selectedGag]);
 
     // Here we go this is how the click to copy works. You got me, it's literally Adobe Flash.
@@ -147,30 +147,31 @@ function setup() {
       }
     };
 
+
+
     $("select").change(function() {
         $selected = $("select.gags option:selected");
         selectedGag = $selected.val();
-
         if (selectedGag === "zalgo") {
             $("#zalgo-options").show();
             zalgoStrength = parseInt($("select.zalgo-level option:selected").val());
         }
+        else if (selectedGag === "checkbox") {
+            $gagTextArea.val($gagTextArea.val() + "☑ ");
+        }
+        else if (selectedGag === "uncheckbox") {
+            $gagTextArea.val($gagTextArea.val() + "⬜ ");
+        }
         else {
-            if (selectedGag === "checkbox") {
-                $gagTextArea.val($gagTextArea.val() + "☑ ");
-            }
-            else if (selectedGag === "uncheckbox") {
-                $gagTextArea.val($gagTextArea.val() + "⬜ ");
-            }
             $("#zalgo-options").hide();
         }
+
         $sampleGag.text(sampleGagMap[selectedGag]);
     });
 
     // Catch the keypress, and modify the character before it hits the text box
     $gagTextArea.bind("keypress", function(event) {
 
-        // Catch enter and prevent form submission
         if (event.which == 13) {
             event.preventDefault();
             if (selectedGag === "checkbox") {
