@@ -7,13 +7,15 @@ sys.path.append("/var/sites/textfac.es")
 class TextfaceDB():
 
     def __init__(self):
-        self.server = redis.Redis('localhost', password=self._load_redis_password())
+        redis_password = self._load_redis_password()
+        print redis_password
+        self.server = redis.Redis('localhost', password=redis_password)
         self.max_face_id = None
         self.max_symbol_id = None
 
     def _load_redis_password(self):
         with open("redis_password.txt") as f:
-            return f.read()
+            return f.read().strip()
 
     def load_faces_from_file(self, filename):
         with open(filename) as f:
@@ -45,10 +47,10 @@ class TextfaceDB():
 
         # Fall back to the text file if the data isn't in the datastore for some reason.
         if not self.server.hvals("u1"):
-            self.load_symbols_from_file(BASE_PATH + "symbols.txt")
+            self.load_symbols_from_file("symbols.txt")
 
         if self.max_symbol_id is None:
-            self.max_symbol_id = len(set(open(BASE_PATH + "symbols.txt").readlines()))
+            self.max_symbol_id = len(set(open("symbols.txt").readlines()))
 
         results = []
         for i in range(self.max_symbol_id):
@@ -66,10 +68,10 @@ class TextfaceDB():
         # Check that the faces have been loaded.
         # If not, load them from file.
         if not self.server.hvals(1):
-            self.load_faces_from_file(BASE_PATH + "faces.txt")
+            self.load_faces_from_file("faces.txt")
 
         if self.max_face_id is None:
-            self.max_face_id = len(set(open(BASE_PATH + "faces.txt").readlines()))
+            self.max_face_id = len(set(open("faces.txt").readlines()))
 
         results = []
         for i in range(self.max_face_id):
