@@ -50,7 +50,8 @@ var charFunctionMap = {
 }
 
 var sampleGagMap = {
-    "zalgo" : "TODO",
+
+    "zalgo" : "I probably shouldn't but just one more text fa- no. ̤Nͪo̓ ̹m̽oͅr͘e̊ THE DONGERS ma̎y͑b̊e ̧̎on̈́e̍ͩ̊ ̾m̳͉͒o̝̎r̠̀e͊̀ ̑I ̫̝͢c̝͌a̸̛̠͗n̢̼ͩ'̝͙t̀҉ ̠̣͐̎s͓̒ͥ͞to̝͉ͬ̃p̠ ̹M̆̌Ȗ͛S̥̖̼͗ͅT̛͔̪̯ͤ̓ ̈R̥̍̄̓͝A̭̼͔I̶͕S̨̝͕̹̅̈́̈́͘E̷̠̖͙̗̾̄ͣ͡ ̠̣̓̅ͧ̆ͥ͡͝Ḑ̰ͪͣͥ͊͞Ò̟͕̈́͢N̫̞̖͍͎ͫͯ̕Ğ̷̭͛̍̉Ę̤͕̂R̸̯̣̟̔S̫̭̽͛̈̇ ̣̙̆͑ͩ͢A̡̚y̤̣̦̓͆̏ͩY̗̻̗̣ͦ͘͡ ̜͇̿L̹̯͐͝m͚̲͖a͙̒̆͂̒͋Ỏ̫̲͏̨̡A̡̼̹̙̣͋ͤ͂̈̔Y̶̺͖̞̲͐́y̏y̛̗͇ͨy̧͍̮̙̓̿͐ͭY͕̙ͩ̊ͮ̄͗̂̅͘Y̛͎̲ͤy̢̗ͅ҉Y͍̪͍̐̎ͧYy̷̡̭̜y̲̗̬̤ͪ͋̽̎Ỷy͓̲̱͛͡Y̻Y̭Y̻͔̓͋ ͈͙̹͈̟̽̀ͫ̽l͙ͨ̀m̛͚͆͋͋ȧ̲͓͈̊o̹̮͌͗",
     "strikethrough" : "Wow, what a great t̶w̶i̶t̶c̶h̶ ̶c̶h̶a̶t̶ ̶s̶i̶m̶u̶l̶a̶t̶o̶r̶ emoticon website!",
     "flip": "¿sǝǝɹƃǝp 081 uǝǝɹɔɐ ʎɯ ǝʇɐʇoɹ oʇ ʍoɥ ʍouʞ ǝuoʎuɐ sǝop",
     "normal" : "It's just normal text. Use it to build other gags!",
@@ -209,3 +210,4 @@ function setup() {
 
 }
 setup();
+console.log("( ͡° ͜ʖ ͡°)")
