@@ -3,12 +3,17 @@ import sys
 
 import redis
 
-sys.path.append("/var/sites/textfac.es")
+
+FACES_FILENAME = "faces.txt"
+SYMBOLS_FILENAME = "symbols.txt" 
+
+TEXTFACES_PATH = "/var/sites/textfac.es"
+sys.path.append(TEXTFACES_PATH)
+
 class TextfaceDB():
 
     def __init__(self):
         redis_password = self._load_redis_password()
-        print redis_password
         self.server = redis.Redis('localhost', password=redis_password)
         self.max_face_id = None
         self.max_symbol_id = None
@@ -29,7 +34,6 @@ class TextfaceDB():
                 self.max_face_id = i
 
     def increment(self, faceid):
-        #TODO Add the time that the face was incremented here?
         self.server.hincrby(faceid, "uses", 1)
 
     def load_symbols_from_file(self, filename):
@@ -47,10 +51,10 @@ class TextfaceDB():
 
         # Fall back to the text file if the data isn't in the datastore for some reason.
         if not self.server.hvals("u1"):
-            self.load_symbols_from_file("symbols.txt")
+            self.load_symbols_from_file(SYMBOLS_FILENAME)
 
         if self.max_symbol_id is None:
-            self.max_symbol_id = len(set(open("symbols.txt").readlines()))
+            self.max_symbol_id = len(set(open(SYMBOLS_FILENAME).readlines()))
 
         results = []
         for i in range(self.max_symbol_id):
@@ -68,10 +72,10 @@ class TextfaceDB():
         # Check that the faces have been loaded.
         # If not, load them from file.
         if not self.server.hvals(1):
-            self.load_faces_from_file("faces.txt")
+            self.load_faces_from_file(FACES_FILENAME)
 
         if self.max_face_id is None:
-            self.max_face_id = len(set(open("faces.txt").readlines()))
+            self.max_face_id = len(set(open(FACES_FILENAME).readlines()))
 
         results = []
         for i in range(self.max_face_id):
@@ -83,11 +87,12 @@ class TextfaceDB():
         # "Yeah, you just turn on redis and it scales right up!"
         return list(sorted(results, key=lambda t: int(t[1]), reverse=True))
 
-    def add_new_faces(self, filename):
+    def add_faces_from_file(self, filename):
         """Update the database with new faces from a file. These should probably be merged into faces.txt for persistence if we switch DBs"
+        >20k hits/day
         >text file 
         >persistence
-        >20k hits/day"""
+        """
 
         all_faces = set(map(lambda x: x[1], self.get_all_face_data()))
         with open(filename, 'rU') as f:
@@ -96,16 +101,29 @@ class TextfaceDB():
                 # Don't double-add faces.
                 if face in all_faces:
                     continue
-                # Make a new id for this new face, and keep track of the max.
-                self.max_face_id += 1
-                self.server.hmset(self.max_face_id, {
-                    "uses": 0,
-                    "face" :face
-                })
+
+                self.add_new_face(face)
+
+    def add_new_face(self, face):
+            # Make a new id for this new face, and keep track of the max.
+            self.max_face_id += 1
+
+            # Insert into redis at this new index.
+            self.server.hmset(self.max_face_id, {
+                "uses": 0,
+                "face" :face
+            })
+
+            # Also add it to the .txt backup.
+            with open(FACES_FILENAME, 'a') as faces_file:
+                faces_file.write(face)
+                faces_file.write("\n")
+
+
 
 if __name__ == '__main__':
     # If this file is run directly, load the faces from file.
     db = TextfaceDB()
-    db.load_faces_from_file("faces.txt")
-    db.load_symbols_from_file("symbols.txt")
+    db.load_faces_from_file(FACES_FILENAME)
+    db.load_symbols_from_file(SYMBOLS_FILENAME)
 

@@ -141,14 +141,13 @@ $(function() {
             return false;
         });
         switchSlogan();
+
         // Oh it turns out js and browers are actually broken and strip carriage returns when you use .val(). So here's a "workaround" (hack) to fix that.
         $.valHooks.textarea = {
           get: function( elem ) {
             return elem.value.replace( /\r?\n/g, "\r\n" );
           }
         };
-
-
 
         $("select").change(function() {
             $selected = $("select.gags option:selected");

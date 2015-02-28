@@ -10,8 +10,8 @@ from functools import update_wrapper
 app = Flask(__name__)
 DB = db.TextfaceDB()
 
-
-sys.path.append("/var/sites/textfac.es")
+sys.path.append(db.TEXTFACES_PATH)
+STATIC_DUMP_FILENAME = "textfaces_static.html"
 
 def crossdomain(origin=None, methods=None, headers=None,
                 max_age=21600, attach_to_all=True,
@@ -56,7 +56,7 @@ def crossdomain(origin=None, methods=None, headers=None,
 
 
 # @app.route('/face/<face_name>')
-# Currently unused.
+# Currently unused. But let's use it for sick SEO.
 def show_face(face_name):
 
     query_result = DB.get_face_and_desc(face_name)
@@ -68,7 +68,7 @@ def show_face(face_name):
         return render_template('page_not_found.html'), 404
 
 def dump_to_file():
-    with open("textfaces.html", 'w') as f:
+    with open(STATIC_DUMP_FILENAME, 'w') as f:
         f.write(faces())
 
 def pairify(iterable):
@@ -94,6 +94,8 @@ def about():
 @app.route("/json")
 def dump_to_json():
     # List of tuples of (id, uses, face text)
+    # You're welcome @rx.
+
     all_faces = DB.get_all_face_data()
     symbols = DB.get_all_symbol_data()
     facedata = {
@@ -111,8 +113,13 @@ def dump_to_json():
         symboldict[sid] = {}
         symboldict[sid]['uses'] = uses
         symboldict[sid]['symbol'] = symbol
+
     return json.dumps(facedata, indent=4, separators=(',', ': '))
 
 @app.errorhandler(404)
 def page_not_found(error):
     return render_template('page_not_found.html'), 404
+
+
+if __name__ == "__main__":
+    dump_to_file()
