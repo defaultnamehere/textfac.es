@@ -4,12 +4,12 @@ import sys
 import redis
 
 
-FACES_FILENAME = "faces.txt"
-SYMBOLS_FILENAME = "symbols.txt" 
 
-TEXTFACES_PATH = "/var/sites/textfac.es"
+TEXTFACES_PATH = "/var/sites/textfac.es/"
 sys.path.append(TEXTFACES_PATH)
 
+FACES_FILENAME = "faces.txt"
+SYMBOLS_FILENAME = "symbols.txt" 
 class TextfaceDB():
 
     def __init__(self):
