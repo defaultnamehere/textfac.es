@@ -6,7 +6,7 @@
 {% endblock %}
 {% block container %}
 
-<div class="bookmark-banner alert" style="display: none;">
+<div class="bookmark-banner alert visible-desktop" style="display: none;">
     <div class="pull-left">
         <a href="http://textfac.es" class="awesome-face"  ><img src="../static/ico/favicon.png" alt="textfac.es"></a> 
     </div>
@@ -90,7 +90,7 @@
             {% endfor %}
             </table>
         </div>
-        <div class="tab-pane" id="symbols">
+        <div class="tab-pane table-responsive" id="symbols">
             <table class="faces table table-bordered pull-left">
             {% for pair in symbolpairs%}
                 <tr class="facerow">
