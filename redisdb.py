@@ -13,7 +13,8 @@ sys.path.append(TEXTFACES_PATH)
 class TextfaceDB():
 
     def __init__(self):
-        redis_password = self._load_redis_password()
+        #redis_password = self._load_redis_password()
+        redis_password = "de23ce07d0e1b640837f78e3e0a7ab93afdbc0e6"
         self.server = redis.Redis('localhost', password=redis_password)
         self.max_face_id = None
         self.max_symbol_id = None
