@@ -55,7 +55,10 @@ class TextfaceDB():
             self.load_symbols_from_file(SYMBOLS_FILENAME)
 
         if self.max_symbol_id is None:
-            self.max_symbol_id = len(set(open(SYMBOLS_FILENAME).readlines()))
+            #self.max_symbol_id = len(set(open(SYMBOLS_FILENAME).readlines()))
+            #TODO Read this from the database
+            self.max_symbol_id = 150
+
 
         results = []
         for i in range(self.max_symbol_id):
@@ -76,7 +79,9 @@ class TextfaceDB():
             self.load_faces_from_file(FACES_FILENAME)
 
         if self.max_face_id is None:
-            self.max_face_id = len(set(open(FACES_FILENAME).readlines()))
+            #self.max_face_id = len(set(open(FACES_FILENAME).readlines()))
+            #TODO Read this from the database
+            self.max_face_id = 125
 
         results = []
         for i in range(self.max_face_id):
