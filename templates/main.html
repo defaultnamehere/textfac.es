@@ -2,6 +2,7 @@
 {% block head %}
 <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="../static/css/main.css">
+<link rel="stylesheet" href="../static/css/shirt.css">
 
 {% endblock %}
 {% block container %}
@@ -14,29 +15,29 @@
       <strong>Bookmark me maybe?</strong> <br>You'll probably want to get to this site quickly later. Just drag icon up to your bookmarks bar. Did you do it? Good. That was fun. You won't see this message again.
   </div>
 
-<div class="ads">
-<script type="text/javascript"><!--
-    google_ad_client = "ca-pub-3510139642126584";
-    /* horizontal */
-    google_ad_slot = "3812213755";
-    google_ad_width = 468;
-    google_ad_height = 60;
-    //-->
-</script>
-<script type="text/javascript"
-    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  <div class="ads">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- cash dollars -->
+<ins class="adsbygoogle"
+style="display:inline-block;width:468px;height:60px"
+data-ad-client="ca-pub-3510139642126584"
+data-ad-slot="5529545750"
+data-language="en"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 
-<script type="text/javascript"><!--
-    google_ad_client = "ca-pub-3510139642126584";
-    /* horizontal 2 */
-    google_ad_slot = "8242413350";
-    google_ad_width = 468;
-    google_ad_height = 60;
-    //-->
-</script>
-<script type="text/javascript"
-    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- swag money -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:468px;height:60px"
+     data-ad-client="ca-pub-3510139642126584"
+     data-ad-slot="7429924558"
+     data-language="en">
+     </ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 
 <script type="text/javascript"><!--
@@ -60,6 +61,30 @@
 
 </div>
 
+<canvas width="2000" height="2500"></canvas>
+<!-- Shirt modal -->
+<button type="button" class="btn-material btn-material-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    Get it on a shirt.
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Get this face on a shirt!</h4>
+      </div>
+      <div class="modal-body">
+          Ayyyyy lmao
+      </div>
+      <div class="modal-footer">
+          <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+        <button type="button" class="btn-material btn-material-primary btn-material raised">BUY NOW</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="tabbable">
     <ul class="nav nav-tabs background-bluegrey">
@@ -76,7 +101,7 @@
     </ul>
     <div class="tab-content">
         <div class="tab-pane active" id="faces">
-            <table class="faces table " border="">
+            <table class="faces table table-responsive" border="">
             {% for pair in facepairs %}
                 <tr class="facerow">
                 {% for id,uses,face in pair%}
@@ -91,7 +116,7 @@
             </table>
         </div>
         <div class="tab-pane table-responsive" id="symbols">
-            <table class="faces table table-bordered pull-left">
+            <table class="faces table table-responsive table-bordered pull-left">
             {% for pair in symbolpairs%}
                 <tr class="facerow">
                 {% for id,uses,symbol in pair%}
@@ -186,5 +211,6 @@
 <script src="../static/js/jquery.cookie.js"> </script>
 <script src="../static/js/maps.js"> </script>
 <script src="../static/js/textgags.js"> </script>
+<script src="../static/js/tshirt.js"> </script>
 <script src="../static/js/main.js"> </script>
 {% endblock %}

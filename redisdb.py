@@ -6,10 +6,12 @@ import redis
 
 
 TEXTFACES_PATH = "/var/sites/textfac.es/"
-sys.path.append(TEXTFACES_PATH)
+TEXTFACES_PATH_DEV = "/home/alex/dev/textfac.es/repo/"
+#sys.path.append(TEXTFACES_PATH)
+sys.path.append(TEXTFACES_PATH_DEV)
 
-FACES_FILENAME = TEXTFACES_PATH + "faces.txt"
-SYMBOLS_FILENAME = TEXTFACES_PATH + "symbols.txt" 
+FACES_FILENAME = "faces.txt"
+SYMBOLS_FILENAME = "symbols.txt" 
 class TextfaceDB():
 
     def __init__(self):
