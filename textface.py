@@ -11,6 +11,7 @@ app = Flask(__name__)
 DB = db.TextfaceDB()
 
 sys.path.append(db.TEXTFACES_PATH)
+FACES_DIR = "shirt_images"
 STATIC_DUMP_FILENAME = "textfaces_static.html"
 
 def crossdomain(origin=None, methods=None, headers=None,
@@ -115,6 +116,20 @@ def dump_to_json():
         symboldict[sid]['symbol'] = symbol
 
     return json.dumps(facedata, indent=4, separators=(',', ': '))
+
+@app.route("/recieveimage")
+def recieve_image():
+    if app.debug:
+        fields = request.get_json()
+        save_new_face(fields)
+    else:
+        abort(403)
+
+def save_new_face(fields):
+        data = fields["image"]
+        faceid = fields["faceid"]
+        with open(FACES_DIR + "/" + faceid, 'w') as f:
+            f.write(data)
 
 @app.errorhandler(404)
 def page_not_found(error):
