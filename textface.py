@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 from flask import *
+import os
 import sys
 import redisdb as db
+import base64
 
 from datetime import timedelta
 from flask import make_response, request, current_app
@@ -117,19 +119,26 @@ def dump_to_json():
 
     return json.dumps(facedata, indent=4, separators=(',', ': '))
 
-@app.route("/recieveimage")
+@app.route("/recieveimage", methods=["POST"])
 def recieve_image():
+    #import ipdb; ipdb.set_trace()
     if app.debug:
-        fields = request.get_json()
+        fields = request.form.to_dict()
         save_new_face(fields)
+        return "ty"
     else:
         abort(403)
 
 def save_new_face(fields):
-        data = fields["image"]
-        faceid = fields["faceid"]
-        with open(FACES_DIR + "/" + faceid, 'w') as f:
-            f.write(data)
+    data = fields["img"]
+    faceid = fields["faceid"]
+
+    os.system("mkdir -p %s" % FACES_DIR)
+    with open("%s/%s.png" % (FACES_DIR, faceid), 'w') as f:
+        f.write(dataUrlToPNG(data))
+
+def dataUrlToPNG(data):
+    return base64.b64decode(data.strip().split(',')[1])
 
 @app.errorhandler(404)
 def page_not_found(error):

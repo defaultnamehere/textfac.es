@@ -121,8 +121,8 @@ data-language="en"></ins>
                 <tr class="facerow">
                 {% for id,uses,symbol in pair%}
                     <td class="facedata"> 
-                        <button class="facebtn btn-material btn-material-default " face-id="{{id}}" data-clipboard-text="{{symbol.decode('utf8')}}" >
-                            <span class="face">{{symbol.decode('utf8')}}</span>
+                        <button class="facebtn symbol btn-material btn-material-default " face-id="{{id}}" data-clipboard-text="{{symbol.decode('utf8')}}" >
+                            <span class="face symbol">{{symbol.decode('utf8')}}</span>
                         </button>
                     </td>
                 {% endfor %}

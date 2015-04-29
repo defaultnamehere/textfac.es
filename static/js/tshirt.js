@@ -32,10 +32,11 @@
 
 // Generate all the faces, and POST the images to a special URL only available on localhost.
 
-var saveAllFaceImages = function() {
-    $('button.facebtn').each(function() {
-        var faceid = $(this).attr("face-id");
-        var face = $(this).attr("data-clipboard-text");
+function saveFace(faceBtn) {
+        var faceid = $(faceBtn).attr("face-id");
+        console.log(faceid);
+        var face = $(faceBtn).attr("data-clipboard-text");
+        console.log(face);
 
         var image = drawFace(face);
         var canvas = document.querySelector('canvas');
@@ -43,9 +44,28 @@ var saveAllFaceImages = function() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         $.post("http://localhost:5000/recieveimage", {
-                img: image,
-                faceid: faceid
+                faceid: faceid,
+                img: image
         });
+}
 
+var saveAllFaceImages = function() {
+
+    //TODO select .facebtn but not .symbol
+    $('button.facebtn').each(function() {
+        var faceid = $(this).attr("face-id");
+        var face = $(this).attr("data-clipboard-text");
+        console.log(face);
+
+        var image = drawFace(face);
+        var canvas = document.querySelector('canvas');
+        var ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        $.post("http://localhost:5000/recieveimage", {
+                faceid: faceid,
+                img: image
+        });
+        return;
     });
 }
