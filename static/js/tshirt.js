@@ -33,7 +33,7 @@
 // Generate all the faces, and POST the images to a special URL only available on localhost.
 
 var saveAllFaceImages = function() {
-    $('button.facebtn').each(function() {
+    $('button.shirtable').each(function() {
         var faceid = $(this).attr("face-id");
         var face = $(this).attr("data-clipboard-text");
 
