@@ -133,6 +133,7 @@ def save_new_face(fields):
     data = fields["img"]
     faceid = fields["faceid"]
 
+    # Yes nailed it #notremotecodeexecution
     os.system("mkdir -p %s" % FACES_DIR)
     with open("%s/%s.png" % (FACES_DIR, faceid), 'w') as f:
         f.write(dataUrlToPNG(data))

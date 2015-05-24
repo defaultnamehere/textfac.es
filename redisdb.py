@@ -18,37 +18,15 @@ class TextfaceDB():
         #redis_password = self._load_redis_password()
         redis_password = "de23ce07d0e1b640837f78e3e0a7ab93afdbc0e6"
         self.server = redis.Redis('localhost', password=redis_password)
-        self.max_face_id = None
-        self.max_symbol_id = None
+        self.max_face_id = int(self.server.get('max_face_id'))
+        self.max_symbol_id = int(self.server.get('max_symbol_id'))
 
     def _load_redis_password(self):
         with open("redis_password.txt") as f:
             return f.read().strip()
 
-    def load_faces_from_file(self, filename):
-        with open(filename) as f:
-            # Remove duplicates
-            faces = map(str.strip, set(f.readlines()))
-            for i, line in enumerate(faces):
-                self.server.hmset(i, {
-                    "uses": 0,
-                    "face" : line.strip()
-                })
-                self.max_face_id = i
-
     def increment(self, faceid):
         self.server.hincrby(faceid, "uses", 1)
-
-    def load_symbols_from_file(self, filename):
-        """Keys for unicode symbols are u<id>, as opposed to just <id> for faces"""
-        with open(filename, 'rU') as f:
-            symbols = map(str.strip, set(f.readlines()))
-            for i, line in enumerate(symbols):
-                self.server.hmset("u%s" % i, {
-                    "uses": 0,
-                    "symbol" : line.strip()
-                })
-                self.max_symbol_id = i
 
     def get_all_symbol_data(self):
 
@@ -91,11 +69,7 @@ class TextfaceDB():
         return list(sorted(results, key=lambda t: int(t[1]), reverse=True))
 
     def add_faces_from_file(self, filename):
-        """Update the database with new faces from a file. These should probably be merged into faces.txt for persistence if we switch DBs"
-        >20k hits/day
-        >text file 
-        >persistence
-        """
+        """Update the database with new faces from a file."""
 
         all_faces = set(map(lambda x: x[1], self.get_all_face_data()))
         with open(filename, 'rU') as f:
@@ -108,21 +82,55 @@ class TextfaceDB():
                 self.add_new_face(face)
 
     def add_new_face(self, face):
-            # Make a new id for this new face, and keep track of the max.
-            self.max_face_id += 1
+        """Add a new face, but not duplicates.
+        Returns True iff successful"""
 
-            # Insert into redis at this new index.
-            self.server.hmset(self.max_face_id, {
-                "uses": 0,
-                "face" :face
-            })
+        all_faces = set(map(lambda x: x[1], self.get_all_face_data()))
 
-            # Also add it to the .txt backup.
-            with open(FACES_FILENAME, 'a') as faces_file:
-                faces_file.write(face)
-                faces_file.write("\n")
+        if face in all_faces:
+            return False
+        # Make a new id for this new face, and keep track of the max.
+        self.max_face_id += 1
+
+        # Insert into redis at this new index.
+        self.server.hmset(self.max_face_id, {
+            "uses": 0,
+            "face" :face
+        })
+
+        # Update the max face id in the database.
+        self.server.set("max_face_id", self.max_face_id)
+
+        # Also add it to the .txt backup.
+        with open(FACES_FILENAME, 'a') as faces_file:
+            faces_file.write(face)
+            faces_file.write("\n")
+        return True
 
 
+
+    # Disaster recovery functions. The should only be used if the database breaks for some reason, or for dev environment hacks.
+    def load_faces_from_file(self, filename):
+        with open(filename) as f:
+            # Remove duplicates
+            faces = map(str.strip, set(f.readlines()))
+            for i, line in enumerate(faces):
+                self.server.hmset(i, {
+                    "uses": 0,
+                    "face" : line.strip()
+                })
+
+    def load_symbols_from_file(self, filename):
+        """Keys for unicode symbols are u<id>, as opposed to just <id> for faces"""
+        with open(filename, 'rU') as f:
+            symbols = map(str.strip, set(f.readlines()))
+            for i, line in enumerate(symbols):
+                self.server.hmset("u%s" % i, {
+                    "uses": 0,
+                    "symbol" : line.strip()
+                })
+                self.max_symbol_id = i
+                self.max_face_id = i
 
 if __name__ == '__main__':
     # If this file is run directly, load the faces from file.
