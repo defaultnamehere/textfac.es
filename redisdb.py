@@ -1,8 +1,8 @@
 
 import sys
+import random
 
 import redis
-
 
 
 TEXTFACES_PATH = "/var/sites/textfac.es/"
@@ -12,8 +12,9 @@ sys.path.append(TEXTFACES_PATH_DEV)
 
 FACES_FILENAME = "faces.txt"
 SYMBOLS_FILENAME = "symbols.txt" 
-class TextfaceDB():
 
+SHUFFLE_FACES = False
+class TextfaceDB():
     def __init__(self):
         #redis_password = self._load_redis_password()
         redis_password = "de23ce07d0e1b640837f78e3e0a7ab93afdbc0e6"
@@ -27,26 +28,6 @@ class TextfaceDB():
 
     def increment(self, faceid):
         self.server.hincrby(faceid, "uses", 1)
-
-    def get_all_symbol_data(self):
-
-        # Fall back to the text file if the data isn't in the datastore for some reason.
-        if not self.server.hvals("u1"):
-            self.load_symbols_from_file(SYMBOLS_FILENAME)
-
-        if self.max_symbol_id is None:
-            self.max_symbol_id = len(set(open(SYMBOLS_FILENAME).readlines()))
-
-        results = []
-        for i in range(self.max_symbol_id):
-            symid = "u%s" % i
-            symbol= self.server.hget(symid,"symbol")
-            uses = self.server.hget(symid, "uses")
-            results.append((symid, uses, symbol ))
-
-        # Sort by uses, don't forget to convert to int since redis stores everything as strings to be more web scale.
-        # "Yeah, you just turn on redis and it scales right up!"
-        return list(sorted(results, key=lambda t: int(t[1]), reverse=True))
 
     def get_all_face_data(self):
 
@@ -64,9 +45,15 @@ class TextfaceDB():
             uses = self.server.hget(i, "uses")
             results.append((i, uses, face.decode('utf-8')))
 
-        # Sort by uses, don't forget to convert to int since redis stores everything as strings to be more web scale. It would be nice if redis let you sort HGET results by a particular field, but I guess that might cause some extremely-efficient mechanism it already has to fail.
-        # "Yeah, you just turn on redis and it scales right up!"
-        return list(sorted(results, key=lambda t: int(t[1]), reverse=True))
+
+        if SHUFFLE_FACES:
+            random.shuffle(results)
+            return results
+        else:
+
+            # Sort by uses, don't forget to convert to int since redis stores everything as strings to be more web scale. It would be nice if redis let you sort HGET results by a particular field, but I guess that might cause some extremely-efficient mechanism it already has to fail.
+            # "Yeah, you just turn on redis and it scales right up!"
+            return list(sorted(results, key=lambda t: int(t[1]), reverse=True))
 
     def add_faces_from_file(self, filename):
         """Update the database with new faces from a file."""
@@ -107,6 +94,25 @@ class TextfaceDB():
             faces_file.write("\n")
         return True
 
+    def get_all_symbol_data(self):
+
+        # Fall back to the text file if the data isn't in the datastore for some reason.
+        if not self.server.hvals("u1"):
+            self.load_symbols_from_file(SYMBOLS_FILENAME)
+
+        if self.max_symbol_id is None:
+            self.max_symbol_id = len(set(open(SYMBOLS_FILENAME).readlines()))
+
+        results = []
+        for i in range(self.max_symbol_id):
+            symid = "u%s" % i
+            symbol= self.server.hget(symid,"symbol")
+            uses = self.server.hget(symid, "uses")
+            results.append((symid, uses, symbol ))
+
+        # Sort by uses, don't forget to convert to int since redis stores everything as strings to be more web scale.
+        # "Yeah, you just turn on redis and it scales right up!"
+        return list(sorted(results, key=lambda t: int(t[1]), reverse=True))
 
 
     # Disaster recovery functions. The should only be used if the database breaks for some reason, or for dev environment hacks.
