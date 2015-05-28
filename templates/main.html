@@ -39,18 +39,6 @@
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 
-<script type="text/javascript"><!--
-
-    var ads = $('.adsbygoogle').filter(function fi(){
-        return $(this).css('visibility') == 'hidden';
-        });
-    if (ads.length == 0){
-    // StackOverflow swears this is legit.
-
-    document.write("<div style='text-align:center; font-family:century gothic, arial, helvetica, sans serif;padding-left:5px;padding-right:5px;'><span class='muted' style='font-size:10px'>Looks like you're blocking ads. ¯\\_(ツ)_/¯</span></div>");
-    }
-
---></script>
 </div>
 
 <h1 class="title">textfac.es</h1> <small class="muted slogan-gag"> </small>
@@ -192,4 +180,15 @@
 <script src="../static/js/maps.js"> </script>
 <script src="../static/js/textgags.js"> </script>
 <script src="../static/js/main.js"> </script>
+<script type="text/javascript">
+
+    var ads = $('.adsbygoogle').filter(function fi(){
+        return $(this).css('visibility') == 'hidden';
+        });
+    if (ads.length == 0){
+    // StackOverflow swears this is legit.
+    document.write("<div style='text-align:center; font-family:century gothic, arial, helvetica, sans serif;padding-left:5px;padding-right:5px;'><span class='muted' style='font-size:10px'>Looks like you're blocking ads. ¯\\_(ツ)_/¯</span></div>");
+    }
+
+</script>
 {% endblock %}
