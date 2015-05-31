@@ -67,10 +67,6 @@ def show_face(face_name):
     else:
         return render_template('page_not_found.html'), 404
 
-def dump_to_file():
-    with open(STATIC_DUMP_FILENAME, 'w') as f:
-        f.write(faces())
-
 def pairify(iterable):
     for i in range(1, len(iterable), 2):
         yield (iterable[i - 1], iterable[i])
@@ -120,6 +116,5 @@ def dump_to_json():
 def page_not_found(error):
     return render_template('page_not_found.html'), 404
 
-
 if __name__ == "__main__":
-    dump_to_file()
+    app.run()
