@@ -74,8 +74,7 @@ def pairify(iterable):
 @app.route('/')
 def faces():
     pairs = pairify(DB.get_all_face_data())
-    symbols = pairify(DB.get_all_symbol_data())
-    return render_template("main.html", facepairs=pairs, symbolpairs=symbols)
+    return render_template("main.html", facepairs=pairs)
 
 @app.route("/click", methods=['POST'])
 def increment():
@@ -93,22 +92,14 @@ def dump_to_json():
     # You're welcome @rx.
 
     all_faces = DB.get_all_face_data()
-    symbols = DB.get_all_symbol_data()
     facedata = {
         'faces' : {},
-        'symbols' : {}
     }
     for fid, uses, face in all_faces:
         facedict = facedata['faces']
         facedict[fid] = {}
         facedict[fid]['uses'] = uses
         facedict[fid]['face'] = face
-
-    for sid, uses, symbol in symbols:
-        symboldict = facedata['symbols']
-        symboldict[sid] = {}
-        symboldict[sid]['uses'] = uses
-        symboldict[sid]['symbol'] = symbol
 
     return json.dumps(facedata, indent=4, separators=(',', ': '))
 

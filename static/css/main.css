@@ -73,17 +73,21 @@ button.facebtn {
 div.footer {
     padding-top:100px;
 }
-.bg-img {
-    /*background-image: url('../img/background.png');*/
+.vertical-padding {
+    padding-top: 50px;
+    padding-bottom: 50px;
 }
+
 button.face-big {
     font-size: 100pt;
     line-height: 300px;
 }
 
 p.outro {
-    padding-left: 20%;
-    padding-right: 20%;
+    padding-left: 20px;
+}
+h4.faq {
+    cursor: pointer; 
 }
 
 td {
