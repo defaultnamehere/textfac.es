@@ -6,13 +6,12 @@ $(function() {
         'You came to the <em>right</em> dongerhood.',
         'All the faces, but not <em>in</em> your face.',
         'See also <a href="http://gabegaming.com">gabegaming.com</a>',
-        '5 million hits woo!',
+        '10 million hits woo!',
         'For best results apply directly to Twitch chat.',
-        'Dank memes.',
         '( ͡° ͜ʖ ͡°)',
         '<em>Not</em> made in the Bay area.',
-        'Changing the way we communicate (for the better?)',
         'Suggestions welcome.',
+        'Better than googling "how to make lenny face".',
         '"omg how did you make that face?"',
         'See <a href="http://oneu.se">oneu.se</a> for my other novelty one-use websites.',
         '2.0!',
@@ -26,6 +25,13 @@ $(function() {
         '┬┴┬┴┤(･_├┬┴┬┴',
         '[̲̅$̲̅(̲̅ ͡° ͜ʖ ͡°̲̅)̲̅$̲̅] Do you have change for a donger bill?',
         'Putting the ( ͡° ͜ʖ ͡°) in "comedy".',
+        'ayy lmao',
+        'Thanks for reading all these messages.',
+        'Click me for another message!.',
+        'Did you know there\'s text at the bottom of this page?',
+        'Now with HTTPS! (The S stands for secure ( ͡° ͜ʖ ͡°))',
+        // >leaving the last comma
+        // >js
     ];
 
     var $selected = $("select option:selected");
@@ -57,8 +63,8 @@ $(function() {
         "normal" : "It's just normal text. Use it to build other gags!",
         "fullwidth" : "ＴＥＸＴＧＡＧＢＯＹＳ",
         "smallcaps" : "ɴɪᴄᴇ ᴍᴇᴍᴇ",
-        "checkbox" : "☐ Not told\n☑ Told\n☑ Tolderone \n☑ Knights of the Told Republic",
-        "uncheckbox" : "☐ Not told\n☑ Told\n☑ Tolderone \n☑ Knights of the Told Republic"
+        "checkbox" : "(Press Enter) ☐ Not told\n☑ Told\n☑ Tolderone \n☑ Knights of the Told Republic",
+        "uncheckbox" : "(Press Enter) ☐ Not told\n☑ Told\n☑ Tolderone \n☑ Knights of the Told Republic"
 
 
     }
@@ -81,6 +87,13 @@ $(function() {
         var textGagsClip = new ZeroClipboard($copyBtn, {moviePath : "../static/js/zeroclipboard/ZeroClipboard.swf"});
         var $sampleGag = $("p.sample-gag");
         $sampleGag.text(sampleGagMap[selectedGag]);
+
+        // FAQ hackery
+        $("h4.faq").click(function() {
+            console.log("clicked");
+            console.log($(this).next());
+            $(this).next().toggleClass("hidden");
+        });
 
         // Here we go this is how the click to copy works. You got me, it's literally Adobe Flash.
         // Please, if you know a better cross-browser way to do this, let me know @_notlikethis.
@@ -123,7 +136,9 @@ $(function() {
         if (!$.cookie("bookmarked")) {
             $.cookie("bookmarked", "yep", {
                 // In the distant future, textfac.es falls into complete chaos when everyone's cookies expire. Only one white man has the courage to face the chaos. Coming this summer: Cookie Monster.
-                "expires" : 10 * 365 
+                "expires" : 10 * 365,
+                "path": "/",
+                "secure": true // mfw this isn't the default
             });
 
             //Show the banner.
@@ -203,7 +218,7 @@ $(function() {
         });
 
         var stringAfterHash = window.location.hash.substr(1);
-        if (["textgags", "faces", "symbols"].indexOf(stringAfterHash) !== -1) {
+        if (["textgags", "faces"].indexOf(stringAfterHash) !== -1) {
             $('a[href="#' + stringAfterHash + '"]').tab('show')
         }
 

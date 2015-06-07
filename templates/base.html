@@ -3,9 +3,8 @@
 <html lang="en">
   <head>
       <meta charset="utf-8">
-      <!-- -->
-    <title>Text faces|A Unicode text face list</title>
-    <meta name="description" content="Textfaces - Lenny face, shrug face, and look of disapproval. Click to copy!">
+    <title>Text faces | Twitch emoji and text emoticons on your clipboard | Lenny face ( ͡° ͜ʖ ͡°), shrug face ¯\_(ツ)_/¯, look of disapproval ಠ_ಠ and more.</title>
+    <meta name="description" content="Textfaces - Lenny face ( ͡° ͜ʖ ͡°), shrug face ¯\_(ツ)_/¯, and look of disapproval ಠ_ಠ. Click to copy!">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="@_notlikethis">
 
@@ -65,9 +64,9 @@
     {% endblock %}
     <!-- Le javascript [le]terally js
     ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="../static/js/jquery-1.9.1.min.js"></script>
+
+    <!-- Don't use the Google cdn so users in China can load jquery.-->
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <script src="../static/material/javascripts/bootstrap-material-design/material.js"></script>
     <script src="../static/material/javascripts/bootstrap-material-design/jquery.nouislider.min.js"></script>
@@ -94,7 +93,6 @@
 
     {% block includejs %}
     {% endblock %}
-    <!-- Goog[le] AdSense -->
   </body>
 </html>
 

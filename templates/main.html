@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 {% block head %}
-<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="../static/css/main.css">
 <link rel="stylesheet" href="../static/css/shirt.css">
 
 {% endblock %}
 {% block container %}
 
-<div class="bookmark-banner alert visible-desktop" style="display: none;">
+<div class="bookmark-banner alert" style="display: none;">
     <div class="pull-left">
         <a href="http://textfac.es" class="awesome-face"  ><img src="../static/ico/favicon.png" alt="textfac.es"></a> 
     </div>
@@ -16,43 +16,38 @@
   </div>
 
   <div class="ads">
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- cash dollars -->
-<ins class="adsbygoogle"
-style="display:inline-block;width:468px;height:60px"
-data-ad-client="ca-pub-3510139642126584"
-data-ad-slot="5529545750"
-data-language="en"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
+
+
 
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- swag money -->
+<!-- Responsive -->
 <ins class="adsbygoogle"
-     style="display:inline-block;width:468px;height:60px"
+     style="display:block"
      data-ad-client="ca-pub-3510139642126584"
-     data-ad-slot="7429924558"
-     data-language="en">
-     </ins>
-
+     data-ad-slot="5427807359"
+     data-ad-format="auto"></ins>
 <script>
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 
-<script type="text/javascript"><!--
-    if(document.getElementsByTagName("iframe").item(0) == null) {
-        // More like HackOverflow
-        document.write("<div style='text-align:center; font-family:century gothic, arial, helvetica, sans serif;padding-left:5px;padding-right:5px;'><span class='muted' style='font-size:10px'>Looks like you're blocking ads. ¯\\_(ツ)_/¯</span></div>");
-    }
+<!-- Even more responsive -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3510139642126584"
+     data-ad-slot="8381273755"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
---></script>
 </div>
 
+<hr>
 <h1 class="title">textfac.es</h1> <small class="muted slogan-gag"> </small>
 <p class=""> <small>Click to copy to clipboard. Paste anywhere. Achieve glory. </small>
 
 </p>
+<hr>
 
 <div class="social">
     <div class="fb-like pull-right" data-href="http://textfac.es" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
@@ -92,8 +87,6 @@ data-language="en"></ins>
         <a href="#faces" data-toggle="tab">Faces</a>
         </li>
         <li>
-        <a href="#symbols" data-toggle="tab">Symbols</a>
-        </li>
         <li class="nav-highlight">
         <a href="#textgags" data-toggle="tab">High Quality Text Gags</a>
         </li>
@@ -110,21 +103,6 @@ data-language="en"></ins>
                             <span class="face">{{face}}</span>
                         </button>
                         <span class="shirtbtn" style="display: none;">logo</span>
-                    </td>
-                {% endfor %}
-                </tr>
-            {% endfor %}
-            </table>
-        </div>
-        <div class="tab-pane table-responsive" id="symbols">
-            <table class="faces table table-responsive table-bordered pull-left">
-            {% for pair in symbolpairs%}
-                <tr class="facerow">
-                {% for id,uses,symbol in pair%}
-                    <td class="facedata"> 
-                        <button class="facebtn symbol btn-material btn-material-default " face-id="{{id}}" data-clipboard-text="{{symbol.decode('utf8')}}" >
-                            <span class="face symbol">{{symbol.decode('utf8')}}</span>
-                        </button>
                     </td>
                 {% endfor %}
                 </tr>
@@ -183,20 +161,35 @@ data-language="en"></ins>
 {% endblock %}
 {% block footer %}
 
+<hr>
 <div class="footer ">
-    <div class="container well">
+    <div class="container">
     <p class="muted text-center"> textfac.es is a <a href="/about">Good Idea</a> </p>
 
-    <p class="muted outro text-center">
-    Specifically, textfac.es (or textfaces or text faces, I'm not really sure either) lets you finally write those damn unicode faces. You should probably bookmark it so you don't lose it. When you need a textface, just hit the bookmark, click the face, and paste it where you want it to go.
-    </p>
-    <p class="muted outro text-center">
-    The click-to-copy works through <a class="muted" href="http://jonrohan.github.com/ZeroClipboard/">ZeroClipboard</a>, which uses Flash (I'm so sorry). If you don't have Flash, you'll have to highlight the faces like a caveman.
-    </p>
-
-    <p class="muted outro text-center">
-    If the faces look weird or you see rectangles all over the place, you might not have the right fonts installed. Or the face might actually be weird.
-    </p>
+    <div class="container">
+        <h4 class="faq">What is this?</h3>
+        <div class="faq hidden">
+            <p class="muted outro">
+            textfac.es (or textfaces or text faces, I'm not really sure either and the words in these parentheses are really only here for SEO ( ͡° ͜ʖ ͡°)) lets you finally write those damn unicode faces. You should probably bookmark it so you don't lose it. When you need a textface, just hit the bookmark, click the face, and paste it where you want it to go.
+            </p>
+        </div>
+    </div>
+    <div class="container">
+        <h4 class="faq">How does the click-to-copy work?</h3>
+        <div class="faq hidden">
+            <p class="muted outro">
+            The click-to-copy works through <a class="muted" href="http://jonrohan.github.com/ZeroClipboard/">ZeroClipboard</a>, which uses Flash (I'm so sorry). If you don't have Flash, you'll have to highlight the faces like a caveman.
+            </p>
+        </div>
+    </div>
+    <div class="container">
+        <h4 class="faq">Some of them look kinda weird.</h3>
+        <div class="faq hidden">
+            <p class="muted outro">
+            If the faces look weird or you see rectangles all over the place, you might not have the right fonts installed. Or the face might actually be weird.
+            </p>
+        </div>
+    </div>
 
     <br>
     <br>
@@ -214,4 +207,15 @@ data-language="en"></ins>
 <script src="../static/js/textgags.js"> </script>
 <script src="../static/js/tshirt.js"> </script>
 <script src="../static/js/main.js"> </script>
+<script type="text/javascript">
+
+    var ads = $('.adsbygoogle').filter(function fi(){
+        return $(this).css('visibility') == 'hidden';
+        });
+    if (ads.length == 0){
+        // StackOverflow swears this is legit.
+        $("div.ads").html("<div style='text-align:center; font-family:century gothic, arial, helvetica, sans serif;padding-left:5px;padding-right:5px;'><span class='muted' style='font-size:10px'>Looks like you're blocking ads. ¯\\_(ツ)_/¯</span></div>");
+    }
+
+</script>
 {% endblock %}
