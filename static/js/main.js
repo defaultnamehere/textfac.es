@@ -90,15 +90,11 @@ $(function() {
 
         // FAQ hackery
         $("h4.faq").click(function() {
-            console.log("clicked");
-            console.log($(this).next());
             $(this).next().toggleClass("hidden");
         });
 
         // Here we go this is how the click to copy works. You got me, it's literally Adobe Flash.
         // Please, if you know a better cross-browser way to do this, let me know @_notlikethis.
-        clip.glue(faces);
-        textGagsClip.glue($copyBtn);
 
         // Initialise those popovers
         faces.popover({
@@ -120,13 +116,21 @@ $(function() {
             $copyBtn.attr("data-clipboard-text", $gagTextArea.val());
         }
 
-        clip.on("mousedown", function(client, args) {
-            $(this).popover('toggle');
-            var id = $(this).attr("face-id")
-            $.ajax("/click", {
-                type: "POST"
+        clip.on("ready", function(event) {
+
+            clip.on("aftercopy", function(event) {
+                $(this).popover('toggle');
+                var id = $(event.target).attr("face-id")
+                $.ajax({
+                    url: "click",
+                    method: "POST",
+                    data : {
+                        id: id
+                    }
                 });
+            });
         });
+
 
         clip.on("mouseout", function() {
             $(this).popover('hide');
