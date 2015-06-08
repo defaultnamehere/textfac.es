@@ -51,7 +51,7 @@ function saveFace(faceBtn) {
 var saveAllFaceImages = function() {
 
     // Select .facebtn but not .symbol
-    $('button.facebtn:not(.symbol)').each(function() {
+    $('button.facebtn').each(function() {
         var faceid = $(this).attr("face-id");
         var face = $(this).attr("data-clipboard-text");
         console.log(face);
