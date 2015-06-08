@@ -7,7 +7,6 @@ import redis
 
 TEXTFACES_PATH = "/var/sites/textfac.es/"
 TEXTFACES_PATH_DEV = "/home/alex/dev/textfac.es/repo/"
-#sys.path.append(TEXTFACES_PATH)
 sys.path.append(TEXTFACES_PATH_DEV)
 
 FACES_FILENAME = "faces.txt"

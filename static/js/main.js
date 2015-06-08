@@ -81,10 +81,12 @@ $(function() {
 
     function setup() {
         var faces = $("button.facebtn");
-        var clip = new ZeroClipboard(faces, {moviePath : "../static/js/zeroclipboard/ZeroClipboard.swf"});
+        var clip = new ZeroClipboard(faces, {moviePath : "../static/js/zeroclipboard2/dist/ZeroClipboard.swf"});
         var $gagTextArea = $("textarea.gag-text");
         var $copyBtn = $("button#btn-copy");
-        var textGagsClip = new ZeroClipboard($copyBtn, {moviePath : "../static/js/zeroclipboard/ZeroClipboard.swf"});
+        // Here we go this is how the click to copy works. You got me, it's literally Adobe Flash.
+        // Please, if you know a better cross-browser way to do this, let me know @_notlikethis.
+        var textGagsClip = new ZeroClipboard($copyBtn, {moviePath : "../static/js/zeroclipboard2/dist/ZeroClipboard.swf"});
         var $sampleGag = $("p.sample-gag");
         $sampleGag.text(sampleGagMap[selectedGag]);
 
@@ -95,10 +97,6 @@ $(function() {
             $(this).next().toggleClass("hidden");
         });
 
-        // Here we go this is how the click to copy works. You got me, it's literally Adobe Flash.
-        // Please, if you know a better cross-browser way to do this, let me know @_notlikethis.
-        clip.glue(faces);
-        textGagsClip.glue($copyBtn);
 
         // Initialise those popovers
         faces.popover({

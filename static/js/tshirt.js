@@ -1,6 +1,5 @@
 
 // Here we go.
-
 function drawFace(face) {
 
     var canvas = document.querySelector('canvas');
@@ -9,10 +8,12 @@ function drawFace(face) {
     var cHeight = 2500;
     var cWidth = 2000;
     var textSize = 500;
-    // WOW I can't believe this worked the first time I wrote it.
+
     ctx.font = 'bold ' + textSize +'px Droid Sans';
+
     // This would be much more efficient as binary search buuuut no.
     while (ctx.measureText(face).width > cWidth) {
+        // WOW I can't believe this worked the first time I wrote it.
         textSize -= 10;
         ctx.font = 'bold ' + textSize +'px Droid Sans';
     }
@@ -26,8 +27,8 @@ function drawFace(face) {
 }
 
 
-// Generate all the faces, and POST the images to a special URL only available on localhost.
 
+/*
 function saveFace(faceBtn) {
         var faceid = $(faceBtn).attr("face-id");
         console.log(faceid);
@@ -41,10 +42,12 @@ function saveFace(faceBtn) {
 
         $.post("http://localhost:5000/recieveimage", {
                 faceid: faceid,
-                img: image
+                img: image,
         });
 }
+*/
 
+// Generate all the faces, and POST the images to a special URL only available on localhost.
 var saveAllFaceImages = function() {
 
     // Select .facebtn but not .symbol

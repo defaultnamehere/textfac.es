@@ -106,9 +106,12 @@ def dump_to_json():
 
     return json.dumps(facedata, indent=4, separators=(',', ': '))
 
+@app.route('/shirtimage/<int:faceid>')
+def send_js(faceid):
+    return send_from_directory('shirt_images', "%s_black.png" % faceid)
+
 @app.route("/recieveimage", methods=["POST"])
 def recieve_image():
-    #import ipdb; ipdb.set_trace()
     if app.debug:
         fields = request.form.to_dict()
         save_new_face(fields)
@@ -119,10 +122,15 @@ def recieve_image():
 def save_new_face(fields):
     data = fields["img"]
     faceid = fields["faceid"]
+    if "colour" in fields:
+        colour = fields["colour"]
+    else:
+        # SENSIBLE DEFAULTS WOO
+        colour = "black"
 
     # Yes nailed it #notremotecodeexecution
     os.system("mkdir -p %s" % FACES_DIR)
-    with open("%s/%s.png" % (FACES_DIR, faceid), 'w') as f:
+    with open("%s/%s_%s.png" % (FACES_DIR, faceid, colour), 'w') as f:
         f.write(dataUrlToPNG(data))
 
 def dataUrlToPNG(data):
@@ -133,4 +141,4 @@ def page_not_found(error):
     return render_template('page_not_found.html'), 404
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=False)
