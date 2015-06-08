@@ -110,6 +110,12 @@ def dump_to_json():
 def send_js(faceid):
     return send_from_directory('shirt_images', "%s_black.png" % faceid)
 
+@app.route("/shirts")
+def show_shirts():
+    pairs = pairify(DB.get_all_face_data())
+
+    return render_template("shirts.html", facepairs=pairs)
+
 @app.route("/recieveimage", methods=["POST"])
 def recieve_image():
     if app.debug:

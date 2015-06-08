@@ -1984,18 +1984,18 @@ select.form-control.focus {
 legend {
   border-bottom: 0;
 }
-.modal-content {
+.modal-material-content {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   border-radius: 0;
   border: 0;
 }
-.modal-content .modal-header {
+.modal-material-content .modal-material-header {
   border-bottom: 0;
 }
-.modal-content .modal-footer {
+.modal-material-content .modal-material-footer {
   border-top: 0;
 }
-.modal-content .modal-footer .btn-material + .btn-material {
+.modal-material-content .modal-material-footer .btn-material + .btn-material {
   margin-bottom: 10px;
 }
 .list-group {

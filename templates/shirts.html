@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+{% block head %}
+<title>Text face t shirts! We got emoji t-shirts, lenny face emoticon shirts, and look of disapproval shirts</title>
+<meta name="description" content="Textfaces t-shirts! - Emoticon shirts | Emoji shirts | Lenny face shirts ( ͡° ͜ʖ ͡°) | Shrug face t shirts ¯\_(ツ)_/¯ | Look of disapproval t-shirts ಠ_ಠ ">
+
+<link rel="stylesheet" href="../static/css/main.css">
+<link rel="stylesheet" href="../static/css/shirt.css">
+
+{% endblock %}
+{% block container %}
+
+<h1 class="title">textfac.es</h1> <small class="muted slogan-gag"> </small>
+<p class=""> <small>Click to copy to clipboard. Paste anywhere. Achieve glory. </small>
+
+</p>
+
+<div class="jumbotron">
+    <h2>Choose a face<h2>
+    <div class="shirtbox">
+        <img height="60" src="../static/ico/shirt.svg" />
+        <span class="plus"><strong>+</strong></span>
+        <span class="xxlarge"><strong>?</strong></span>
+    </div>
+
+        <p class="muted">Aww boy gotta choose a good one</p>
+</div>
+
+<div class="tabbable">
+    <ul class="nav nav-tabs background-bluegrey">
+        <li class="active">
+            <a href="#faces" data-toggle="tab">Here ya go, choose one of these</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="faces">
+            <table class="faces table table-responsive" border="">
+            {% for pair in facepairs %}
+                <tr class="facerow">
+                {% for id,uses,face in pair%}
+                <td class="facedata"> 
+                        <button class="facebtn btn-material btn-material-default " face-id="{{id}}" data-clipboard-text="{{face}}" data-toggle="modal" />
+                            <img height="60" src="../static/ico/shirt.svg" />
+                            <span class="plus"><strong>+</strong></span>
+                            <span class="face">{{face}}</span>
+                        </button>
+                    </td>
+                {% endfor %}
+                </tr>
+            {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">This the face you want?</h4>
+      </div>
+      <div class="modal-body confirm-modal-body">
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-material btn-material-default btn-shirt" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn-material btn-material-primary btn-shirt btn-shirt-confirm ">Yeah!</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Spinner overlay -->
+<div class="overlay" style="display: none;">
+    <div class="spinner" style="display: none;">
+    </div>
+</div>
+
+
+{% endblock %}
+{% block footer %}
+
+<hr>
+<div class="footer ">
+    <div class="container">
+    <p class="muted text-center"> textfac.es is a <a href="/about">Good Idea</a> </p>
+
+    <div class="container">
+        <h4 class="faq">How do the shirts work?</h3>
+        <div class="faq hidden">
+            <p class="muted outro">
+                The good folks at <a href="https://rapanuiclothing.com/api-t-shirt-printing/">Rapanui</a> do all the t-shirt stuff. I just tell them which image to put on it, and a bit about what kind of shirt. If you have any questions about your order, I have no idea what the answer is and you should ask them.
+            </p>
+        </div>
+    </div>
+    <div class="container">
+        <h4 class="faq">This page is broken</h3>
+        <div class="faq hidden">
+            <p class="muted outro">
+                Sorry! This is a spicy new feature. You can submit a bug by obnoxiously tweeting at me <a href="https://twitter.com/_notlikethis">@_notlikethis</a>
+            </p>
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <hr>
+    <p class="muted text-center">
+    ¯\_(ツ)_/¯
+    </p>
+</div>
+</div>
+{% endblock %}
+{% block includejs %}
+<script src="../static/js/zeroclipboard2/dist/ZeroClipboard.js"> </script>
+<script src="../static/js/jquery.cookie.js"> </script>
+<script src="../static/js/maps.js"> </script>
+<script src="../static/js/textgags.js"> </script>
+<script src="../static/js/tshirt.js"> </script>
+<script src="../static/js/order_shirt.js"> </script>
+<script src="../static/js/faq.js"> </script>
+
+<script type="text/javascript">
+
+    var ads = $('.adsbygoogle').filter(function fi(){
+        return $(this).css('visibility') == 'hidden';
+        });
+    if (ads.length == 0){
+        // StackOverflow swears this is legit.
+        $("div.ads").html("<div style='text-align:center; font-family:century gothic, arial, helvetica, sans serif;padding-left:5px;padding-right:5px;'><span class='muted' style='font-size:10px'>Looks like you're blocking ads. ¯\\_(ツ)_/¯</span></div>");
+    }
+
+</script>
+{% endblock %}

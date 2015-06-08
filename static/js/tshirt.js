@@ -67,7 +67,3 @@ var saveAllFaceImages = function() {
         });
     });
 }
-
-$("td.facedata").onMouseOver(function() {
-    $(this).firstChild(".shirtbtn").show();
-});

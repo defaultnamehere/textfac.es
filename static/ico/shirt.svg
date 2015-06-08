@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://web.resource.org/cc/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="213.11777"
+   height="172.51614"
+   id="svg69498"
+   sodipodi:version="0.32"
+   inkscape:version="0.45+devel"
+   sodipodi:docbase="C:\Documents and Settings\kit&amp;ryan\Desktop"
+   sodipodi:docname="tshirts-brown.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   inkscape:export-filename="F:\Joshua's artwork\logos\Spread Open Media\Spread Open Media t-shirt v01.png"
+   inkscape:export-xdpi="72"
+   inkscape:export-ydpi="72"
+   version="1.0"
+   sodipodi:modified="true">
+  <defs
+     id="defs69500">
+    <linearGradient
+       id="linearGradient52013">
+      <stop
+         style="stop-color:#9bb0b8;stop-opacity:0.49803922;"
+         offset="0"
+         id="stop52019" />
+      <stop
+         id="stop52021"
+         offset="0.5"
+         style="stop-color:#ffffff;stop-opacity:1;" />
+      <stop
+         id="stop52017"
+         offset="1"
+         style="stop-color:#ffffff;stop-opacity:0;" />
+    </linearGradient>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     gridtolerance="10000"
+     guidetolerance="10"
+     objecttolerance="10"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.59142203"
+     inkscape:cx="398.78889"
+     inkscape:cy="322.60207"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     inkscape:window-width="961"
+     inkscape:window-height="851"
+     inkscape:window-x="-4"
+     inkscape:window-y="59"
+     showguides="true"
+     inkscape:guide-bbox="true" />
+  <metadata
+     id="metadata69503">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-235.03708,-20.292285)">
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:4.46799994;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 292.20625,22.527474 C 291.36941,22.550084 290.5244,22.778814 289.74571,23.228394 L 239.87045,52.024764 C 237.37865,53.463404 236.53347,56.622524 237.97211,59.114334 L 254.96227,88.545924 C 256.40091,91.037734 259.56733,91.882904 262.05914,90.444264 L 288.12482,75.396264 L 288.12482,185.37589 C 288.12482,188.25319 290.44606,190.57443 293.32335,190.57443 L 389.61303,190.57443 C 392.49032,190.57443 394.80426,188.25319 394.80426,185.37589 L 394.80426,75.242934 L 421.1401,90.444264 C 423.6319,91.882904 426.79102,91.037734 428.22966,88.545924 L 445.21982,59.114334 C 446.65845,56.622524 445.81328,53.463404 443.32148,52.024764 L 393.45353,23.228394 C 392.44122,22.643944 391.31442,22.436784 390.24094,22.563974 C 390.03472,22.539284 389.82612,22.527474 389.61303,22.527474 L 362.02868,22.527474 C 361.62034,25.799984 352.61755,28.419624 341.59232,28.419624 C 330.56708,28.419624 321.57159,25.799984 321.16324,22.527474 L 293.32335,22.527474 C 293.15593,22.527474 292.99015,22.541334 292.82686,22.556674 C 292.61963,22.537154 292.41557,22.521814 292.20625,22.527474 z "
+       id="path69759" />
+  </g>
+</svg>

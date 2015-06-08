@@ -90,12 +90,6 @@ $(function() {
         var $sampleGag = $("p.sample-gag");
         $sampleGag.text(sampleGagMap[selectedGag]);
 
-        // FAQ hackery
-        $("h4.faq").click(function() {
-            console.log("clicked");
-            console.log($(this).next());
-            $(this).next().toggleClass("hidden");
-        });
 
 
         // Initialise those popovers

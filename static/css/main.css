@@ -35,8 +35,14 @@ td.facedata {
     text-align : center;
     width: 50%;
 }
+span.face {
+    text-transform: none;
+}
 table {
     margin:auto;
+}
+.muted {
+    color: #999999;
 }
 button.facebtn {
     text-align: center;
@@ -64,6 +70,7 @@ button.facebtn {
 .zeroclipboard-is-hover {
   color: rgba(255, 255, 255, 0.84);
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2), 0 3px 6px rgba(0, 0, 0, 0.28);
+  cursor: pointer;
 }
 
 .zeroclipboard-is-active {
