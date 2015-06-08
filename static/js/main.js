@@ -104,12 +104,14 @@ $(function() {
         });
 
 
-        textGagsClip.on('mousedown', function() {
-            $copyBtn.text("Copied!");
-            window.setTimeout(function() {
-                $copyBtn.text("Copy to clipboard");
-            }, 2000);
-            $(this).popover('toggle');
+        textGagsClip.on("ready", function(event) {
+
+            textGagsClip.on("aftercopy", function(event) {
+                $copyBtn.text("Copied!");
+                window.setTimeout(function() {
+                    $copyBtn.text("Copy to clipboard");
+                }, 2000);
+            });
         });
 
         function updateDataAttribute() {
