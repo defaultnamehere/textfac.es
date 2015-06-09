@@ -76,7 +76,9 @@ def faces():
     pairs = pairify(DB.get_all_face_data())
     return render_template("main.html", facepairs=pairs)
 
+
 @app.route("/click", methods=['POST'])
+@crossdomain(origin="*")
 def increment():
     faceid = request.form.get('id')
     print request.form
