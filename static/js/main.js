@@ -124,7 +124,7 @@ $(function() {
                 $(this).popover('toggle');
                 var id = $(event.target).attr("face-id")
                 $.ajax({
-                    url: "click/",
+                    url: "click",
                     method: "POST",
                     data : {
                         id: id
