@@ -48,13 +48,15 @@
 </p>
 <hr>
 
-<div class="jumbotron">
+<div class="jumbotron shirt-preview">
+    <img src="../static/ico/shrug_shirt.png" class="shirt-preview"/>
+    <img src="../static/ico/disapproval_shirt.png" class="shirt-preview"/>
+    <img src="../static/ico/lenny_shirt.png" class="shirt-preview"/>
     <h2>Get it on a shirt!</h2>
-    SHIRT IMAGE HERE
     <strong>
         <p class="muted">The fastest way to say ( ͡° ͜ʖ ͡°) yet.</p>
     </strong>
-    <p><a href="/shirts" class="btn-material btn-material-info btn-material-lg">Check it out</a></p>
+    <p><a href="/shirts" class="btn-material btn-material-info btn-material-lg shirt-preview-button">Check it out</a></p>
 </div>
 
 <div class="social">
@@ -196,13 +198,11 @@
 <script src="../static/js/faq.js"> </script>
 <script type="text/javascript">
 
-    var ads = $('.adsbygoogle').filter(function fi(){
-        return $(this).css('visibility') == 'hidden';
-        });
-    if (ads.length == 0){
-        // StackOverflow swears this is legit.
-        $("div.ads").html("<div style='text-align:center; font-family:century gothic, arial, helvetica, sans serif;padding-left:5px;padding-right:5px;'><span class='muted' style='font-size:10px'>Looks like you're blocking ads. ¯\\_(ツ)_/¯</span></div>");
+    if (document.getElementsByTagName("iframe").item(0) == null) {
+            // StackOverflow swears this is legit.
+            $("div.ads").html("<div style='text-align:center; font-family:century gothic, arial, helvetica, sans serif;padding-left:5px;padding-right:5px;'><span class='muted' style='font-size:10px'>Looks like you're blocking ads. ¯\\_(ツ)_/¯</span></div>");
     }
+
 
 </script>
 {% endblock %}

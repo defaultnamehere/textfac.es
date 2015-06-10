@@ -18,6 +18,17 @@ div.ads {
 h1.title {
     display: inline
 }
+div.shirt-preview {
+    overflow: hidden;
+}
+img.shirt-preview {
+    height: 200px;
+    float: right;
+}
+a.shirt-preview-button {
+    position: absolute;
+    margin-top: 25px;
+}
 .background-bluegrey {
     background: #607d8b;
 }
