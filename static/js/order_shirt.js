@@ -28,7 +28,8 @@ $(function() {
         var url_data = {
             api_key: "ea77dc0f36685aa03dc880c780719309",
             image_url: image_url,
-            colour: "white"
+            colour: "white",
+            product_name: "A very " + $(this).attr("data-clipboard-text") + "shirt"
         };
         var url_with_args = API_BASE_URL + "?" + $.param(url_data);
 
