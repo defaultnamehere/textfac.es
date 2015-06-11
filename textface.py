@@ -111,7 +111,7 @@ def dump_to_json():
 
 @app.route('/shirtimage/<int:faceid>')
 def send_js(faceid):
-    return send_from_directory('shirt_images', "%s_black.png" % faceid)
+    return send_from_directory('/var/sites/textfac.es/shirt_images', "%s_black.png" % faceid)
 
 @app.route("/shirts")
 def show_shirts():
