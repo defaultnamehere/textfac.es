@@ -115,7 +115,12 @@ $(function() {
         clip.on("ready", function(event) {
 
             clip.on("aftercopy", function(event) {
-                $(this).popover('toggle');
+                $(this).popover('show');
+
+                window.setTimeout(function() {
+                    faces.popover('hide');
+                }, 500);
+
                 var id = $(event.target).attr("face-id")
                 $.ajax({
                     url: "click",
