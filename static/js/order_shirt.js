@@ -17,8 +17,9 @@ $(function() {
         var id = $(this).attr("face-id");
         console.log("mousedown");
 
-        //var image_url = "https://textfac.es/shirtimage/" + id;
-        var image_url = "http://rapanuiclothing.com/resources/logo.png"
+
+        var image_url = window.location.protocol + "//" + window.location.host + "/shirtimage/" + id;
+        //var image_url = "http://i.imgur.com/RASu9l8.png";
 
         // Set the modal image to be the image for this face.
         $("div.confirm-modal-body").html('<img class="face-preview" src="' + image_url + '"/>');
