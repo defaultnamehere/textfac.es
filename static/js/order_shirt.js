@@ -12,12 +12,13 @@ $(function() {
     var API_BASE_URL = "https://rapanuistore.com/api-access-point/";
     var faces = $("button.facebtn");
     faces.click(function() {
+
         showSpinner();
 
         var id = $(this).attr("face-id");
-        console.log("mousedown");
 
 
+        // It's fiiiiiiiiiiiiiine.
         var image_url = window.location.protocol + "//" + window.location.host + "/shirtimage/" + id;
         //var image_url = "http://i.imgur.com/RASu9l8.png";
 
@@ -29,7 +30,7 @@ $(function() {
             api_key: "ea77dc0f36685aa03dc880c780719309",
             image_url: image_url,
             colour: "white",
-            product_name: "A very " + $(this).attr("data-clipboard-text") + "shirt"
+            product_name: "A snazzy textfac.es shirt!"
         };
         var url_with_args = API_BASE_URL + "?" + $.param(url_data);
 
