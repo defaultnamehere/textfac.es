@@ -115,6 +115,7 @@ def send_js(faceid):
 
 @app.route("/shirts")
 def show_shirts():
+    #TODO Only show the faces that have a shirt.
     pairs = pairify(DB.get_all_face_data())
 
     return render_template("shirts.html", facepairs=pairs)
