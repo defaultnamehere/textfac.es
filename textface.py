@@ -122,9 +122,8 @@ def dump_to_json():
     return json.dumps(facedata, indent=4, separators=(',', ': '))
 
 @app.route('/shirtimage/<int:faceid>')
-def send_js(faceid):
-    return send_from_directory(_shirt_path(faceid))
-
+def get_shirt_image(faceid):
+    return send_from_directory(TEXTFACES_BASE_PATH + SHIRT_IMAGE_DIR, "%s_black.png" % faceid)
 
 @app.route("/shirts")
 def show_shirts():
