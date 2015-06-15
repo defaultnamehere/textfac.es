@@ -4,17 +4,30 @@ import os
 import sys
 import redisdb as db
 import base64
+import os.path
 
 from datetime import timedelta
 from flask import make_response, request, current_app
 from functools import update_wrapper
 
+
+SHIRT_IMAGE_DIR = "shirt_images"
+STATIC_DUMP_FILENAME = "textfaces_static.html"
+
+DEVMODE = "TEXTFACES_DEV" in os.environ
+
+if DEVMODE:
+    TEXTFACES_BASE_PATH = "/home/alex/dev/textfac.es/repo/"
+else:
+    TEXTFACES_BASE_PATH = "/var/sites/textfac.es/"
+
+sys.path.append(TEXTFACES_BASE_PATH)
+
 app = Flask(__name__)
 DB = db.TextfaceDB()
 
-sys.path.append(db.TEXTFACES_PATH)
-FACES_DIR = "shirt_images"
-STATIC_DUMP_FILENAME = "textfaces_static.html"
+def _shirt_path(faceid):
+    return "%s%s/%s_black.png" % (TEXTFACES_BASE_PATH, SHIRT_IMAGE_DIR, faceid)
 
 def crossdomain(origin=None, methods=None, headers=None,
                 max_age=21600, attach_to_all=True,
@@ -84,7 +97,6 @@ def faces():
 @crossdomain(origin="*")
 def increment():
     faceid = request.form.get('id')
-    print request.form
     DB.increment(faceid)
     return redirect('/') 
 
@@ -111,12 +123,13 @@ def dump_to_json():
 
 @app.route('/shirtimage/<int:faceid>')
 def send_js(faceid):
-    return send_from_directory('/var/sites/textfac.es/shirt_images', "%s_black.png" % faceid)
+    return send_from_directory(_shirt_path(faceid))
+
 
 @app.route("/shirts")
 def show_shirts():
-    #TODO Only show the faces that have a shirt.
-    pairs = pairify(DB.get_all_face_data())
+    # Only show the faces that have a shirt.
+    pairs = pairify(filter(lambda facedata: os.path.isfile(_shirt_path(facedata[0])), DB.get_all_face_data()))
 
     return render_template("shirts.html", facepairs=pairs)
 
@@ -139,8 +152,8 @@ def save_new_face(fields):
         colour = "black"
 
     # Yes nailed it #notremotecodeexecution
-    os.system("mkdir -p %s" % FACES_DIR)
-    with open("%s/%s_%s.png" % (FACES_DIR, faceid, colour), 'w') as f:
+    os.system("mkdir -p %s" % SHIRT_IMAGE_DIR)
+    with open("%s/%s_%s.png" % (SHIRT_IMAGE_DIR, faceid, colour), 'w') as f:
         f.write(dataUrlToPNG(data))
 
 def dataUrlToPNG(data):
@@ -151,4 +164,4 @@ def page_not_found(error):
     return render_template('page_not_found.html'), 404
 
 if __name__ == "__main__":
-    app.run(debug=False)
+    app.run(debug=DEVMODE)

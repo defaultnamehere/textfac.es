@@ -1,4 +1,3 @@
 
-export TEXTFACES_ENV="DEV"
-export TEXTFACES_BASE_PATH="/home/alex/dev/textfac.es/repo/"
+export TEXTFACES_DEV="TRUE"
 redis-server ./redis/redis.conf
