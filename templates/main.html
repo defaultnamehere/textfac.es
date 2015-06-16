@@ -1,11 +1,10 @@
 {% extends "base.html" %}
 {% block head %}
-<link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+
+<title>Text faces | Twitch emoticons and text emoji on your clipboard | Lenny face ( ͡° ͜ʖ ͡°), shrug face ¯\_(ツ)_/¯, look of disapproval ಠ_ಠ and more.</title>
+<meta name="description" content="Textfaces - Lenny face ( ͡° ͜ʖ ͡°), shrug face ¯\_(ツ)_/¯, and look of disapproval ಠ_ಠ. Click to copy!">
 <link rel="stylesheet" href="../static/css/main.css">
 <link rel="stylesheet" href="../static/css/shirt.css">
-
-    <title>Text faces | Twitch emoticons and text emoji on your clipboard | Lenny face ( ͡° ͜ʖ ͡°), shrug face ¯\_(ツ)_/¯, look of disapproval ಠ_ಠ and more.</title>
-    <meta name="description" content="Textfaces - Lenny face ( ͡° ͜ʖ ͡°), shrug face ¯\_(ツ)_/¯, and look of disapproval ಠ_ಠ. Click to copy!">
 {% endblock %}
 {% block container %}
 
@@ -194,13 +193,13 @@
 </div>
 {% endblock %}
 {% block includejs %}
-<script src="../static/js/zeroclipboard2/dist/ZeroClipboard.js"> </script>
-<script src="../static/js/jquery.cookie.js"> </script>
-<script src="../static/js/maps.js"> </script>
-<script src="../static/js/textgags.js"> </script>
-<script src="../static/js/tshirt.js"> </script>
-<script src="../static/js/main.js"> </script>
-<script src="../static/js/faq.js"> </script>
+<script async src="../static/js/zeroclipboard2/dist/ZeroClipboard.js"> </script>
+<script async defer src="../static/js/jquery.cookie.js"> </script>
+<script async defer src="../static/js/maps.js"> </script>
+<script async defer src="../static/js/textgags.js"> </script>
+<script async defer src="../static/js/tshirt.js"> </script>
+<script async src="../static/js/main.js"> </script>
+<script async defer src="../static/js/faq.js"> </script>
 <script type="text/javascript">
     if (document.getElementsByTagName("iframe").item(0) == null) {
             // StackOverflow swears this is legit.
