@@ -34,6 +34,20 @@ $(function() {
         // >js
     ];
 
+    // Deal with bookmark cookie.
+    if (!$.cookie("bookmarked")) {
+        $.cookie("bookmarked", "yep", {
+            // In the distant future, textfac.es falls into complete chaos when everyone's cookies expire. Only one white man has the courage to face the chaos. Coming this summer: Cookie Monster.
+            "expires" : 10 * 365,
+            "path": "/",
+            "secure": true // mfw this isn't the default
+        });
+
+        //Show the banner.
+        $('.bookmark-banner').show();
+    }
+
+
     var $selected = $("select option:selected");
     var selectedGag = $selected.val();
 
@@ -97,6 +111,20 @@ $(function() {
             placement: "right"
         });
 
+        var colWidth = $("div.col-md-6").width();
+
+        // Quickly resize the faces which are too wide to fit on one line before the user notices ( ͡° ͜ʖ ͡°)
+        $("span.face").each(function() {
+            // mfw parseInt ignores the "px"
+            // mfw ['10', '10', '10', '10'].map(parseInt)
+            var fontSize = parseInt($(this).css('font-size'));
+            while ($(this).width() >= colWidth && fontSize > 0) {
+                fontSize--;
+                $(this).css('font-size', fontSize.toString() + 'px');
+            }
+
+        });
+
 
         textGagsClip.on("ready", function(event) {
 
@@ -136,19 +164,6 @@ $(function() {
         clip.on("mouseout", function() {
             $(this).popover('hide');
         });
-
-        // Deal with bookmark cookie.
-        if (!$.cookie("bookmarked")) {
-            $.cookie("bookmarked", "yep", {
-                // In the distant future, textfac.es falls into complete chaos when everyone's cookies expire. Only one white man has the courage to face the chaos. Coming this summer: Cookie Monster.
-                "expires" : 10 * 365,
-                "path": "/",
-                "secure": true // mfw this isn't the default
-            });
-
-            //Show the banner.
-            $('.bookmark-banner').show();
-        }
 
         $('.slogan-gag').on('click', switchSlogan);
         $('#btn-reapply').on('click', function() {

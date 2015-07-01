@@ -48,34 +48,20 @@ td.facedata {
 }
 span.face {
     text-transform: none;
-}
-table {
-    margin:auto;
+     white-space: nowrap;
+      overflow: hidden;
 }
 .muted {
     color: #999999;
 }
 button.facebtn {
     text-align: center;
+    margin: 0 auto;
     border: 0px;
     font-size: 30pt;
     line-height: 75px;
     color: #333333;
 
-    /* HACK INCOMING HERE WE GO */
-      position: relative;
-      padding: 8px 30px;
-      border: 0;
-      margin: 10px 1px;
-      cursor: pointer;
-      border-radius: 4px;
-      text-decoration: none;
-      color: rgba(255, 255, 255, 0.84);
-      -webkit-transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
-              transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
-      outline: none !important;
-
-      background-color: transparent;
 }
 
 .zeroclipboard-is-hover {
@@ -108,18 +94,7 @@ h4.faq {
     cursor: pointer; 
 }
 
-td {
-    padding:0 !important;
-    border:0 none;
-    outline: none;
-}
-tr {
-    border-top: none;
-}
-table {
-    border-collapse: collapse !important;
-    border: none;
-}
+
 div.social {
     float: right;
     padding-top: 7px;
