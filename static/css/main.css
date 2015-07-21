@@ -25,6 +25,10 @@ img.shirt-preview {
     height: 200px;
     float: right;
 }
+img.shirt-preview-small {
+    height: 100px;
+    float: right;
+}
 a.shirt-preview-button {
     position: absolute;
     margin-top: 25px;
