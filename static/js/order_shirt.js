@@ -11,19 +11,63 @@ $(function() {
 
     var API_BASE_URL = "https://rapanuistore.com/api-access-point/";
     var faces = $("button.facebtn");
-    faces.click(function() {
+    var previewShirt = $("img.custom-shirt-preview");
+    var selectedShirtColour = "White";
+    var selectedFaceColour = "Black";
+    // The id of the current face open in a modal.
+    var id = "";
 
-        showSpinner();
+    function setFaceImageColour(id, colour) {
 
-        var id = $(this).attr("face-id");
-
-
-        // It's fiiiiiiiiiiiiiine.
-        var image_url = window.location.protocol + "//" + window.location.host + "/shirtimage/" + id;
-        //var image_url = "http://i.imgur.com/RASu9l8.png";
+        var image_url = window.location.protocol + "//" + window.location.host + "/shirtimage/" + id + "/" + colour;
 
         // Set the modal image to be the image for this face.
-        $("div.confirm-modal-body").html('<img class="face-preview" src="' + image_url + '"/>');
+        $("div.face-preview").html('<img class="face-preview" src="' + image_url + '"/>');
+    }
+
+    faces.click(function() {
+
+        // Store which face we have open.
+        id = $(this).attr("face-id");
+
+        setFaceImageColour(id, "black");
+
+        $("#confirmModal").modal();
+    });
+
+    $("img.shirt-image").click(function() {
+        previewShirt.attr("src", $(this).attr("src"));
+        selectedShirtColour = $(this).attr("data-shirt-colour");
+    });
+
+    $("div.colours > img").click(function() {
+        var colour = $(this).attr("data-face-colour");
+        setFaceImageColour(id, colour);
+        selectedFaceColour = colour;
+
+        // Toggle the background colour
+        if (colour === "white") {
+            $("div.modal-content").addClass("darkbg");
+        }
+        else {
+            $("div.modal-content").removeClass("darkbg");
+        }
+    });
+
+    $("btn.shirt-submit").click(function() {
+
+        var customise = $("this").hasClass("customise");
+        var shirt_settings = {
+            "shirt_colour" : selectedShirtColour,
+            "face_colour": selectedFaceColour,
+            "face_id": id,
+            "customise": customise
+        }
+    });
+
+    /*
+
+        // It's fiiiiiiiiiiiiiine.
 
         // Get the URL
         var url_data = {
@@ -32,6 +76,7 @@ $(function() {
             colour: "white",
             product_name: "A snazzy textfac.es shirt!"
         };
+
         var url_with_args = API_BASE_URL + "?" + $.param(url_data);
 
         // Get the URL from rapanui
@@ -42,6 +87,7 @@ $(function() {
             $("button.btn-shirt-confirm").click(function() {
                 window.location = data;
             });
+
             $("#confirmModal").modal();
             // Wait for the modal transition to complete before removing the spinner so we don't get the flash of black.
             $('#confirmModal').on('shown.bs.modal', function (e) {
@@ -51,8 +97,8 @@ $(function() {
                 hideSpinner();
             })
         });
+    */
 
-    });
 
 
 });
