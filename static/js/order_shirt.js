@@ -14,6 +14,7 @@ $(function() {
     var previewShirt = $("img.custom-shirt-preview");
     var selectedShirtColour = "White";
     var selectedFaceColour = "Black";
+
     // The id of the current face open in a modal.
     var id = "";
 
@@ -30,7 +31,11 @@ $(function() {
         // Store which face we have open.
         id = $(this).attr("face-id");
 
+        // Set foreground colour to black
         setFaceImageColour(id, "black");
+
+        // Set background colour to white
+        $("div.modal-content").removeClass("darkbg");
 
         $("#confirmModal").modal();
     });
@@ -54,19 +59,39 @@ $(function() {
         }
     });
 
-    $("btn.shirt-submit").click(function() {
+    $("button.btn-shirt-submit").click(function() {
+        console.log("clicked");
 
+        // Is this a hack? Probably. Don't tell MDN.
         var customise = $("this").hasClass("customise");
+
         var shirt_settings = {
             "shirt_colour" : selectedShirtColour,
             "face_colour": selectedFaceColour,
             "face_id": id,
             "customise": customise
         }
+
+        var backend_url = window.location.protocol + "//" + window.location.host + "/get_shirt_url";
+
+        $("#confirmModal").modal();
+
+        // Wait for the modal transition to complete before removing the spinner so we don't get the flash of black.
+        $('#confirmModal').on('shown.bs.modal', function (e) {
+            hideSpinner();
+        })
+
+        $('#confirmModal').on('hidden.bs.modal', function (e) {
+            hideSpinner();
+        })
+
+        $.post(backend_url, shirt_settings)
+        .done(function(data) {
+                window.location = data;
+        });
     });
 
     /*
-
         // It's fiiiiiiiiiiiiiine.
 
         // Get the URL

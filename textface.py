@@ -5,6 +5,8 @@ import sys
 import redisdb as db
 import base64
 import os.path
+import requests
+import base64
 
 from datetime import timedelta
 from flask import make_response, request, current_app
@@ -16,6 +18,8 @@ STATIC_DUMP_FILENAME = "textfaces_static.html"
 
 DEVMODE = "TEXTFACES_DEV" in os.environ
 
+SHIRT_API_BASE_URL = "https://rapanuistore.com/api-access-point/"
+
 if DEVMODE:
     TEXTFACES_BASE_PATH = "/home/alex/dev/textfac.es/repo/"
 else:
@@ -23,12 +27,12 @@ else:
 
 sys.path.append(TEXTFACES_BASE_PATH)
 
+
 app = Flask(__name__)
 DB = db.TextfaceDB()
 
 def _shirt_path(faceid):
     path = "%s%s/%s_black.png" % (TEXTFACES_BASE_PATH, SHIRT_IMAGE_DIR, faceid)
-    print path
     return path
 
 def crossdomain(origin=None, methods=None, headers=None,
@@ -134,20 +138,33 @@ def show_shirts():
 
     return render_template("shirts.html", facepairs=pairs)
 
-
 @app.route("/get_shirt_url", methods=["POST"])
 def get_shirt_url():
     fields = request.form.to_dict()
-    """
+
+    face_id = fields["face_id"]
+    face_colour = fields["face_colour"]
+    shirt_colour = fields["shirt_colour"]
+
+    if DEVMODE:
+        face_image_url = "http://textfac.es/shirtimage/66"
+    else:
+        face_image_url = "http://textfac.es/shirtimage/%s/%s" % (face_id, face_colour)
+
     api_call_fields = {
         "api_key": "ea77dc0f36685aa03dc880c780719309",
-        image_url: ,
-        color: ,
-        landing_page: , # "product" or "customise"
-        product_name: "A snazzy textfac.es shirt!"
+        "image_url": face_image_url,
+        "colour": shirt_colour,
+        "landing_page": "product",
+        "product_name": "A stylish textfac.es shirt!"
     }
-    """
 
+    print api_call_fields
+
+    # POST to the API and get a URL back.
+    r = requests.post(SHIRT_API_BASE_URL, data=api_call_fields)
+    url = r.text
+    return url
 
 @app.route("/recieveimage", methods=["POST"])
 def recieve_image():
