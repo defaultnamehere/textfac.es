@@ -1,22 +1,55 @@
-$(function() {
 
-    function showSpinner() {
-        $("div.overlay").show()
-        $("div.spinner").show();
-    }
-    function hideSpinner() {
-        $("div.overlay").hide()
-        $("div.spinner").hide();
-    }
+$(function() {
+    
+    var LOADING_GAGS = [
+        "dank",
+        "memes"
+    ]
+    var LOADING_GAG_DURATION_MILLIS = 1000;
 
     var API_BASE_URL = "https://rapanuistore.com/api-access-point/";
-    var faces = $("button.facebtn");
-    var previewShirt = $("img.custom-shirt-preview");
+
     var selectedShirtColour = "White";
     var selectedFaceColour = "Black";
 
     // The id of the current face open in a modal.
     var id = "";
+
+    var $loadingGag = $("div.loading-gag");
+    var faces = $("button.facebtn");
+    var previewShirt = $("img.custom-shirt-preview");
+
+    // hi every1 my name is katy nd as u can see i am quite random! *holds up spork*
+    function randomChoice(list) {
+        // ... I can't believe I have to implement this.
+        return list[Math.floor(Math.random() * list.length)];
+    }
+    function randInt (min, max) {
+        return Math.floor((Math.random() * max)) + min;
+    }
+
+    function switchLoadingGag() {
+        // Call itself again when it's time to switch to a new gag.
+        $loadingGag.slideUp()
+
+        // Change the gag, and slide it back up.
+        window.setTimeout(function() {
+            $loadingGag.children("p").text(randomChoice(LOADING_GAGS));
+            $loadingGag.slideDown();
+
+        }, 500);
+
+        // Then call this function again.
+        window.setTimeout(switchLoadingGag, 1000);
+    }
+
+
+    function showSpinner() {
+        $("div.overlay").show();
+        $("div.spinner").show();
+
+    }
+
 
     function setFaceImageColour(id, colour) {
 
@@ -60,7 +93,9 @@ $(function() {
     });
 
     $("button.btn-shirt-submit").click(function() {
-        console.log("clicked");
+
+        showSpinner();
+        switchLoadingGag();
 
         // Is this a hack? Probably. Don't tell MDN.
         var customise = $("this").hasClass("customise");
@@ -74,21 +109,14 @@ $(function() {
 
         var backend_url = window.location.protocol + "//" + window.location.host + "/get_shirt_url";
 
-        $("#confirmModal").modal();
 
-        // Wait for the modal transition to complete before removing the spinner so we don't get the flash of black.
-        $('#confirmModal').on('shown.bs.modal', function (e) {
-            hideSpinner();
-        })
 
-        $('#confirmModal').on('hidden.bs.modal', function (e) {
-            hideSpinner();
-        })
-
+        /* TODO uncoomment me
         $.post(backend_url, shirt_settings)
         .done(function(data) {
                 window.location = data;
         });
+        */
     });
 
     /*

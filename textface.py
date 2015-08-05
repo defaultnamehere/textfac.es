@@ -159,8 +159,6 @@ def get_shirt_url():
         "product_name": "A stylish textfac.es shirt!"
     }
 
-    print api_call_fields
-
     # POST to the API and get a URL back.
     r = requests.post(SHIRT_API_BASE_URL, data=api_call_fields)
     url = r.text
