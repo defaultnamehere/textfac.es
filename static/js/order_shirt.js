@@ -54,7 +54,7 @@ $(function() {
     var API_BASE_URL = "https://rapanuistore.com/api-access-point/";
 
     var selectedShirtColour = "White";
-    var selectedFaceColour = "Black";
+    var selectedFaceColour = "black";
 
     // The id of the current face open in a modal.
     var id = "";
