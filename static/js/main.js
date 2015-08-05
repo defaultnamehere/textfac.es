@@ -40,10 +40,10 @@ $(function() {
             // In the distant future, textfac.es falls into complete chaos when everyone's cookies expire. Only one white man has the courage to face the chaos. Coming this summer: Cookie Monster.
             "expires" : 10 * 365,
             "path": "/",
-            "secure": true // mfw this isn't the default
+            // mfw this isn't the default
+            "secure": true
         });
 
-        //Show the banner.
         $('.bookmark-banner').show();
     }
 
@@ -100,6 +100,7 @@ $(function() {
         var $copyBtn = $("button#btn-copy");
         // Here we go this is how the click to copy works. You got me, it's literally Adobe Flash.
         // Please, if you know a better cross-browser way to do this, let me know @_notlikethis.
+        // UPDATE: HTML5 CLIPBOARD API INCOMING HERE WE GO FOLKS
         var textGagsClip = new ZeroClipboard($copyBtn, {moviePath : "../static/js/zeroclipboard2/dist/ZeroClipboard.swf"});
         var $sampleGag = $("p.sample-gag");
         $sampleGag.text(sampleGagMap[selectedGag]);
@@ -124,7 +125,6 @@ $(function() {
             }
 
         });
-
 
         textGagsClip.on("ready", function(event) {
 

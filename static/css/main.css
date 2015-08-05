@@ -99,10 +99,15 @@ h4.faq {
 }
 
 
-div.social {
-    float: right;
+div.social-container {
     padding-top: 7px;
     padding-right: 7px;
+}
+div.social-item {
+    display: inline-block;
+}
+div.fb-like {
+    vertical-align: super;
 }
 
 div.well-face {

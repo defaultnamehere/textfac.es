@@ -5,6 +5,7 @@ import sys
 import redisdb as db
 import base64
 import os.path
+import requests
 
 from datetime import timedelta
 from flask import make_response, request, current_app
@@ -16,6 +17,8 @@ STATIC_DUMP_FILENAME = "textfaces_static.html"
 
 DEVMODE = "TEXTFACES_DEV" in os.environ
 
+SHIRT_API_BASE_URL = "https://rapanuistore.com/api-access-point/"
+
 if DEVMODE:
     TEXTFACES_BASE_PATH = "/home/alex/dev/textfac.es/repo/"
 else:
@@ -23,11 +26,13 @@ else:
 
 sys.path.append(TEXTFACES_BASE_PATH)
 
+
 app = Flask(__name__)
 DB = db.TextfaceDB()
 
 def _shirt_path(faceid):
-    return "%s%s/%s_black.png" % (TEXTFACES_BASE_PATH, SHIRT_IMAGE_DIR, faceid)
+    path = "%s%s/%s_black.png" % (TEXTFACES_BASE_PATH, SHIRT_IMAGE_DIR, faceid)
+    return path
 
 def crossdomain(origin=None, methods=None, headers=None,
                 max_age=21600, attach_to_all=True,
@@ -121,9 +126,9 @@ def dump_to_json():
 
     return json.dumps(facedata, indent=4, separators=(',', ': '))
 
-@app.route('/shirtimage/<int:faceid>')
-def get_shirt_image(faceid):
-    return send_from_directory(TEXTFACES_BASE_PATH + SHIRT_IMAGE_DIR, "%s_black.png" % faceid)
+@app.route('/shirtimage/<int:faceid>/<colour>')
+def get_shirt_image(faceid, colour):
+    return send_from_directory(TEXTFACES_BASE_PATH + SHIRT_IMAGE_DIR, "%s_%s.png" % (faceid, colour))
 
 @app.route("/shirts")
 def show_shirts():
@@ -131,6 +136,29 @@ def show_shirts():
     pairs = pairify(filter(lambda facedata: os.path.isfile(_shirt_path(facedata[0])), DB.get_all_face_data()))
 
     return render_template("shirts.html", facepairs=pairs)
+
+@app.route("/get_shirt_url", methods=["POST"])
+def get_shirt_url():
+    fields = request.form.to_dict()
+
+    face_id = fields["face_id"]
+    face_colour = fields["face_colour"]
+    shirt_colour = fields["shirt_colour"]
+
+    face_image_url = "http://textfac.es/shirtimage/%s/%s" % (face_id, face_colour)
+
+    api_call_fields = {
+        "api_key": "ea77dc0f36685aa03dc880c780719309",
+        "image_url": face_image_url,
+        "colour": shirt_colour,
+        "landing_page": "product",
+        "product_name": "A stylish textfac.es shirt!"
+    }
+
+    # POST to the API and get a URL back.
+    r = requests.post(SHIRT_API_BASE_URL, data=api_call_fields)
+    url = r.text
+    return url
 
 @app.route("/recieveimage", methods=["POST"])
 def recieve_image():

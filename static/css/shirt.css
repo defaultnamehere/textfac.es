@@ -6,9 +6,27 @@ div.shirtbox {
 
 }
 
+div.preview {
+    text-align: center;
+}
+
 img.face-preview {
-    padding-left: 25%;
-    width: 75%;
+    width: 200px;
+}
+
+img.custom-shirt-preview {
+}
+
+div.face-preview {
+    /*vertical-align: bottom;*/
+    padding-right: 50px;
+}
+
+div.custom-shirt-preview {
+    padding-left: 50px;
+}
+div.preview > div {
+    display: inline;
 }
 
 div.overlay {
@@ -19,16 +37,54 @@ div.overlay {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.95);
-    opacity: .5;
+    opacity: .9;
     z-index: 9999999;
 }
+
+div.plus > span.plus {
+    font-weight: 700;
+    font-size: 50px;
+}
+.darkbg {
+    background-color: #222222;
+}
+.darkbg * {
+    color: #eeeeee;
+}
+div.modal-dialog {
+    width: 1000px;
+}
+
+div.shirt-images {
+    text-align: center;
+}
+img.shirt-image {
+    cursor: pointer;
+}
+
+div.colours > img {
+    cursor:pointer;
+}
+div.loading-gag {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    color: white;
+}
+
 .spinner {
    position: absolute;
-   left: 50%;
+   left: 47%;
    top: 50%;
-   height:60px;
+   height:65px;
    width:60px;
    margin:0px auto;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
    -webkit-animation: rotation .6s infinite linear;
    -moz-animation: rotation .6s infinite linear;
    -o-animation: rotation .6s infinite linear;

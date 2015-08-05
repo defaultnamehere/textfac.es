@@ -26,8 +26,6 @@ function drawFace(face) {
     return img;
 }
 
-
-
 /*
 function saveFace(faceBtn) {
         var faceid = $(faceBtn).attr("face-id");
