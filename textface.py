@@ -6,7 +6,6 @@ import redisdb as db
 import base64
 import os.path
 import requests
-import base64
 
 from datetime import timedelta
 from flask import make_response, request, current_app
