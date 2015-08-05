@@ -77,11 +77,14 @@ div.loading-gag {
 
 .spinner {
    position: absolute;
-   left: 50%;
+   left: 47%;
    top: 50%;
    height:65px;
    width:60px;
    margin:0px auto;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
    -webkit-animation: rotation .6s infinite linear;
    -moz-animation: rotation .6s infinite linear;
    -o-animation: rotation .6s infinite linear;

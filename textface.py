@@ -146,10 +146,7 @@ def get_shirt_url():
     face_colour = fields["face_colour"]
     shirt_colour = fields["shirt_colour"]
 
-    if DEVMODE:
-        face_image_url = "http://textfac.es/shirtimage/66"
-    else:
-        face_image_url = "http://textfac.es/shirtimage/%s/%s" % (face_id, face_colour)
+    face_image_url = "http://textfac.es/shirtimage/%s/%s" % (face_id, face_colour)
 
     api_call_fields = {
         "api_key": "ea77dc0f36685aa03dc880c780719309",

@@ -1,10 +1,54 @@
 
 $(function() {
-    
     var LOADING_GAGS = [
-        "dank",
-        "memes"
-    ]
+        "Sending your shirt through internet tubes....",
+        "DansGame kappa kappa",
+        "Checking meme quality....",
+        "Informing the NSA ( ͡° ͜ʖ ͡°)",
+        "Trying to straighten the spinning circle up there....",
+        "I wish computers could drink coffee, 'cause I'm running out of steam",
+        "Verifying face with World Wide Text Face Consortium....",
+        "Whizzing along the information super highway....",
+        "Reticulating splines....",
+        "(▀̿Ĺ̯▀̿ ̿) sup",
+        "Doing the magic....",
+        "(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ ✧ﾟ･: *ヽ(◕ヮ◕ヽ)",
+        "[̲̅$̲̅(̲̅ ͡° ͜ʖ ͡°̲̅)̲̅$̲̅] got change for a donger bill?",
+        "| (• ◡•)| (❍ᴥ❍ʋ) <--- copyright-abiding Adventure Pals",
+        "┬┴┬┴┤(･_├┬┴┬┴ hey kid wanna buy a t-shirt",
+        "(•_•) ( •_•)>⌐■-■ (⌐■_■) LET'S ROLL",
+        "( ಠ ͜ʖರೃ) just a moment, fine person!",
+        "Our elves are furiously carrying your order to the shirt-makers....",
+        "Writing some more of these gags....",
+        "These are kinda hard to read huh, especially when they're really really long like this one is.",
+        "Hold on a sec....",
+        "Just a minute....",
+        "This should take about 10 seconds....",
+        "Phew, this is hard work!",
+        "Zipping....",
+        "Zapping....",
+        "Whoa, that spinning circle sure is wobbly",
+        "Wake up make memes sleep repeat",
+        "You gotta admit that this is pretty cool",
+        "No wait I don't want to go back down help m-",
+        "I feel like a piece of toast popping right now",
+        "Oh hey there what's u- oh I guess I gotta go now bye!",
+        "Sorry, this hardly ever takes this long....",
+        "Going as fast as we can....",
+        "Uploading to SkyNet...",
+        "Never giving you up....",
+        "Generating you a shirt....",
+        "Downloading more RAM....",
+        "'Making the world a better place'",
+        "Installing malware just kidding",
+        "Asking the Internet to make you a shirt....",
+        "So anyway what are you doing later",
+        "Elephant backwards is gullible",
+        "Shirts are 99% virus free!",
+        "This might take a sec...",
+        "AYY LMAO"
+    ];
+
     var LOADING_GAG_DURATION_MILLIS = 1000;
 
     var API_BASE_URL = "https://rapanuistore.com/api-access-point/";
@@ -43,13 +87,11 @@ $(function() {
         window.setTimeout(switchLoadingGag, 1000);
     }
 
-
     function showSpinner() {
         $("div.overlay").show();
         $("div.spinner").show();
 
     }
-
 
     function setFaceImageColour(id, colour) {
 
@@ -109,49 +151,9 @@ $(function() {
 
         var backend_url = window.location.protocol + "//" + window.location.host + "/get_shirt_url";
 
-
-
-        /* TODO uncoomment me
         $.post(backend_url, shirt_settings)
         .done(function(data) {
                 window.location = data;
         });
-        */
     });
-
-    /*
-        // It's fiiiiiiiiiiiiiine.
-
-        // Get the URL
-        var url_data = {
-            api_key: "ea77dc0f36685aa03dc880c780719309",
-            image_url: image_url,
-            colour: "white",
-            product_name: "A snazzy textfac.es shirt!"
-        };
-
-        var url_with_args = API_BASE_URL + "?" + $.param(url_data);
-
-        // Get the URL from rapanui
-        $.ajax(url_with_args, {
-            type: "GET",
-        })
-        .done(function(data) {
-            $("button.btn-shirt-confirm").click(function() {
-                window.location = data;
-            });
-
-            $("#confirmModal").modal();
-            // Wait for the modal transition to complete before removing the spinner so we don't get the flash of black.
-            $('#confirmModal').on('shown.bs.modal', function (e) {
-                hideSpinner();
-            })
-            $('#confirmModal').on('hidden.bs.modal', function (e) {
-                hideSpinner();
-            })
-        });
-    */
-
-
-
 });
