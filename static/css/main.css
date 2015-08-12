@@ -15,6 +15,9 @@ div.ads {
     cursor: pointer;
     cursor: hand;
 }
+bookmark-banner > p {
+    color: #cccccc;
+}
 h1.title {
     display: inline
 }
