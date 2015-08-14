@@ -15,8 +15,8 @@ div.ads {
     cursor: pointer;
     cursor: hand;
 }
-.bookmark-banner > p {
-    color: #cccccc;
+.bookmark-banner {
+    max-height: 200px;
 }
 h1.title {
     display: inline
