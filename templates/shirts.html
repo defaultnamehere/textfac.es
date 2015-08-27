@@ -3,8 +3,8 @@
 <title>Text face t shirts! We got emoji t-shirts, lenny face emoticon shirts, and look of disapproval shirts</title>
 <meta name="description" content="Textfaces t-shirts! - Emoticon shirts | Emoji shirts | Lenny face shirts ( ͡° ͜ʖ ͡°) | Shrug face t shirts ¯\_(ツ)_/¯ | Look of disapproval t-shirts ಠ_ಠ ">
 
-<link rel="stylesheet" href="../static/css/main.css">
-<link rel="stylesheet" href="../static/css/shirt.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/shirt.css') }}">
 
 {% endblock %}
 {% block container %}
@@ -17,7 +17,7 @@
 <div class="jumbotron">
     <h2>Choose a face<h2>
     <div class="shirtbox">
-        <img height="60" src="../static/ico/shirt.svg" />
+        <img height="60" src="{{ url_for('static', filename='ico/shirt.svg') }}" />
         <span class="plus"><strong>+</strong></span>
         <span class="xxlarge"><strong>?</strong></span>
     </div>
@@ -160,13 +160,13 @@
 </div>
 {% endblock %}
 {% block includejs %}
-<script src="../static/js/zeroclipboard2/dist/ZeroClipboard.js"> </script>
-<script src="../static/js/jquery.cookie.js"> </script>
-<script src="../static/js/maps.js"> </script>
-<script src="../static/js/textgags.js"> </script>
-<script src="../static/js/tshirt.js"> </script>
-<script src="../static/js/order_shirt.js"> </script>
-<script src="../static/js/faq.js"> </script>
+<script src="{{ url_for('static', filename='js/zeroclipboard2/dist/ZeroClipboard.js') }}"> </script>
+<script src="{{ url_for('static', filename='js/jquery.cookie.js') }}"> </script>
+<script src="{{ url_for('static', filename='js/maps.js') }}"> </script>
+<script src="{{ url_for('static', filename='js/textgags.js') }}"> </script>
+<script src="{{ url_for('static', filename='js/tshirt.js') }}"> </script>
+<script src="{{ url_for('static', filename='js/order_shirt.js') }}"> </script>
+<script src="{{ url_for('static', filename='js/faq.js') }}"> </script>
 
 <script type="text/javascript">
 

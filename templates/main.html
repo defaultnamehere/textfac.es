@@ -1,16 +1,15 @@
 {% extends "base.html" %}
 {% block head %}
-
-<title>Text faces | Twitch emoticons and text emoji on your clipboard | Lenny face ( ͡° ͜ʖ ͡°), shrug face ¯\_(ツ)_/¯, look of disapproval ಠ_ಠ and more.</title>
+<title>Text faces | Twitch emoticons and text emoji ready to copy and paste | Lenny face ( ͡° ͜ʖ ͡°), shrug face ¯\_(ツ)_/¯, look of disapproval ಠ_ಠ and more.</title>
 <meta name="description" content="Textfaces - Lenny face ( ͡° ͜ʖ ͡°), shrug face ¯\_(ツ)_/¯, and look of disapproval ಠ_ಠ. Click to copy!">
-<link rel="stylesheet" href="../static/css/main.css">
-<link rel="stylesheet" href="../static/css/shirt.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/shirt.css') }}">
 {% endblock %}
 {% block container %}
 
 <div class="bookmark-banner alert" style="display: none;">
     <div class="pull-left">
-        <a href="http://textfac.es" class="awesome-face"  ><img src="../static/ico/favicon.png" alt="textfac.es"></a> 
+        <a href="http://textfac.es" class="awesome-face"  ><img src="{{ url_for('static', filename='ico/favicon.png'}}" alt="textfac.es"></a> 
     </div>
       <button type="button" class="close" data-dismiss="alert">&times;</button>
       <strong>Bookmark me maybe?</strong> <br>You'll probably want to get to this site quickly later. Just drag icon up to your bookmarks bar. Did you do it? Good. That was fun. You won't see this message again.
@@ -59,8 +58,10 @@
     <a href="/shirts">
         <img src="../static/ico/shrug_shirt.png" class="shirt-preview hidden-xs hidden-sm"/>
         <img src="../static/ico/disapproval_shirt.png" class="shirt-preview hidden-xs hidden-sm"/>
-        <img src="../static/ico/lenny_shirt.png" class="shirt-preview hidden-xs hidden-sm"/>
-        <img src="../static/ico/lenny_shirt.png" class="shirt-preview-small hidden-md hidden-lg"/>
+        <img src="{{ url_for('static', filename='ico/shrug_shirt.png') }}" class="shirt-preview"/>
+        <img src="{{ url_for('static', filename='ico/disapproval_shirt.png') }}" class="shirt-preview"/>
+        <img src="{{ url_for('static', filename='ico/lenny_shirt.png') }}" class="shirt-preview hidden-xs hidden-sm"/>
+        <img src="{{ url_for('static', filename='ico/lenny_shirt.png') }}" class="shirt-preview hidden-md hidden-lg"/>
     </a>
     <strong>
         <p class="muted">The fastest way to say ( ͡° ͜ʖ ͡°) yet</p>
@@ -198,18 +199,17 @@
 </div>
 {% endblock %}
 {% block includejs %}
-<script async src="../static/js/zeroclipboard2/dist/ZeroClipboard.js"> </script>
-<script async defer src="../static/js/jquery.cookie.js"> </script>
-<script async defer src="../static/js/maps.js"> </script>
-<script async defer src="../static/js/textgags.js"> </script>
-<script async defer src="../static/js/tshirt.js"> </script>
-<script async src="../static/js/main.js"> </script>
-<script async defer src="../static/js/faq.js"> </script>
+<script async defer src="{{ url_for('static', filename='js/zeroclipboard2/dist/ZeroClipboard.js') }}"> </script>
+<script async defer src="{{ url_for('static', filename='js/jquery.cookie.js') }}"> </script>
+<script async defer src="{{ url_for('static', filename='js/maps.js') }}"> </script>
+<script async defer src="{{ url_for('static', filename='js/textgags.js') }}"> </script>
+<script defer src="{{ url_for('static', filename='js/tshirt.js') }}"> </script>
+<script defer src="{{ url_for('static', filename='js/main.js') }}"> </script>
+<script async defer src="{{ url_for('static', filename='js/faq.js') }}"> </script>
 <script type="text/javascript">
     if (document.getElementsByTagName("iframe").item(0) == null) {
             // StackOverflow swears this is legit.
             $("div.ads").html("<div style='text-align:center; font-family:century gothic, arial, helvetica, sans serif;padding-left:5px;padding-right:5px;'><span class='muted' style='font-size:10px'>Looks like you're blocking ads. ¯\\_(ツ)_/¯</span></div>");
-
 
 </script>
 {% endblock %}

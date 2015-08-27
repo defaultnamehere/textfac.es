@@ -30,6 +30,8 @@ sys.path.append(TEXTFACES_BASE_PATH)
 app = Flask(__name__)
 DB = db.TextfaceDB()
 
+#TODO use app.root_path? Probably.
+
 def _shirt_path(faceid):
     path = "%s%s/%s_black.png" % (TEXTFACES_BASE_PATH, SHIRT_IMAGE_DIR, faceid)
     return path
@@ -74,6 +76,20 @@ def crossdomain(origin=None, methods=None, headers=None,
         f.provide_automatic_options = False
         return update_wrapper(wrapped_function, f)
     return decorator
+
+
+#@app.context_processor
+#def override_url_for():
+#    return dict(url_for=dated_url_for)
+
+def dated_url_for(endpoint, **values):
+    if endpoint == 'static':
+        filename = values.get('filename', None)
+        if filename:
+            file_path = os.path.join(app.root_path,
+                                     endpoint, filename)
+            values['t'] = int(os.stat(file_path).st_mtime)
+    return url_for(endpoint, **values)
 
 
 # @app.route('/face/<face_name>')
