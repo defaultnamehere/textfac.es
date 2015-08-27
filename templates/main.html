@@ -194,18 +194,17 @@
 </div>
 {% endblock %}
 {% block includejs %}
-<script src="{{ url_for('static', filename='js/zeroclipboard2/dist/ZeroClipboard.js') }}"> </script>
-<script src="{{ url_for('static', filename='js/jquery.cookie.js') }}"> </script>
-<script src="{{ url_for('static', filename='js/maps.js') }}"> </script>
-<script src="{{ url_for('static', filename='js/textgags.js') }}"> </script>
-<script src="{{ url_for('static', filename='js/tshirt.js') }}"> </script>
-<script src="{{ url_for('static', filename='js/main.js') }}"> </script>
-<script src="{{ url_for('static', filename='js/faq.js') }}"> </script>
+<script async defer src="{{ url_for('static', filename='js/zeroclipboard2/dist/ZeroClipboard.js') }}"> </script>
+<script async defer src="{{ url_for('static', filename='js/jquery.cookie.js') }}"> </script>
+<script async defer src="{{ url_for('static', filename='js/maps.js') }}"> </script>
+<script async defer src="{{ url_for('static', filename='js/textgags.js') }}"> </script>
+<script defer src="{{ url_for('static', filename='js/tshirt.js') }}"> </script>
+<script defer src="{{ url_for('static', filename='js/main.js') }}"> </script>
+<script async defer src="{{ url_for('static', filename='js/faq.js') }}"> </script>
 <script type="text/javascript">
     if (document.getElementsByTagName("iframe").item(0) == null) {
             // StackOverflow swears this is legit.
             $("div.ads").html("<div style='text-align:center; font-family:century gothic, arial, helvetica, sans serif;padding-left:5px;padding-right:5px;'><span class='muted' style='font-size:10px'>Looks like you're blocking ads. ¯\\_(ツ)_/¯</span></div>");
-
 
 </script>
 {% endblock %}
