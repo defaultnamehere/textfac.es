@@ -9,7 +9,7 @@
 
 <div class="bookmark-banner alert" style="display: none;">
     <div class="pull-left">
-        <a href="http://textfac.es" class="awesome-face"  ><img src="{{ url_for('static', filename='ico/favicon.png'}}" alt="textfac.es"></a> 
+        <a href="http://textfac.es" class="awesome-face"  ><img src="{{ url_for('static', filename='ico/favicon.png') }}" alt="textfac.es"></a> 
     </div>
       <button type="button" class="close" data-dismiss="alert">&times;</button>
       <strong>Bookmark me maybe?</strong> <br>You'll probably want to get to this site quickly later. Just drag icon up to your bookmarks bar. Did you do it? Good. That was fun. You won't see this message again.
@@ -56,8 +56,6 @@
 <div class="jumbotron shirt-preview">
     <h2>Design your own text face shirt!</h2>
     <a href="/shirts">
-        <img src="../static/ico/shrug_shirt.png" class="shirt-preview hidden-xs hidden-sm"/>
-        <img src="../static/ico/disapproval_shirt.png" class="shirt-preview hidden-xs hidden-sm"/>
         <img src="{{ url_for('static', filename='ico/shrug_shirt.png') }}" class="shirt-preview"/>
         <img src="{{ url_for('static', filename='ico/disapproval_shirt.png') }}" class="shirt-preview"/>
         <img src="{{ url_for('static', filename='ico/lenny_shirt.png') }}" class="shirt-preview hidden-xs hidden-sm"/>
@@ -66,7 +64,9 @@
     <strong>
         <p class="muted">The fastest way to say ( ͡° ͜ʖ ͡°) yet</p>
     </strong>
-    <p><a href="/shirts" class="btn-material btn-material-info btn-material-lg shirt-preview-button">Choose a face</a></p>
+    <div class="shirt-preview-button">
+        <p><a href="/shirts" class="btn-material btn-material-info btn-material-lg shirt-preview-button">Choose a face</a></p>
+    </div>
     </div>
 </div>
 

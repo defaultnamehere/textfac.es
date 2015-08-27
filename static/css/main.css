@@ -29,8 +29,7 @@ img.shirt-preview-small {
     height: 100px;
     float: right;
 }
-a.shirt-preview-button {
-    position: absolute;
+div.shirt-preview-button {
     margin-top: 25px;
 }
 .background-bluegrey {
