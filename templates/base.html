@@ -12,14 +12,16 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
 
-    <link href="{{ url_for('static', filename='css/bootstrap-responsive.css') }}" rel="stylesheet">
 
-    <link href="{{ url_for('static', filename='material/stylesheets/bootstrap-material-design/index.css') }}" rel="stylesheet">
-    <link href="{{ url_for('static', filename='material/stylesheets/bootstrap-material-design/material.css')}}" rel="stylesheet">
     <link href="{{ url_for('static', filename='material/stylesheets/bootstrap-material-design/material-wfont.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='material/stylesheets/bootstrap-material-design/ripples.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/bootstrap-responsive.css') }}" rel="stylesheet">
+    <!--
+    <link href="{{ url_for('static', filename='material/stylesheets/bootstrap-material-design/material.css')}}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='material/stylesheets/bootstrap-material-design/index.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='material/stylesheets/bootstrap-material-design/snackbar.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='material/stylesheets/bootstrap-material-design/icons-material-design.css.scss.erb') }}" rel="stylesheet">
+    -->
     <style>
       body {
         padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
@@ -50,6 +52,18 @@
     {% block navbar %}
     {% endblock %}
 
+<!--
+───█───▄▀█▀▀█▀▄▄───▐█──────▄▀█▀▀█▀▄▄
+──█───▀─▐▌──▐▌─▀▀──▐█─────▀─▐▌──▐▌─█▀
+─▐▌──────▀▄▄▀──────▐█▄▄──────▀▄▄▀──▐▌
+─█────────────────────▀█────────────█
+▐█─────────────────────█▌───────────█
+▐█─────────────────────█▌───────────█
+─█───────────────█▄───▄█────────────█
+─▐▌───────────────▀███▀────────────▐▌
+──█──────────▀▄───────────▄▀───────█
+───█───────────▀▄▄▄▄▄▄▄▄▄▀────────█
+-->
     <div class="container">
     {% block container %}
     {% endblock %}
@@ -57,19 +71,15 @@
 
     {% block footer %}
     {% endblock %}
-    <!-- Le javascript [le]terally js
-    ================================================== -->
 
     <!-- Don't use the Google cdn so users in China can load jquery.-->
-    <script async defer src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script async defer src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-    <script async defer src="{{ url_for('static', filename='material/javascripts/bootstrap-material-design/material.js') }}"></script>
-    <script async defer src="{{ url_for('static', filename='material/javascripts/bootstrap-material-design/jquery.nouislider.min.js') }}"></script>
-    <script async defer src="{{ url_for('static', filename='material/javascripts/bootstrap-material-design/ripples.js') }}"></script>
-    <script async defer src="{{ url_for('static', filename='material/javascripts/bootstrap-material-design/snackbar.min.js') }}"></script>
-
-  
-    <!-- Goog[le] analytics -->
+    <script defer type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+    <script defer src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script defer type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/js/material.min.js"></script>
+    <script defer src="{{ url_for('static', filename='material/javascripts/bootstrap-material-design/jquery.nouislider.min.js') }}"></script>
+    <script defer src="{{ url_for('static', filename='material/javascripts/bootstrap-material-design/ripples.js') }}"></script>
+    <script defer src="{{ url_for('static', filename='material/javascripts/bootstrap-material-design/snackbar.min.js') }}"></script>
+<!-- Goog[le] analytics -->
   <script type="text/javascript">
 
   var _gaq = _gaq || [];

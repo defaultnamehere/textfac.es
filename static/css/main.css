@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Droid+Sans:200');
 body {
     /*
     background-image: url('../img/background.png');
@@ -14,6 +13,9 @@ div.ads {
     /* mfw this css */
     cursor: pointer;
     cursor: hand;
+}
+.bookmark-banner {
+    max-height: 200px;
 }
 h1.title {
     display: inline
