@@ -54,6 +54,7 @@ $(function() {
     // Max number of zalgo marks to add to each character.
     var zalgoStrength = 1;
 
+    var identity = function(s) { return s; };
     var charFunctionMap = {
         "zalgo" : function(s) {
             return zalgoChar(s, zalgoStrength);
@@ -61,11 +62,11 @@ $(function() {
         "strikethrough" : strikethroughChar,
         "gagboys" : gagBoysChar,
         "flip" : flipChar,
-        "normal" : function(s) { return s; },
+        "normal" : identity,
         "smallcaps" :smallCapsChar,
         "fullwidth" : fullWidthChar,
-        "checkbox" : function(s) { return s; },
-        "uncheckbox" : function(s) { return s; }
+        "checkbox" : identity,
+        "uncheckbox" :identity 
 
     }
 
@@ -79,8 +80,6 @@ $(function() {
         "smallcaps" : "ɴɪᴄᴇ ᴍᴇᴍᴇ",
         "checkbox" : "(Press Enter) ☐ Not told\n☑ Told\n☑ Tolderone \n☑ Knights of the Told Republic",
         "uncheckbox" : "(Press Enter) ☐ Not told\n☑ Told\n☑ Tolderone \n☑ Knights of the Told Republic"
-
-
     }
 
     // Step right up getcha gags here freshly baked this morning.
@@ -93,17 +92,64 @@ $(function() {
         return charFunctionMap[selectedGag];
     }
 
+    function handleFlashFallback() {
+    }
+
+    function shrinkFacesToFit() {
+        var colWidth = $("div.col-md-6").width();
+
+        // Quickly resize the faces which are too wide to fit on one line before the user notices ( ͡° ͜ʖ ͡°)
+        $("span.face").each(function() {
+            // mfw parseInt ignores the "px"
+            // mfw ['10', '10', '10', '10'].map(parseInt)
+            var fontSize = parseInt($(this).css('font-size'));
+            while ($(this).width() >= colWidth && fontSize > 5) {
+                fontSize--;
+                $(this).css('font-size', fontSize.toString() + 'px');
+            }
+
+        });
+    }
+
+
     function setup() {
         var faces = $("button.facebtn");
-        var clip = new ZeroClipboard(faces, {moviePath : "../static/js/zeroclipboard2/dist/ZeroClipboard.swf"});
-        var $gagTextArea = $("textarea.gag-text");
-        var $copyBtn = $("button#btn-copy");
+        var supportsHTMLClipboardAPI = false;
+
+
         // Here we go this is how the click to copy works. You got me, it's literally Adobe Flash.
         // Please, if you know a better cross-browser way to do this, let me know @_notlikethis.
         // UPDATE: HTML5 CLIPBOARD API INCOMING HERE WE GO FOLKS
-        var textGagsClip = new ZeroClipboard($copyBtn, {moviePath : "../static/js/zeroclipboard2/dist/ZeroClipboard.swf"});
-        var $sampleGag = $("p.sample-gag");
-        $sampleGag.text(sampleGagMap[selectedGag]);
+
+        if (!supportsHTMLClipboardAPI) {
+            var clip = new ZeroClipboard(faces, {moviePath : "../static/js/zeroclipboard2/dist/ZeroClipboard.swf"});
+            clip.on("ready", function(event) {
+
+                clip.on("aftercopy", function(event) {
+                    $(this).popover('show');
+
+                    window.setTimeout(function() {
+                        faces.popover('hide');
+                    }, 500);
+
+                    var id = $(event.target).attr("face-id")
+                    $.ajax({
+                        url: "click",
+                        method: "POST",
+                        data : {
+                            id: id
+                        }
+                    });
+                });
+            });
+
+
+            clip.on("mouseout", function() {
+                $(this).popover('hide');
+            });
+
+        }
+
 
         // Initialise those popovers
         faces.popover({
@@ -112,20 +158,18 @@ $(function() {
             placement: "right"
         });
 
-        var colWidth = $("div.col-md-6").width();
+        shrinkFacesToFit();
 
-        // Quickly resize the faces which are too wide to fit on one line before the user notices ( ͡° ͜ʖ ͡°)
-        $("span.face").each(function() {
-            // mfw parseInt ignores the "px"
-            // mfw ['10', '10', '10', '10'].map(parseInt)
-            var fontSize = parseInt($(this).css('font-size'));
-            while ($(this).width() >= colWidth && fontSize > 0) {
-                fontSize--;
-                $(this).css('font-size', fontSize.toString() + 'px');
-            }
 
-        });
+    }
 
+    function setupTextGags() {
+        var $gagTextArea = $("textarea.gag-text");
+        var $sampleGag = $("p.sample-gag");
+        var $copyBtn = $("button#btn-copy");
+        var textGagsClip = new ZeroClipboard($copyBtn, { moviePath : "../static/js/zeroclipboard2/dist/ZeroClipboard.swf"});
+
+        $sampleGag.text(sampleGagMap[selectedGag]);
         textGagsClip.on("ready", function(event) {
 
             textGagsClip.on("aftercopy", function(event) {
@@ -140,30 +184,6 @@ $(function() {
             $copyBtn.attr("data-clipboard-text", $gagTextArea.val());
         }
 
-        clip.on("ready", function(event) {
-
-            clip.on("aftercopy", function(event) {
-                $(this).popover('show');
-
-                window.setTimeout(function() {
-                    faces.popover('hide');
-                }, 500);
-
-                var id = $(event.target).attr("face-id")
-                $.ajax({
-                    url: "click",
-                    method: "POST",
-                    data : {
-                        id: id
-                    }
-                });
-            });
-        });
-
-
-        clip.on("mouseout", function() {
-            $(this).popover('hide');
-        });
 
         $('.slogan-gag').on('click', switchSlogan);
         $('#btn-reapply').on('click', function() {
@@ -204,6 +224,11 @@ $(function() {
             $sampleGag.text(sampleGagMap[selectedGag]);
         });
 
+        // Make sure the "copy" button doesn't actually submit the form.
+        $copyBtn.click(function() {
+            return false;
+        });
+
         // Catch the keypress, and modify the character before it hits the text box
         $gagTextArea.bind("keypress", function(event) {
 
@@ -237,13 +262,11 @@ $(function() {
 
         });
 
-        var stringAfterHash = window.location.hash.substr(1);
-        if (["textgags", "faces"].indexOf(stringAfterHash) !== -1) {
-            $('a[href="#' + stringAfterHash + '"]').tab('show')
-        }
 
     }
+
     setup();
+    setupTextGags();
     console.log("( ͡° ͜ʖ ͡°)") // ayy lmao
 });
 
