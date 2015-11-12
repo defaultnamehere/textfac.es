@@ -29,6 +29,8 @@ class TextfaceDB():
         with open(TEXTFACES_BASE_PATH + "facedatadump.txt") as f:
             for line in f:
                 facedata = line.strip().split("|")
+                if len(facedata) > 3:
+                    continue
                 facedata[2] = facedata[2].decode('utf8')
                 results.append(tuple(facedata))
 
