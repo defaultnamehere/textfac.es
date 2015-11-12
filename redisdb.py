@@ -28,7 +28,9 @@ class TextfaceDB():
         TEXTFACES_BASE_PATH = "/var/sites/textfac.es/"
         with open(TEXTFACES_BASE_PATH + "facedatadump.txt") as f:
             for line in f:
-                results.append(tuple(line.strip().split("|")))
+                facedata = line.strip().split("|")
+                facedata[2] = facedata[2].decode('utf8')
+                results.append(tuple(facedata))
 
         """
         for faceid in self.server.lrange(FACE_ID_LIST, 0, -1):
