@@ -22,10 +22,20 @@ class TextfaceDB():
     def get_all_face_data(self):
 
         results = []
+
+        # TODO OH JEEZ THIS IS FILTHY PLEASE NO NOT LIKE THIS
+
+        TEXTFACES_BASE_PATH = "/var/sites/textfac.es/"
+        with open(TEXTFACES_BASE_PATH + "facedatadump.txt") as f:
+            for line in f:
+                results.append(tuple(line.strip().split("|")))
+
+        """
         for faceid in self.server.lrange(FACE_ID_LIST, 0, -1):
             face = self.server.hget(faceid,"face")
             uses = self.server.hget(faceid, "uses")
             results.append((faceid, uses, face.decode('utf-8')))
+        """
 
         if SHUFFLE_FACES:
             random.shuffle(results)
@@ -59,11 +69,11 @@ class TextfaceDB():
         # Insert into redis at this new index.
         self.server.hmset(self.max_face_id, {
             "uses": 0,
-            "face" :face
+            "face": face
         })
 
         # Add it to the list of face ids.
-        self.server.rpush(FACE_ID_LIST, self.max_face_id);
+        self.server.rpush(FACE_ID_LIST, self.max_face_id)
 
         # Also add it to the .txt backup.
         # >.txt backup
