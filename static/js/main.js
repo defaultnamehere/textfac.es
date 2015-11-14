@@ -92,36 +92,18 @@ $(function() {
         return charFunctionMap[selectedGag];
     }
 
+
     function handleFlashFallback() {
-    }
+        // THAT'S RIGHT, NO MORE ADOBE FLASH IF YOU HAVE A MODERN BROWSER GET HYPE.
 
-    function shrinkFacesToFit() {
-        var colWidth = $("div.col-md-6").width();
-
-        // Quickly resize the faces which are too wide to fit on one line before the user notices ( ͡° ͜ʖ ͡°)
-        $("span.face").each(function() {
-            // mfw parseInt ignores the "px"
-            // mfw ['10', '10', '10', '10'].map(parseInt)
-            var fontSize = parseInt($(this).css('font-size'));
-            while ($(this).width() >= colWidth && fontSize > 5) {
-                fontSize--;
-                $(this).css('font-size', fontSize.toString() + 'px');
-            }
-
-        });
-    }
-
-
-    function setup() {
         var faces = $("button.facebtn");
-        var supportsHTMLClipboardAPI = false;
 
-
-        // Here we go this is how the click to copy works. You got me, it's literally Adobe Flash.
-        // Please, if you know a better cross-browser way to do this, let me know @_notlikethis.
-        // UPDATE: HTML5 CLIPBOARD API INCOMING HERE WE GO FOLKS
+        //TODO LOL UNDO THIS
+        var supportsHTMLClipboardAPI = !document.queryCommandSupported('copy');
+        console.log(document.queryCommandEnabled('copy'));
 
         if (!supportsHTMLClipboardAPI) {
+            console.log("No HTML5 clipboard API detected =[. Serving Flash instead...")
             var clip = new ZeroClipboard(faces, {moviePath : "../static/js/zeroclipboard2/dist/ZeroClipboard.swf"});
             clip.on("ready", function(event) {
 
@@ -143,13 +125,74 @@ $(function() {
                 });
             });
 
-
             clip.on("mouseout", function() {
                 $(this).popover('hide');
             });
 
         }
+        else {
+            console.log("Using HTML clipboard API and not Flash. Lucky you!");
 
+            faces.click(function() {
+
+                // Actually copy the face's DOM node, not the JQuery object.
+                copyFace($(this).children("span.face")[0]);
+
+
+                $(this).popover('show');
+
+                window.setTimeout(function() {
+                    faces.popover('hide');
+                }, 500);
+
+                var id = $(event.target).attr("face-id")
+                $.ajax({
+                    url: "click",
+                    method: "POST",
+                    data : {
+                        id: id
+                    }
+                });
+
+            });
+        }
+    }
+
+    function copyFace(face) {
+        console.log(face);
+        // Select the face.
+        var range = document.createRange();
+        range.selectNode(face);
+        window.getSelection().addRange(range);
+
+        // Now that we've selected the face, execute the copy command on the selection.
+        var successful = document.execCommand('copy');  
+        var msg = successful ? 'successful' : 'unsuccessful'; 
+        console.log(msg);
+        window.getSelection().removeAllRanges();
+
+    }
+
+    function shrinkFacesToFit() {
+        var colWidth = $("div.col-md-6").width();
+
+        // Quickly resize the faces which are too wide to fit on one line before the user notices ( ͡° ͜ʖ ͡°)
+        $("span.face").each(function() {
+            // mfw parseInt ignores the "px"
+            // mfw ['10', '10', '10', '10'].map(parseInt)
+            var fontSize = parseInt($(this).css('font-size'));
+            while ($(this).width() >= colWidth && fontSize > 5) {
+                fontSize--;
+                $(this).css('font-size', fontSize.toString() + 'px');
+            }
+
+        });
+    }
+
+
+    function setup() {
+
+        var faces = $("button.facebtn");
 
         // Initialise those popovers
         faces.popover({
@@ -157,6 +200,7 @@ $(function() {
             content: "Copied to clipboard!",
             placement: "right"
         });
+        handleFlashFallback();
 
         shrinkFacesToFit();
 
