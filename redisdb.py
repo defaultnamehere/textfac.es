@@ -69,11 +69,12 @@ class TextfaceDB():
         # Add it to the list of face ids.
         self.server.rpush(FACE_ID_LIST, self.max_face_id)
 
-        # Also add it to the .txt backup.
-        # >.txt backup
-        with open(FACES_FILENAME, 'a') as faces_file:
-            faces_file.write(face)
-            faces_file.write("\n")
+        if backup:
+            # Also add it to the .txt backup.
+            # >.txt backup
+            with open(FACES_FILENAME, 'a') as faces_file:
+                faces_file.write(face)
+                faces_file.write("\n")
         return True
 
 if __name__ == '__main__':
