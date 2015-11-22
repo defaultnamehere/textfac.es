@@ -37,7 +37,7 @@
                 <div class="row">
                 {% for id,uses,face in pair%}
                 <div class="col-md-6 face"> 
-                        <button class="facebtn center-block btn-material btn-material-default " face-id="{{id}}" data-clipboard-text="{{face}}" data-toggle="modal" />
+                        <button class="facebtn center-block btn-material btn-material-default " face-id="{{id}}" data-clipboard-text="{{face}}" data-toggle="modal" data-target="#confirmModal" />
                             <img height="60" src="../static/ico/shirt.svg" />
                             <span class="plus"><strong>+</strong></span>
                             <span class="face">{{face}}</span>
