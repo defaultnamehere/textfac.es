@@ -84,5 +84,5 @@ if __name__ == '__main__':
     if len(sys.argv) > 1:
         db.add_new_face(sys.argv[1])
     else:
-        db.load_faces_from_file(FACES_FILENAME)
+        db.add_faces_from_file(FACES_FILENAME)
 
