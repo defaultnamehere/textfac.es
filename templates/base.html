@@ -9,7 +9,9 @@
     <!-- Le styles (bootstrap) -->
     <!-- Latest compiled and minified CSS -->
 
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+
 
     <link href="{{ url_for('static', filename='material/stylesheets/bootstrap-material-design/material-wfont.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='material/stylesheets/bootstrap-material-design/ripples.css') }}" rel="stylesheet">
@@ -71,9 +73,8 @@
     {% endblock %}
 
     <!-- Don't use the Google cdn so users in China can load jquery.-->
-
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha256-Sk3nkD6mLTMOF0EOpNtsIry+s1CsaqQC1rVLTAy+0yc= sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+    <script defer type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+    <script defer src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <script defer type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/js/material.min.js"></script>
     <script defer src="{{ url_for('static', filename='material/javascripts/bootstrap-material-design/jquery.nouislider.min.js') }}"></script>
     <script defer src="{{ url_for('static', filename='material/javascripts/bootstrap-material-design/ripples.js') }}"></script>

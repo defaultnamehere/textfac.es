@@ -37,7 +37,7 @@
                 <div class="row">
                 {% for id,uses,face in pair%}
                 <div class="col-md-6 face"> 
-                        <button class="facebtn center-block btn-material btn-material-default " face-id="{{id}}" data-clipboard-text="{{face}}" data-toggle="modal" data-target="#confirmModal" />
+                        <button class="facebtn center-block btn-material btn-material-default " face-id="{{id}}" data-clipboard-text="{{face}}" data-toggle="modal" />
                             <img height="60" src="../static/ico/shirt.svg" />
                             <span class="plus"><strong>+</strong></span>
                             <span class="face">{{face}}</span>
@@ -52,7 +52,7 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -60,8 +60,8 @@
 
         <h4 class="modal-title" id="myModalLabel">Customise your shirt</h4>
     </div>
-        <div class="modal-body confirm-modal-body">
     <form action="/get_shirt_url">
+        <div class="modal-body confirm-modal-body">
 
             <div class="preview">
                 <div class="face-preview">
