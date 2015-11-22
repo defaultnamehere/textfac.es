@@ -43,9 +43,9 @@ class TextfaceDB():
             for i, line in enumerate(f):
                 face = line.strip()
 
-                self.add_new_face(face)
+                self.add_new_face(face, backup=False)
 
-    def add_new_face(self, face):
+    def add_new_face(self, face, backup=True):
         """Add a new face, but not duplicates.
         Returns True iff successful"""
 
