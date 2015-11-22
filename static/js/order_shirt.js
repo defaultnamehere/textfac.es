@@ -109,10 +109,14 @@ $(function() {
         // Set foreground colour to black
         setFaceImageColour(id, "black");
 
+        // Load the white image as well, for later.
+        $.get(window.location.protocol + "//" + window.location.host + "/shirtimage/" + id + "/" + "white");
+
         // Set background colour to white
         $("div.modal-content").removeClass("darkbg");
+        //$("#confirmModal").modal();
 
-        $("#confirmModal").modal();
+
     });
 
     $("img.shirt-image").click(function() {
@@ -156,4 +160,5 @@ $(function() {
                 window.location = data;
         });
     });
+
 });
