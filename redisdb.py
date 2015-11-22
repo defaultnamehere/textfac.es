@@ -6,7 +6,6 @@ import redis
 
 
 FACES_FILENAME = "faces.txt"
-SYMBOLS_FILENAME = "symbols.txt" 
 
 FACE_ID_LIST = "faceids"
 
@@ -23,23 +22,10 @@ class TextfaceDB():
 
         results = []
 
-        # TODO OH JEEZ THIS IS FILTHY PLEASE NO NOT LIKE THIS
-
-        TEXTFACES_BASE_PATH = "/var/sites/textfac.es/"
-        with open(TEXTFACES_BASE_PATH + "facedatadump.txt") as f:
-            for line in f:
-                facedata = line.strip().split("|")
-                if len(facedata) > 3:
-                    continue
-                facedata[2] = facedata[2].decode('utf8')
-                results.append(tuple(facedata))
-
-        """
         for faceid in self.server.lrange(FACE_ID_LIST, 0, -1):
             face = self.server.hget(faceid,"face")
             uses = self.server.hget(faceid, "uses")
             results.append((faceid, uses, face.decode('utf-8')))
-        """
 
         if SHUFFLE_FACES:
             random.shuffle(results)
@@ -69,7 +55,11 @@ class TextfaceDB():
             print "Not adding duplicate face: %s" % face
             return False
 
-        self.max_face_id += 1
+        if self.max_face_id is not None:
+            self.max_face_id += 1
+        else:
+            self.max_face_id = 1
+
         # Insert into redis at this new index.
         self.server.hmset(self.max_face_id, {
             "uses": 0,
@@ -95,5 +85,4 @@ if __name__ == '__main__':
         db.add_new_face(sys.argv[1])
     else:
         db.load_faces_from_file(FACES_FILENAME)
-        db.load_symbols_from_file(SYMBOLS_FILENAME)
 
