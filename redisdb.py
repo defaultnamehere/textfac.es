@@ -23,23 +23,10 @@ class TextfaceDB():
 
         results = []
 
-        # TODO OH JEEZ THIS IS FILTHY PLEASE NO NOT LIKE THIS
-
-        TEXTFACES_BASE_PATH = "/var/sites/textfac.es/"
-        with open(TEXTFACES_BASE_PATH + "facedatadump.txt") as f:
-            for line in f:
-                facedata = line.strip().split("|")
-                if len(facedata) > 3:
-                    continue
-                facedata[2] = facedata[2].decode('utf8')
-                results.append(tuple(facedata))
-
-        """
         for faceid in self.server.lrange(FACE_ID_LIST, 0, -1):
-            face = self.server.hget(faceid,"face")
+            face = self.server.hget(faceid, "face")
             uses = self.server.hget(faceid, "uses")
             results.append((faceid, uses, face.decode('utf-8')))
-        """
 
         if SHUFFLE_FACES:
             random.shuffle(results)
