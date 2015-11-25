@@ -26,7 +26,7 @@ class TextfaceDB():
         for faceid in self.server.lrange(FACE_ID_LIST, 0, -1):
             face = self.server.hget(faceid, "face")
             uses = self.server.hget(faceid, "uses")
-            results.append((faceid, uses, face.decode('utf-8')))
+            results.append((faceid, int(uses), face.decode('utf-8')))
 
         if SHUFFLE_FACES:
             random.shuffle(results)
