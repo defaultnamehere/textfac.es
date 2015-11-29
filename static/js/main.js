@@ -40,8 +40,6 @@ $(function() {
             // In the distant future, textfac.es falls into complete chaos when everyone's cookies expire. Only one white man has the courage to face the chaos. Coming this summer: Cookie Monster.
             "expires" : 10 * 365,
             "path": "/",
-            // mfw this isn't the default
-            "secure": true
         });
 
         $('.bookmark-banner').show();
