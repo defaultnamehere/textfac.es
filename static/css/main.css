@@ -150,3 +150,7 @@ textarea.gag-text {
 .nav-tabs > li {
     margin-bottom: 0px !important;
 }
+
+a.no-color {
+    color: inherit;
+}
