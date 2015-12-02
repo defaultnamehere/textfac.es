@@ -133,19 +133,16 @@ $(function() {
         else {
             console.log("Using HTML clipboard API and not Flash. Lucky you!");
 
-            faces.click(function() {
+            var clipboard = new Clipboard("button.facebtn")
 
-                // Actually copy the face's DOM node, not the JQuery object.
-                copyFace($(this).children("span.face")[0]);
-
-
-                $(this).popover('show');
+            clipboard.on('success', function(e) {
+                $(e.target).popover('show');
 
                 window.setTimeout(function() {
                     faces.popover('hide');
                 }, 500);
 
-                var id = $(event.target).attr("face-id")
+                var id = $(e.target).attr("face-id")
                 $.ajax({
                     url: "click",
                     method: "POST",
@@ -153,7 +150,11 @@ $(function() {
                         id: id
                     }
                 });
+                console.info('Action:', e.action);
+                console.info('Text:', e.text);
+                console.info('Trigger:', e.trigger);
 
+                e.clearSelection();
             });
         }
     }
