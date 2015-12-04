@@ -1,6 +1,18 @@
 body {
     background-color: #FAFAFA;
 }
+
+a.christmas-shirt-img {
+    margin: 0 auto;
+    display: block;
+    width: 400px;
+    padding-bottom: 25px;
+}
+img.christmas-shirt-img {
+    height: 400px;
+}
+
+
 div.ads {
     text-align: center;
 }
