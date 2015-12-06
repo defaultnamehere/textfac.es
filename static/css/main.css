@@ -1,5 +1,7 @@
 body {
-    background-color: #FAFAFA;
+    background-image: url("../img/background.png");
+    background-repeat: repeat;
+    background-size: 50px;
 }
 
 a.christmas-shirt-img {
