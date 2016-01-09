@@ -26,6 +26,8 @@ else:
 
 sys.path.append(TEXTFACES_BASE_PATH)
 
+MOBILE_USER_AGENTS = "android|fennec|iemobile|iphone|opera|mobile".split("|")
+
 
 app = Flask(__name__)
 DB = db.TextfaceDB()
@@ -110,8 +112,9 @@ def pairify(iterable):
 
 @app.route('/')
 def faces():
+    is_mobile = request.user_agent.platform in MOBILE_USER_AGENTS
     pairs = pairify(DB.get_all_face_data())
-    return render_template("main.html", facepairs=pairs)
+    return render_template("main.html", facepairs=pairs, is_mobile=is_mobile)
 
 
 @app.route("/click", methods=['POST', 'OPTIONS'])

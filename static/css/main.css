@@ -157,12 +157,22 @@ textarea.gag-text {
     margin-left: 25%;
     width: 50%;
 }
+.nav-tabs > li > a {
+    color: #333333;
+}
+.nav-tabs > li.active > a {
+    color: #333333 !important;
+    font-weight: bold;
+}
 
-.nav-highlight {
-    background-color: #673AB7;
+ul#facesnav {
+    background: white;
 }
 .nav-tabs > li {
     margin-bottom: 0px !important;
+}
+.nav-tabs {
+    border: 1px solid #ddd;
 }
 
 a.no-color {
