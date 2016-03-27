@@ -12,7 +12,6 @@
         <div class="col-md-12">
 
 
-
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         <!-- Responsive -->
         <ins class="adsbygoogle"
@@ -47,29 +46,31 @@
 {% endif %}
 
 <hr>
-<h1 class="title"><a class="no-color" href="{{ url_for('faces') }}">textfac.es</a></h1> <small class="muted slogan-gag"> </small>
-<p class=""> <small>Click to copy to clipboard. Paste anywhere. Achieve glory. </small>
-</p>
-<hr>
-
-{% if not is_mobile %}
-<div class="jumbotron shirt-preview">
-    <h2>Text Face Shirts!</h2>
-    <a href="/shirts">
-        <img src="{{ url_for('static', filename='ico/shrug_shirt.png') }}" class="shirt-preview"/>
-        <img src="{{ url_for('static', filename='ico/disapproval_shirt.png') }}" class="shirt-preview"/>
-        <img src="{{ url_for('static', filename='ico/lenny_shirt.png') }}" class="shirt-preview hidden-xs hidden-sm"/>
-        <img src="{{ url_for('static', filename='ico/lenny_shirt.png') }}" class="shirt-preview hidden-md hidden-lg"/>
-    </a>
-    <strong>
-        <p class="muted">The fastest way to say ( ͡° ͜ʖ ͡°) yet</p>
-    </strong>
-    <div class="shirt-preview-button">
-        <p><a href="/shirts" class="btn-material btn-material-info btn-material-lg shirt-preview-button">BUY NOW</a></p>
+<div class="top-bar">
+    <div class="title">
+        <h1 class="title"><a class="no-color" href="{{ url_for('faces') }}">textfac.es</a></h1> <small class="muted slogan-gag"> </small>
+        <p class=""> <small>Click to copy to clipboard. Paste anywhere. Achieve glory. </small>
+        </p>
     </div>
+    <div class="shirt-preview-outer pull-right">
+        {% if not is_mobile %}
+        <div class="jumbotron shirt-preview pull-right">
+            <a href="/shirts" class="no-decoration">
+            <h2 class="inline">Text Face Shirts!</h2>
+                <img src="{{ url_for('static', filename='ico/shrug_shirt.png') }}" class="shirt-preview"/>
+                <img src="{{ url_for('static', filename='ico/disapproval_shirt.png') }}" class="shirt-preview"/>
+                <img src="{{ url_for('static', filename='ico/lenny_shirt.png') }}" class="shirt-preview hidden-xs hidden-sm"/>
+                <img src="{{ url_for('static', filename='ico/lenny_shirt.png') }}" class="shirt-preview hidden-md hidden-lg"/>
+            <strong>
+                <p class="muted">The fastest way to say ( ͡° ͜ʖ ͡°) yet</p>
+            </strong>
+            </a>
+            </div>
+        </div>
+        {% endif %}
     </div>
 </div>
-{% endif %}
+<hr>
 
 {% if not is_mobile %}
 <div class="tabbable container">

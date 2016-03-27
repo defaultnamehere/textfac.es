@@ -13,7 +13,9 @@ a.christmas-shirt-img {
 img.christmas-shirt-img {
     height: 400px;
 }
-
+h2.inline {
+    display: inline;
+}
 
 div.ads {
     text-align: center;
@@ -39,9 +41,10 @@ h1.title {
 }
 div.shirt-preview {
     overflow: hidden;
+    width: 730px;
 }
 img.shirt-preview {
-    height: 200px;
+    height: 130px;;
     float: right;
 }
 img.shirt-preview-small {
@@ -175,6 +178,32 @@ ul#facesnav {
     border: 1px solid #ddd;
 }
 
+/* Juuuuuust trust me on this one */
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.open > a, .nav-tabs > li.open > a:hover {
+    color: black !important;
+}
+
 a.no-color {
     color: inherit;
+}
+a.no-decoration {
+    color: inherit;
+    text-decoration: none;
+}
+
+div.shirt-preview {
+    display: inline-block;
+    width: 720px;
+    vertical-align: bottom;
+    height: 100px;
+    margin-top: 0px;
+    margin: 0 auto
+}
+div.title {
+    display: inline-block;
+    margin: 0 auto;
+    vertical-align: top;
+}
+div.shirt-preview-outer {
+    display: inline-block;
 }
