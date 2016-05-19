@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block head %}
-<title>Text faces | Twitch emoticons and text emoji ready to copy and paste | Lenny face ( ͡° ͜ʖ ͡°), shrug face ¯\_(ツ)_/¯, look of disapproval ಠ_ಠ and more.</title>
-<meta name="description" content="Textfaces - Lenny face ( ͡° ͜ʖ ͡°), shrug face ¯\_(ツ)_/¯, and look of disapproval ಠ_ಠ. Click to copy!">
+<title>Text faces | Lenny face ( ͡° ͜ʖ ͡°), shrug face ¯\_(ツ)_/¯, look of disapproval ಠ_ಠ and more.</title>
+<meta name="description" content="Textfaces - Lenny face ( ͡° ͜ʖ ͡°), shrug face ¯\_(ツ)_/¯, dongers, and look of disapproval ಠ_ಠ. Click to copy, no need to highlight!">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/shirt.css') }}">
 {% endblock %}
@@ -9,73 +9,77 @@
 
 <div class="ads container">
     <div class="row">
-        <div class="col-md-12 hidden-xs hidden-sm">
-            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-            <!-- Even more responsive -->
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-3510139642126584"
-                 data-ad-slot="8381273755"
-                 data-ad-format="auto"></ins>
-            <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
-    </div>
-    <div class="row">
         <div class="col-md-12">
-            <!-- Responsive -->
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-3510139642126584"
-                 data-ad-slot="5427807359"
-                 data-ad-format="auto"></ins>
-            <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
+
+
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- Responsive -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-3510139642126584"
+             data-ad-slot="5427807359"
+             data-ad-format="auto"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+    <!-- Even more responsive -->
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-3510139642126584"
+         data-ad-slot="8381273755"
+         data-ad-format="auto"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+
         </div>
     </div>
 
 </div>
-
-<div class="bookmark-banner jumbotron hidden-xs hidden-sm" style="display: none;">
-      <h2>Bookmark me maybe?</h2> 
-      <p>You'll probably want to get to this site quickly later. Just drag the smiley face icon <a href="http://textfac.es" class="awesome-face"><img src="../static/ico/favicon.png" alt="textfac.es"></a>up to your bookmarks bar.</p>
-      <p>Did you do it? Good. That was fun. You won't see this message again.</p>
-</div>
-
+{% if not is_mobile %}
+<nav class="navbar navbar-default navbar-fixed-top bookmark-banner" style="display: none;">
+    <div class="bookmark-banner hidden-sm" >
+        <p class="bookmark-banner"><strong>Bookmark me maybe?</strong> You'll probably want to get to this site quickly later. Just drag this smiley face icon <a href="http://textfac.es" class="awesome-face"><img src="../static/ico/favicon.png" alt="textfac.es"></a>up to your bookmarks bar. Did you do it? Good. That was fun. You won't see this message again.</p>
+    </div>
+</nav>
+{% endif %}
 
 <hr>
-<h1 class="title">textfac.es</h1> <small class="muted slogan-gag"> </small>
-<p class=""> <small>Click to copy to clipboard. Paste anywhere. Achieve glory. </small>
-</p>
-<hr>
-
-<div class="jumbotron shirt-preview">
-    <h2>Design your own text face shirt!</h2>
-    <a href="/shirts">
-        <img src="{{ url_for('static', filename='ico/shrug_shirt.png') }}" class="shirt-preview"/>
-        <img src="{{ url_for('static', filename='ico/disapproval_shirt.png') }}" class="shirt-preview"/>
-        <img src="{{ url_for('static', filename='ico/lenny_shirt.png') }}" class="shirt-preview hidden-xs hidden-sm"/>
-        <img src="{{ url_for('static', filename='ico/lenny_shirt.png') }}" class="shirt-preview hidden-md hidden-lg"/>
-    </a>
-    <strong>
-        <p class="muted">The fastest way to say ( ͡° ͜ʖ ͡°) yet</p>
-    </strong>
-    <div class="shirt-preview-button">
-        <p><a href="/shirts" class="btn-material btn-material-info btn-material-lg shirt-preview-button">Choose a face</a></p>
+<div class="top-bar">
+    <div class="title">
+        <h1 class="title"><a class="no-color" href="{{ url_for('faces') }}">textfac.es</a></h1> <small class="muted slogan-gag"> </small>
+        <p class=""> <small>Click to copy to clipboard. Paste anywhere. Achieve glory. </small>
+        </p>
     </div>
+    <div class="shirt-preview-outer pull-right">
+        {% if not is_mobile %}
+        <div class="jumbotron shirt-preview pull-right">
+            <a href="/shirts" class="no-decoration">
+            <h2 class="inline">Text Face Shirts!</h2>
+                <img src="{{ url_for('static', filename='ico/shrug_shirt.png') }}" class="shirt-preview"/>
+                <img src="{{ url_for('static', filename='ico/disapproval_shirt.png') }}" class="shirt-preview"/>
+                <img src="{{ url_for('static', filename='ico/lenny_shirt.png') }}" class="shirt-preview hidden-xs hidden-sm"/>
+                <img src="{{ url_for('static', filename='ico/lenny_shirt.png') }}" class="shirt-preview hidden-md hidden-lg"/>
+            <strong>
+                <p class="muted">The fastest way to say ( ͡° ͜ʖ ͡°) yet</p>
+            </strong>
+            </a>
+            </div>
+        </div>
+        {% endif %}
     </div>
 </div>
+<hr>
 
+{% if not is_mobile %}
 <div class="tabbable container">
-    <ul class="nav nav-tabs background-bluegrey">
+    <ul class="nav nav-tabs" id="facesnav">
         <li class="active">
-        <a href="#faces" data-toggle="tab">Faces</a>
+            <a href="#faces" data-toggle="tab">Faces</a>
         </li>
-        <li>
         <li class="nav-highlight">
-        <a href="#textgags" data-toggle="tab">High Quality Text Gags</a>
+            <a href="#textgags" data-toggle="tab">High Quality Text Gags</a>
         </li>
         <li class="pull-right">
         <div class="social-container pull-right">
@@ -87,6 +91,16 @@
 
         </li>
 </div>
+{% else %}
+        <div class="social-container">
+            <div class="fb-like social-item" data-href="http://textfac.es" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+            <div class="twitter social-item">
+            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://textfac.es" data-text="(☞ﾟヮﾟ)☞ ☜(ﾟヮﾟ☜) Click to copy to clipboard! (~˘▾˘)~ ~(˘▾˘~)">Tweet</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+            </div>
+
+
+{% endif %}
 
     </ul>
     <div class="tab-content">
@@ -145,7 +159,6 @@
                         <button id="btn-copy" class="btn-material-default btn-material btn-material-raised" data-clipboard-text="">Copy to clipboard</button>
                         <button id="btn-reapply" class="btn-material-default btn-material btn-material-raised">Re-apply</button>
                     </div>
-
                 </form>
             </div>
         </div>
@@ -157,58 +170,56 @@
 {% block footer %}
 
 <hr>
-<div class="footer ">
-    <div class="container">
-    <p class="muted text-center"> textfac.es is a <a href="/about">Good Idea</a> </p>
+{% if not is_mobile %}
+    <div class="footer ">
+        <div class="container">
+        <p class="muted text-center"> textfac.es is a <a href="/about">Good Idea</a> </p>
 
-    <div class="container">
-        <h4 class="faq">What is this?</h3>
-        <div class="faq ">
-            <p class="muted outro">
-            textfac.es (or textfaces or text faces, I'm not really sure either and the words in these parentheses are really only here for SEO ( ͡° ͜ʖ ͡°)) lets you finally write those damn unicode faces. You should probably bookmark it so you don't lose it. Or just google "textfaces" every time look I don't care I'm not the boss of you. When you need a textface, just hit the bookmark, click the face, and paste it where you want it to go.
-            </p>
+        <div class="container">
+            <h4 class="faq">What is this?</h3>
+            <div class="faq ">
+                <p class="muted outro">
+                textfac.es (or textfaces or text faces, I'm not really sure either and the words in these parentheses are really only here for SEO ( ͡° ͜ʖ ͡°)) lets you finally write those damn unicode faces. You should probably bookmark it so you don't lose it. Or just google "textfaces" every time look I don't care I'm not the boss of you. When you need a textface, just hit the bookmark, click the face, and paste it where you want it to go.
+                </p>
+            </div>
         </div>
-    </div>
-    <div class="container">
-        <h4 class="faq">How does the click-to-copy work?</h3>
-        <div class="faq ">
-            <p class="muted outro">
-            The click-to-copy works through <a class="muted" href="http://jonrohan.github.com/ZeroClipboard/">ZeroClipboard</a>, which uses Flash (I'm so sorry). If you don't have Flash, you'll have to highlight the faces like a caveman.
-            </p>
+        <div class="container">
         </div>
-    </div>
-    <div class="container">
-        <h4 class="faq">Some of them look kinda weird.</h3>
-        <div class="faq ">
-            <p class="muted outro">
-            If the faces look weird or you see rectangles all over the place, you might not have the right fonts installed. Or the face might actually be weird.
-            </p>
+        <div class="container">
+            <h4 class="faq">Some of them look kinda weird.</h3>
+            <div class="faq ">
+                <p class="muted outro">
+                If the faces look weird or you see rectangles all over the place, you might not have the right fonts installed. Or the face might actually be weird.
+                </p>
+            </div>
         </div>
-    </div>
 
-    <br>
-    <br>
-    <br>
-    <hr>
-    <p class="muted text-center">
-    ¯\_(ツ)_/¯
-    </p>
-</div>
-</div>
+        <br>
+        <br>
+        <br>
+        <hr>
+        <p class="muted text-center">
+        ¯\_(ツ)_/¯
+        </p>
+    </div>
+    </div>
+{% endif %}
 {% endblock %}
 {% block includejs %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.3/clipboard.min.js"></script>
-<script defer src="{{ url_for('static', filename='js/zeroclipboard2/dist/ZeroClipboard.js') }}"> </script>
 <script defer src="{{ url_for('static', filename='js/jquery.cookie.js') }}"> </script>
-<script defer src="{{ url_for('static', filename='js/maps.js') }}"> </script>
-<script defer src="{{ url_for('static', filename='js/textgags.js') }}"> </script>
-<script defer src="{{ url_for('static', filename='js/tshirt.js') }}"> </script>
+{% if not is_mobile %}
+    <script defer src="{{ url_for('static', filename='js/maps.js') }}"> </script>
+    <script defer src="{{ url_for('static', filename='js/textgags.js') }}"> </script>
+    <script defer src="{{ url_for('static', filename='js/tshirt.js') }}"> </script>
+{% endif %}
 <script defer src="{{ url_for('static', filename='js/main.js') }}"> </script>
-<script defer src="{{ url_for('static', filename='js/faq.js') }}"> </script>
 <script type="text/javascript">
     if (document.getElementsByTagName("iframe").item(0) == null) {
             // StackOverflow swears this is legit.
             $("div.ads").html("<div style='text-align:center; font-family:century gothic, arial, helvetica, sans serif;padding-left:5px;padding-right:5px;'><span class='muted' style='font-size:10px'>Looks like you're blocking ads. ¯\\_(ツ)_/¯</span></div>");
+
+    }
 
 </script>
 {% endblock %}

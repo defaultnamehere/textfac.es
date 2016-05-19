@@ -40,8 +40,6 @@ $(function() {
             // In the distant future, textfac.es falls into complete chaos when everyone's cookies expire. Only one white man has the courage to face the chaos. Coming this summer: Cookie Monster.
             "expires" : 10 * 365,
             "path": "/",
-            // mfw this isn't the default
-            "secure": true
         });
 
         $('.bookmark-banner').show();
@@ -98,80 +96,29 @@ $(function() {
 
         var faces = $("button.facebtn");
 
-        //TODO LOL UNDO THIS
-        var supportsHTMLClipboardAPI = !document.queryCommandSupported('copy');
-        console.log(document.queryCommandEnabled('copy'));
+        var clipboard = new Clipboard("button.facebtn");
 
-        if (!supportsHTMLClipboardAPI) {
-            console.log("No HTML5 clipboard API detected =[. Serving Flash instead...")
-            var clip = new ZeroClipboard(faces, {moviePath : "../static/js/zeroclipboard2/dist/ZeroClipboard.swf"});
-            clip.on("ready", function(event) {
+        clipboard.on('success', function(e) {
+            $(e.target).popover('show');
 
-                clip.on("aftercopy", function(event) {
-                    $(this).popover('show');
+            window.setTimeout(function() {
+                faces.popover('hide');
+            }, 500);
 
-                    window.setTimeout(function() {
-                        faces.popover('hide');
-                    }, 500);
-
-                    var id = $(event.target).attr("face-id")
-                    $.ajax({
-                        url: "click",
-                        method: "POST",
-                        data : {
-                            id: id
-                        }
-                    });
-                });
+            var id = $(e.target).attr("face-id")
+            $.ajax({
+                url: "click",
+                method: "POST",
+                data : {
+                    id: id
+                }
             });
+            console.info('Action:', e.action);
+            console.info('Text:', e.text);
+            console.info('Trigger:', e.trigger);
 
-            clip.on("mouseout", function() {
-                $(this).popover('hide');
-            });
-
-        }
-        else {
-            console.log("Using HTML clipboard API and not Flash. Lucky you!");
-
-            var clipboard = new Clipboard("button.facebtn")
-
-            clipboard.on('success', function(e) {
-                $(e.target).popover('show');
-
-                window.setTimeout(function() {
-                    faces.popover('hide');
-                }, 500);
-
-                var id = $(e.target).attr("face-id")
-                $.ajax({
-                    url: "click",
-                    method: "POST",
-                    data : {
-                        id: id
-                    }
-                });
-                console.info('Action:', e.action);
-                console.info('Text:', e.text);
-                console.info('Trigger:', e.trigger);
-
-                e.clearSelection();
-            });
-        }
-    }
-
-    function copyFace(face) {
-        console.log(face);
-        // Select the face.
-        var range = document.createRange();
-        range.selectNode(face);
-        window.getSelection().addRange(range);
-
-        // Now that we've selected the face, execute the copy command on the selection.
-        var successful = document.execCommand('copy');  
-        var msg = successful ? 'successful' : 'unsuccessful'; 
-        console.log(msg);
-        window.getSelection().removeAllRanges();
-
+            e.clearSelection();
+        });
     }
 
     function shrinkFacesToFit() {
@@ -212,17 +159,15 @@ $(function() {
         var $gagTextArea = $("textarea.gag-text");
         var $sampleGag = $("p.sample-gag");
         var $copyBtn = $("button#btn-copy");
-        var textGagsClip = new ZeroClipboard($copyBtn, { moviePath : "../static/js/zeroclipboard2/dist/ZeroClipboard.swf"});
+        var clipboard= new Clipboard("button#btn-copy");
 
         $sampleGag.text(sampleGagMap[selectedGag]);
-        textGagsClip.on("ready", function(event) {
 
-            textGagsClip.on("aftercopy", function(event) {
-                $copyBtn.text("Copied!");
-                window.setTimeout(function() {
-                    $copyBtn.text("Copy to clipboard");
-                }, 2000);
-            });
+        clipboard.on("success", function(event) {
+            $copyBtn.text("Copied!");
+            window.setTimeout(function() {
+                $copyBtn.text("Copy to clipboard");
+            }, 2000);
         });
 
         function updateDataAttribute() {
