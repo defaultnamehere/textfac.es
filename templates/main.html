@@ -110,7 +110,7 @@
                     {% for id,uses,face in pair%}
                     <div class="col-md-6 face"> 
                         <button class="facebtn center-block btn-material btn-material-default " face-id="{{id}}" data-clipboard-text="{{face}}" >
-                            <span class="face">{{face}}</span>
+                            {{face}}
                         </button>
                     </div>
                     {% endfor %}
@@ -126,7 +126,7 @@
                             <p class="muted sample-gag">
                             </p>
                         </div>
-                        <textarea rows="3" class="gag-text text-large" placeholder="Type your gags here"></textarea>
+                        <textarea rows="3" class="gag-text text-large" id="gag-textarea" placeholder="Type your gags here"></textarea>
                     </div>
                     <div>
                         <label class="select">
@@ -156,7 +156,7 @@
                             </label>
                     </div>
                     <div>
-                        <button id="btn-copy" class="btn-material-default btn-material btn-material-raised" data-clipboard-text="">Copy to clipboard</button>
+                        <button id="btn-copy" class="btn-material-default btn-material btn-material-raised" data-clipboard-target="#gag-textarea">Copy to clipboard</button>
                         <button id="btn-reapply" class="btn-material-default btn-material btn-material-raised">Re-apply</button>
                     </div>
                 </form>

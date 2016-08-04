@@ -6,15 +6,13 @@ $(function() {
         'You came to the <em>right</em> dongerhood.',
         'All the faces, but not <em>in</em> your face.',
         'See also <a href="http://gabegaming.com">gabegaming.com</a>',
-        '10 million hits woo!',
         'For best results apply directly to Twitch chat.',
         '( ͡° ͜ʖ ͡°)',
         '<em>Not</em> made in the Bay area.',
         'Suggestions welcome.',
         'Better than googling "how to make lenny face".',
         '"omg how did you make that face?"',
-        'See <a href="http://oneu.se">oneu.se</a> for my other novelty one-use websites.',
-        '2.0!',
+        '3.0!',
         'Tweet me! <a href="http://twitter.com/_notlikethis/">@_notlikethis</a>',
         'Because Googling for these things is hard.',
         'Because you\'re worth it.',
@@ -29,7 +27,6 @@ $(function() {
         'Thanks for reading all these messages.',
         'Click me for another message!.',
         'Did you know there\'s text at the bottom of this page?',
-        'Now with HTTPS! (The S stands for secure ( ͡° ͜ʖ ͡°))',
         // >leaving the last comma
         // >js
     ];
@@ -90,19 +87,19 @@ $(function() {
         return charFunctionMap[selectedGag];
     }
 
-
     function handleFlashFallback() {
         // THAT'S RIGHT, NO MORE ADOBE FLASH IF YOU HAVE A MODERN BROWSER GET HYPE.
 
-        var faces = $("button.facebtn");
+        var $faces = $("button.facebtn");
 
         var clipboard = new Clipboard("button.facebtn");
 
         clipboard.on('success', function(e) {
+            console.log(e);
             $(e.target).popover('show');
 
             window.setTimeout(function() {
-                faces.popover('hide');
+                $faces.popover('hide');
             }, 500);
 
             var id = $(e.target).attr("face-id")
@@ -129,6 +126,8 @@ $(function() {
             // mfw parseInt ignores the "px"
             // mfw ['10', '10', '10', '10'].map(parseInt)
             var fontSize = parseInt($(this).css('font-size'));
+
+            // Binary search is for suckers right now.
             while ($(this).width() >= colWidth && fontSize > 5) {
                 fontSize--;
                 $(this).css('font-size', fontSize.toString() + 'px');
@@ -151,15 +150,13 @@ $(function() {
         handleFlashFallback();
 
         shrinkFacesToFit();
-
-
     }
 
     function setupTextGags() {
         var $gagTextArea = $("textarea.gag-text");
         var $sampleGag = $("p.sample-gag");
         var $copyBtn = $("button#btn-copy");
-        var clipboard= new Clipboard("button#btn-copy");
+        var clipboard = new Clipboard("button#btn-copy");
 
         $sampleGag.text(sampleGagMap[selectedGag]);
 
@@ -170,10 +167,6 @@ $(function() {
             }, 2000);
         });
 
-        function updateDataAttribute() {
-            $copyBtn.attr("data-clipboard-text", $gagTextArea.val());
-        }
-
 
         $('.slogan-gag').on('click', switchSlogan);
         $('#btn-reapply').on('click', function() {
@@ -182,7 +175,6 @@ $(function() {
                 return gagify(char);
             }).join('');
             $gagTextArea.val(gagifiedText);
-            updateDataAttribute();
             return false;
         });
         switchSlogan();
@@ -233,7 +225,6 @@ $(function() {
 
                 // If we're doing newline hackery, return false, otherwise let the enter keypress go through
                 if ((selectedGag === "checkbox" || selectedGag === "uncheckbox")) {
-                    updateDataAttribute();
                     return false;
                 }
             }
@@ -247,7 +238,6 @@ $(function() {
             else {
                 $gagTextArea.val($gagTextArea.val() + gagify(char));
             }
-            updateDataAttribute()
             return false;
 
         });
