@@ -151,11 +151,11 @@ $(function() {
         var $gagTextArea = $("textarea.gag-text");
         var $sampleGag = $("p.sample-gag");
         var $copyBtn = $("button#btn-copy");
-        var clipboard = new Clipboard("button#btn-copy");
+        var gagClipboard = new Clipboard($copyBtn.get(0));
 
         $sampleGag.text(sampleGagMap[selectedGag]);
 
-        clipboard.on("success", function(event) {
+        gagClipboard.on("success", function(event) {
             $copyBtn.text("Copied!");
             window.setTimeout(function() {
                 $copyBtn.text("Copy to clipboard");
