@@ -95,7 +95,6 @@ $(function() {
         var clipboard = new Clipboard("button.facebtn");
 
         clipboard.on('success', function(e) {
-            console.log(e);
             $(e.target).popover('show');
 
             window.setTimeout(function() {
@@ -110,10 +109,6 @@ $(function() {
                     id: id
                 }
             });
-            console.info('Action:', e.action);
-            console.info('Text:', e.text);
-            console.info('Trigger:', e.trigger);
-
             e.clearSelection();
         });
     }
