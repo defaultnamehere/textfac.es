@@ -114,7 +114,6 @@ def pairify(iterable):
 def faces():
     is_mobile = request.user_agent.platform in MOBILE_USER_AGENTS
     pairs = pairify(DB.get_all_face_data())
-    pairs = [[(0,0,"=]"), (1,1,"=D")]]
 
     return render_template("main.html", facepairs=pairs, is_mobile=is_mobile)
 
