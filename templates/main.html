@@ -7,6 +7,38 @@
 {% endblock %}
 {% block container %}
 
+        {% if not is_mobile %}
+    <div class="shirt-preview-outer ">
+        <div class="jumbotron shirt-preview">
+            <a href="/shirts" class="no-decoration">
+            <h2 class="inline">Text Face Shirts!</h2>
+                <img src="{{ url_for('static', filename='ico/shrug_shirt.png') }}" class="shirt-preview"/>
+                <img src="{{ url_for('static', filename='ico/disapproval_shirt.png') }}" class="shirt-preview"/>
+                <img src="{{ url_for('static', filename='ico/lenny_shirt.png') }}" class="shirt-preview hidden-xs hidden-sm"/>
+                <img src="{{ url_for('static', filename='ico/lenny_shirt.png') }}" class="shirt-preview hidden-md hidden-lg"/>
+            <strong>
+                <p class="muted">The fastest way to say ( ͡° ͜ʖ ͡°) yet</p>
+            </strong>
+            </a>
+        </div>
+    </div>
+        {% endif %}
+{% if not is_mobile %}
+<nav class="navbar navbar-default navbar-fixed-top bookmark-banner" style="display: none;">
+    <div class="bookmark-banner hidden-sm" >
+        <p class="bookmark-banner"><strong>Bookmark me maybe?</strong> You'll probably want to get to this site quickly later. Just drag this smiley face icon <a href="http://textfac.es" class="awesome-face"><img src="../static/ico/favicon.png" alt="textfac.es"></a>up to your bookmarks bar. Did you do it? Good. That was fun. You won't see this message again.</p>
+    </div>
+</nav>
+{% endif %}
+
+<hr>
+<div class="top-bar">
+    <div class="title">
+        <h1 class="title"><a class="no-color" href="{{ url_for('faces') }}">textfac.es</a></h1> <small class="muted slogan-gag"> </small>
+        <p class=""> <small>Click to copy to clipboard. Paste anywhere. Achieve glory. </small>
+        </p>
+    </div>
+
 <div class="ads container">
     <div class="row">
         <div class="col-md-12">
@@ -36,38 +68,7 @@
         </div>
     </div>
 
-</div>
-{% if not is_mobile %}
-<nav class="navbar navbar-default navbar-fixed-top bookmark-banner" style="display: none;">
-    <div class="bookmark-banner hidden-sm" >
-        <p class="bookmark-banner"><strong>Bookmark me maybe?</strong> You'll probably want to get to this site quickly later. Just drag this smiley face icon <a href="http://textfac.es" class="awesome-face"><img src="../static/ico/favicon.png" alt="textfac.es"></a>up to your bookmarks bar. Did you do it? Good. That was fun. You won't see this message again.</p>
-    </div>
-</nav>
-{% endif %}
-
-<hr>
-<div class="top-bar">
-    <div class="title">
-        <h1 class="title"><a class="no-color" href="{{ url_for('faces') }}">textfac.es</a></h1> <small class="muted slogan-gag"> </small>
-        <p class=""> <small>Click to copy to clipboard. Paste anywhere. Achieve glory. </small>
-        </p>
-    </div>
-    <div class="shirt-preview-outer pull-right">
-        {% if not is_mobile %}
-        <div class="jumbotron shirt-preview pull-right">
-            <a href="/shirts" class="no-decoration">
-            <h2 class="inline">Text Face Shirts!</h2>
-                <img src="{{ url_for('static', filename='ico/shrug_shirt.png') }}" class="shirt-preview"/>
-                <img src="{{ url_for('static', filename='ico/disapproval_shirt.png') }}" class="shirt-preview"/>
-                <img src="{{ url_for('static', filename='ico/lenny_shirt.png') }}" class="shirt-preview hidden-xs hidden-sm"/>
-                <img src="{{ url_for('static', filename='ico/lenny_shirt.png') }}" class="shirt-preview hidden-md hidden-lg"/>
-            <strong>
-                <p class="muted">The fastest way to say ( ͡° ͜ʖ ͡°) yet</p>
-            </strong>
-            </a>
-            </div>
         </div>
-        {% endif %}
     </div>
 </div>
 <hr>
